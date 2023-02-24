@@ -1,0 +1,103 @@
+html {
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(#d3e496,#2fe977, #d3e496);
+    font-family: 'Concert One';
+}
+  
+.paper {
+    display: block;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+  
+nav {
+    background-color: #333;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 8vh;
+}
+  
+.title {
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 20px;
+}
+  
+ul {
+    display: flex;
+    justify-content: space-around;
+    width: 30%;
+    text-align: center;
+}
+  
+.topnav li {
+    list-style: none;
+    display: inline-block;
+}
+  
+.topnav a {
+ color: white;
+    text-decoration: none;
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 14px 16px;
+}
+  
+.topnav a:hover {
+    background-image: linear-gradient(#d3e496, #2fe977);
+    color: black;
+}
+  
+.description {
+    text-align: center;
+    font-size: 20px;
+    margin: 20px;
+}
+  
+.signinButtons {
+    text-align: center;
+    margin-top: 10p;
+}
+  
+.btn {
+    background-image: radial-gradient(#d3e496, #2fe977,#d3e496);
+    border: 2px solid;
+    color: black;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+    margin: 5px 30px;
+    cursor: pointer;
+    font-family: "Concert One";
+    border-radius: 12px; 
+} 
+  
+.btn-1:hover, .btn-2:hover {
+    background-image: radial-gradient(#2fe977, white);
+}
+  
+.guestButton {
+    text-align: center;
+    background: none;
+    border: none;
+}
+  
+.btn-3 {
+    background: transparent;
+    border: none;
+    font-size: 18px;
+}
+  
+.btn-3:hover {
+    color: white;
+    text-shadow: black;
+}

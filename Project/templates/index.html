@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Home Page</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}" />
+</head>
+
+<body>
+  <link href='https://fonts.googleapis.com/css?family=Concert One' rel='stylesheet'>
+  <!-- Navigation -->
+  <nav>
+    <div class="title">
+      <h4>Sketch Napkin</h4>
+    </div>
+    <ul class="topnav">
+      <li><a href="home">Home</a></li>
+      <li><a href="drive">Drive</a></li>
+      <li><a href="contact">Contact</a></li>
+      <li><a href="about">About</a></li>
+    </ul>
+  </nav>
+  <!-- Main -->
+  <div class="logo">
+    <img src="../static/images/Logo.png" class="paper">
+  </div>
+  <div class="description">
+    <c>Best place to easily import sketches in order to save and alter it.</c>
+  </div>
+  <div class="signinButtons">
+    <button class="btn btn-1">Login</button>
+    <button class="btn btn-2">Sign Up</button>
+  </div>
+  <div class="guestButton">
+    <button class="btn btn-3">Continue as Guest</button>
+  </div>
+</body>
+
+</html>
