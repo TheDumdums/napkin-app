@@ -9,37 +9,37 @@
 </head>
 
 <body>
-  <link href='https://fonts.googleapis.com/css?family=Concert One' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Tilt+Neon' rel='stylesheet'>
   <!-- Navigation -->
   <nav>
-    <div class="title">
-      <h4>Sketch Napkin</h4>
-    </div>
-    <ul class="topnav">
-      <li><a href="home">Home</a></li>
-      <li><a href="drive">Drive</a></li>
-      <li><a href="contact">Contact</a></li>
-      <li><a href="about">About</a></li>
-    </ul>
+      <div class="title">Napking</div>
+      <ul class="topnav">
+        <li><a href="home">Home</a></li>
+        <li><a href="drive">Drive</a></li>
+        <li><a href="contact">Contact</a></li>
+        <li><a href="about">About</a></li>
+      </ul>
   </nav>
   <!-- Main -->
-  <div class="logo">
-    <!-- <img src="../static/images/Logo.png" class="paper"> -->
+  <div class="napkin-container">
+    <canvas id="napkin" class="napkin" width=500 height=500></canvas>
   </div>
-  <canvas class="napkin" width="500" height="500" style="border:1px solid #000000;">
-  </canvas>
-  <div class="description">
-    <c>Best place to easily import sketches in order to save and alter it.</c>
+  <div class="tools">
+    <button class="color-black" onclick="colorChangeBlack()"></button>
+    <button class="color-red" onclick="colorChangeRed()"></button>
+    <button class="color-blue" onclick="colorChangeBlue()"></button>
   </div>
-  <div class="signinButtons">
-    <button class="btn btn-1">Login</button>
-    <button class="btn btn-2">Sign Up</button>
+  <div class="napkin-name-container">
+    <textarea name="napkin-name" id="napkin-name" cols="30" rows="1">Give your napkin a name!</textarea>
   </div>
-  <div class="guestButton">
-    <button class="btn btn-3">Continue as Guest</button>
-  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
   <script src="../javascript/napkin.js"></script>
+  <footer>
+    <div class="description">
+      <c><b>Napking</b> is the best place to jot down quick notes! Draw to your heart's content, or write something down!</c>
+    </div>
+  </footer>
 </body>
 
 </html>
