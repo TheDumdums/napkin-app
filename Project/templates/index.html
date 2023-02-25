@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Home Page</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}" />
+  <link rel="stylesheet" type="text/css" href="../static/css/style.css" /> 
 </head>
 
 <body>
@@ -24,8 +24,10 @@
   </nav>
   <!-- Main -->
   <div class="logo">
-    <img src="../static/images/Logo.png" class="paper">
+    <!-- <img src="../static/images/Logo.png" class="paper"> -->
   </div>
+  <canvas class="napkin" width="500" height="500" style="border:1px solid #000000;">
+  </canvas>
   <div class="description">
     <c>Best place to easily import sketches in order to save and alter it.</c>
   </div>
@@ -36,6 +38,8 @@
   <div class="guestButton">
     <button class="btn btn-3">Continue as Guest</button>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+  <script src="../javascript/napkin.js"></script>
 </body>
 
 </html>
