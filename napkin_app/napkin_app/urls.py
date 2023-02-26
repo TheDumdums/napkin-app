@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 # imported views
-from my_app import views
+from napkin import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
