@@ -16,10 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 # imported views
-from napkin import views
+from napkin import views as napkin_views
+from login import views as login_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # configured the url
-    path('',views.index, name="homepage")
+    path('',napkin_views.unlogged_napkin, name="homepage"),
+    # path('login', login_views.login, name="login"),
+    # path('signup', login_views.signup, name="signup"),
+    # path('postLogin', login_views.postLogin),
+    # path('postSignUp', login_views.postSignUp),
+    path('postsignIn', login_views.postsignIn),
+    path('signIn/', login_views.signIn, name="signin"),
+    path('signUp/', login_views.signUp, name="signup"),
+    path('logout/', login_views.logout, name="log"),
+    path('postsignUp/', login_views.postsignUp),
 ]
