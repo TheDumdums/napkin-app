@@ -14,15 +14,24 @@
   <link href='https://fonts.googleapis.com/css?family=Tilt+Neon' rel='stylesheet'>
   <nav>
       <div class="title">Napking</div>
+      {% if username %}
       <ul class="topnav">
-        {% if username %}
-          <li style="color: white;">{{username}}</li>
+        <li style="color: white;">{{username}}</li>
+        <li><a href="">Home</a></li>
+        {% if napkins %}
+        <li><a href="/view">View Napkins</a></li>
         {% endif %}
+        <li><a href="logout">Log Out</a></li>
+        <li><a href="about">About</a></li>
+      </ul>
+      {% else %}
+      <ul class="topnav">
         <li><a href="">Home</a></li>
         <li><a href="signIn">Login</a></li>
         <li><a href="/signUp">Sign Up</a></li>
         <li><a href="about">About</a></li>
       </ul>
+      {% endif %}
   </nav>
   <!-- Main -->
   <div class="napkin-container">
@@ -39,17 +48,6 @@
   {% if username %}
   <button class="upload-button" onclick="sendUploadRequest()">Upload to account</button>
   {% endif %}
-  <ul>
-    {% if napkins %}
-      {% for timestamp, napkin in napkins.items %} 
-        <li>
-          <button class="napkin-link" onclick="openNapkinTab('{{napkin.url}}')">
-            {{napkin.name}}
-          </button>
-        </li>
-      {% endfor %}
-    {% endif %}
-  </ul>
   </body>
 
 <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>

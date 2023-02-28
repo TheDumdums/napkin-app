@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/napkin.css' %}"> 
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Home Page</title>
+</head>
+
+<body>
+  <link href='https://fonts.googleapis.com/css?family=Tilt+Neon' rel='stylesheet'>
+  <nav>
+      <div class="title">Napking</div>
+      <ul class="topnav">
+        {% if username %}
+        <li style="color: white;">{{username}}</li>
+        {% endif %}
+        <li><a href="/signInReturn">Home</a></li>
+        {% if napkins %}
+        <li><a href="view">View Napkins</a></li>
+        {% endif %}
+        <li><a href="logout">Log Out</a></li>
+        <li><a href="about">About</a></li>
+      </ul>
+  </nav>
+  <!-- Main -->
+  <ul>
+    {% if napkins %}
+      {% for timestamp, napkin in napkins.items %} 
+        <li>
+          <button class="napkin-link" onclick="openNapkinTab('{{napkin.url}}')">
+            {{napkin.name}}
+          </button>
+        </li>
+      {% endfor %}
+    {% endif %}
+  </ul>
+  </body>
+<script src="{% static 'scripts/napkin.js' %}"></script>
+</html>

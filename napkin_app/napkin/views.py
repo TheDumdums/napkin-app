@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import time
 import pyrebase
+from django.shortcuts import redirect
 
 config = {
     "apiKey": "AIzaSyBm618u4qNxY3SAO_S-DtNfuGT3d5MACRs",
@@ -43,8 +44,17 @@ def upload_napkin(request, name, uploadURL):
         "name": name,
         "url": uploadURL
     })
+    return redirect('/uploadComplete')
 
+def upload_complete(request):
     return logged_napkin(request, additional_params={"upload_success": "Upload successful!"})
+
+def napkin_view(request):
+    uid = request.session['uid']
+    name = database.child("profiles").child(uid).child("username").get().val()
+
+    napkins = database.child("napkins").child(uid).get().val()
+    return render(request, 'view.html', {"username": name, "napkins": napkins})
 
 def about(request):
     return render(request, 'about.html')

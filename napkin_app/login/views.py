@@ -69,4 +69,4 @@ def logout(request):
         del request.session['uid']
     except:
         pass
-    return render(request,"login.html")
+    return napkin_views.unlogged_napkin(request)

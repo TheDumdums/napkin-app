@@ -22,11 +22,14 @@ from login import views as login_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',napkin_views.unlogged_napkin, name="homepage"),
+    path('signInReturn',napkin_views.logged_napkin, name="homepage"),
+    path('uploadComplete',napkin_views.upload_complete, name="homepage"),
     path('postsignIn', login_views.postsignIn),
     path('signIn/', login_views.signIn, name="signin"),
     path('signUp/', login_views.signUp, name="signup"),
-    path('logout/', login_views.logout, name="log"),
+    path('logout', login_views.logout, name="homepage"),
     path('postsignUp/', login_views.postsignUp),
     path('upload/<name>/<uploadURL>', napkin_views.upload_napkin, name="homepage"),
     path('about/', napkin_views.about, name="aboutpage"),
+    path('view', napkin_views.napkin_view, name="view")
 ]
