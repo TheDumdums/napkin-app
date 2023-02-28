@@ -21,15 +21,21 @@ from login import views as login_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',napkin_views.unlogged_napkin, name="homepage"),
-    path('signInReturn',napkin_views.logged_napkin, name="homepage"),
-    path('uploadComplete',napkin_views.upload_complete, name="homepage"),
-    path('postsignIn', login_views.postsignIn),
-    path('signIn/', login_views.signIn, name="signin"),
-    path('signUp/', login_views.signUp, name="signup"),
-    path('logout', login_views.logout, name="homepage"),
-    path('postsignUp/', login_views.postsignUp),
-    path('upload/<name>/<uploadURL>', napkin_views.upload_napkin, name="homepage"),
-    path('about/', napkin_views.about, name="aboutpage"),
-    path('view', napkin_views.napkin_view, name="view")
+
+    #redirects
+    path('uploadComplete',napkin_views.upload_complete, name="homepage"), #homepage redirect after you upload something
+    path('postsignIn', login_views.postsignIn), #redirects to homepage after signin
+    path('logout', login_views.logout, name="homepage"), #goes from logged in homepage to logged out homepage
+    path('postsignUp/', login_views.postsignUp), #redirects to homepage after signup
+
+    #specialized upload 
+    path('upload/<name>/<uploadURL>', napkin_views.upload_napkin, name="homepage"), #special url for uploading napkins -> homepage when done
+
+    #content
+    path('',napkin_views.unlogged_napkin, name="homepage"), #homepage for unsigned in users
+    path('signInReturn',napkin_views.logged_napkin, name="homepage"), #homepage for logged in users
+    path('signIn/', login_views.signIn, name="signin"), #the sign in page
+    path('signUp/', login_views.signUp, name="signup"), #the sign up page
+    path('about/', napkin_views.about, name="aboutpage"), #the about page
+    path('view', napkin_views.napkin_view, name="view") #the view page
 ]

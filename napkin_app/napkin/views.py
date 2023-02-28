@@ -20,15 +20,18 @@ firebase=pyrebase.initialize_app(config)
 auth = firebase.auth()
 database = firebase.database()
 
+#returns the napkin page, but for non-logged in users. no special arguments passed in.
 def unlogged_napkin(request):
     return render(request, 'index.html')
 
+#returns the napkin page, but for logged in users. the username is passed in.
+#there is an option for this page to be loaded with other arguments. For example, on completion,
+#this method is called, with a confirmation message passed in.
 def logged_napkin(request, additional_params=None):
     uid = request.session['uid']
     name = database.child("profiles").child(uid).child("username").get().val()
 
-    napkins = database.child("napkins").child(uid).get().val()
-    user_params={"username":name,"napkins":napkins}
+    user_params={"username":name}
 
     if additional_params:
         for k in additional_params.keys():
@@ -36,7 +39,11 @@ def logged_napkin(request, additional_params=None):
 
     return render(request, 'index.html', user_params)
 
+#given a url with information about a napkin, upload that napkin to whoever's url is in the session data.
+#when completed, change the url to a confirmation message. This url will then invoke the next method (upload_complete)
 def upload_napkin(request, name, uploadURL):
+    #due to / shenanegains, the napkin URL had it's / swapped with # on upload.
+    #reverse this process.
     uploadURL = uploadURL.replace("#", "/")
     uid = request.session['uid']
     timestamp = str(int(time.time()))
@@ -46,9 +53,12 @@ def upload_napkin(request, name, uploadURL):
     })
     return redirect('/uploadComplete')
 
+#return a logged napkin page, with a confirmation message.
 def upload_complete(request):
     return logged_napkin(request, additional_params={"upload_success": "Upload successful!"})
 
+#gets all the napkins that a user has made in the database, and the user's name, and
+#returns a napking viewing page with the prior data as arguments.
 def napkin_view(request):
     uid = request.session['uid']
     name = database.child("profiles").child(uid).child("username").get().val()
@@ -56,5 +66,6 @@ def napkin_view(request):
     napkins = database.child("napkins").child(uid).get().val()
     return render(request, 'view.html', {"username": name, "napkins": napkins})
 
+#returns the about page.
 def about(request):
     return render(request, 'about.html')

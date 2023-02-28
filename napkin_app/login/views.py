@@ -19,12 +19,17 @@ firebase=pyrebase.initialize_app(config)
 auth = firebase.auth()
 database = firebase.database()
 
+#returns the sign in page.
 def signIn(request):
     return render(request,"login.html")
 
+#returns the sign up page.
 def signUp(request):
     return render(request,"signup.html")
- 
+
+#changes your session id to be your firebase uid (account specific)
+#this is required in order for other services to work.
+#when completed, return a logged in napkin page.
 def postsignIn(request):
     email=request.POST.get('email')
     password=request.POST.get('pass')
@@ -39,9 +44,13 @@ def postsignIn(request):
         print(name)
         return napkin_views.logged_napkin(request)
     except:
-        message="Invalid credentials."
-        return render(request,"Login.html",{"message":message})
+        return render(request,"Login.html",{"message":"Invalid credentials."})
 
+#attempts to create an account in firebase.
+#if successful, changes your session id to be your firebase uid (account specific)
+#this is required in order for other services to work.
+#also, adds your username to the realtime database.
+#when completed, return a logged in napkin page.
 def postsignUp(request):
     email = request.POST.get('email')
     password = request.POST.get('pass')
@@ -64,6 +73,8 @@ def postsignUp(request):
         print(e)
         return render(request, "signup.html")
 
+#removes the uid from the session.
+#returns an unlogged in napkin page.
 def logout(request):
     try:
         del request.session['uid']
