@@ -32,4 +32,5 @@ urlpatterns = [
     path('signUp/', login_views.signUp, name="signup"),
     path('logout/', login_views.logout, name="log"),
     path('postsignUp/', login_views.postsignUp),
+    path('about/', napkin_views.about, name="aboutpage"),
 ]

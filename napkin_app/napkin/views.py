@@ -7,3 +7,6 @@ def unlogged_napkin(request):
 
 def logged_napkin(request, user_params):
     return render(request, 'index.html', user_params)
+
+def about(request):
+    return render(request, 'about.html')
