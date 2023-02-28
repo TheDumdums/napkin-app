@@ -21,15 +21,11 @@ from login import views as login_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # configured the url
     path('',napkin_views.unlogged_napkin, name="homepage"),
-    # path('login', login_views.login, name="login"),
-    # path('signup', login_views.signup, name="signup"),
-    # path('postLogin', login_views.postLogin),
-    # path('postSignUp', login_views.postSignUp),
     path('postsignIn', login_views.postsignIn),
     path('signIn/', login_views.signIn, name="signin"),
     path('signUp/', login_views.signUp, name="signup"),
     path('logout/', login_views.logout, name="log"),
     path('postsignUp/', login_views.postsignUp),
+    path('upload/<name>/<uploadURL>', napkin_views.upload_napkin, name="homepage")
 ]

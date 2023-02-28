@@ -32,13 +32,12 @@ def postsignIn(request):
     try:
         user=auth.sign_in_with_email_and_password(email,password)
         
-        session_id=user['idToken']
         uid=user["localId"]
-        request.session['uid']=str(session_id)
+        request.session['uid']=str(uid)
         
         name = database.child("profiles").child(uid).child("username").get().val()
         print(name)
-        return napkin_views.logged_napkin(request, user_params={"username":name})
+        return napkin_views.logged_napkin(request)
     except:
         message="Invalid credentials."
         return render(request,"Login.html",{"message":message})
@@ -60,7 +59,7 @@ def postsignUp(request):
             "username": name
         })
     
-        return napkin_views.logged_napkin(request, user_params={"username":name})
+        return napkin_views.logged_napkin(request)
     except Exception as e:
         print(e)
         return render(request, "signup.html")
