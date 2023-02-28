@@ -45,3 +45,6 @@ def upload_napkin(request, name, uploadURL):
     })
 
     return logged_napkin(request, additional_params={"upload_success": "Upload successful!"})
+
+def about(request):
+    return render(request, 'about.html')
