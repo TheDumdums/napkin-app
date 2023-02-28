@@ -32,7 +32,9 @@ def logged_napkin(request, additional_params=None):
     name = database.child("profiles").child(uid).child("username").get().val()
 
     user_params={"username":name}
-
+    napkins = database.child("napkins").child(uid).get().val()
+    user_params={"username":name,"napkins":napkins}
+    
     if additional_params:
         for k in additional_params.keys():
             user_params[k] = additional_params[k]
