@@ -1,0 +1,2666 @@
+<html lang="en">
+<head>
+
+
+        <script
+            src="https://browser.sentry-cdn.com/5.26.0/bundle.min.js"
+            integrity="sha384-VGljl8BTZL6Py4DmlOaYmfkOwp8mD3PrmD2L+fN446PZpsrIHuDhX7mnV/L5KuNR"
+            crossorigin="anonymous"
+        ></script>
+
+
+        <script>
+            if (typeof Sentry !== 'undefined') {
+                Sentry.init({
+                    dsn: "https://16ebbf0f256c45d1989ddc6fb27344e6@o438864.ingest.sentry.io/5443804",
+                    release: "22.1.2",
+                    environment: "prod",
+                    tracesSampleRate: 0.1,
+                    ignoreErrors: ['ResizeObserver loop completed with undelivered notifications']
+                });
+            }
+
+        </script>
+
+<!-- mainPageLayout.mustache --> 
+    <script>
+        dataLayer = [{"GID":"FQkZxchUHesmG6pY","isLoggedIn":"false","userType":"visitor"}];
+    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-K7Q9T5K');</script>
+    <!-- End Google Tag Manager -->
+
+    <script type="text/javascript">
+        window.cdnLearnPythonPrefix = "https://cdn.learnpython.com/lpy/22.1.2";
+        window.resourcePrefix = "/lpy/22.1.2";
+        window.isLogged = false;
+    </script>
+    <title>Python online courses - learn with us | LearnPython.com</title>
+
+    <meta name="p:domain_verify" content="2ba0314a1f45213ca2c995ae4e40bc74"/>
+
+    <meta name="keywords" content="python tutorial, learn python, python training, python course, python online, python for beginners, learn python online, python learning, how to learn python, python online training, python online course, practice python online, free python training" />
+    <meta name="description" content="Learn Python language comprehensively or simply upskill yourself with our interactive online courses. Start growing your mind today" />
+    <meta name="og:locale" content="en_US" />
+    <meta name="og:title" content="Learn Python anywhere, anytime." />
+    <meta name="og:description" content="Learn Python language comprehensively or simply upskill yourself with our interactive online courses. Start growing your mind today" />
+    <meta name="og:type" content="website" />
+    <meta name="og:image" content="https://learnpython.com/files/og_image/default" />
+    <meta name="og:image:type" content="image/png" />
+    <meta name="og:url" content="https://learnpython.com" />
+    <meta name="og:site_name" content="LearnPython" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="https://cdn.learnpython.com/lpy/22.1.2/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="https://cdn.learnpython.com/lpy/22.1.2/img/favicon-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon-precomposed" href="https://cdn.learnpython.com/lpy/22.1.2/img/favicon-180x180.png" />
+    <meta name="msapplication-TileImage" content="https://cdn.learnpython.com/lpy/22.1.2/img/favicon-270x270.png" />
+
+    <script type="text/javascript" src="https://cdn.learnpython.com/lpy/22.1.2/js/react/MainPage.js"></script>
+
+    <script type="text/javascript">
+
+        
+        if (!'scrollY' in window && 'pageYOffset' in window) {
+            window.scrollY = window.pageYOffset;
+        }
+
+        // scrollowanie do odpowiedniego miejsca mechanizm # w linku
+        var Scroller = {
+            NAV_HEIGHT: 157,
+
+
+            start: function () {
+
+
+                window.addEventListener('hashchange', function (event) {
+                    Scroller.scrollTo(location.hash);
+                });
+
+
+                if (location.hash && location.hash.length > 1) {
+                    Scroller.scrollTo(location.hash);
+                }
+
+            },
+
+            scrollTo: function(hash) {
+                console.log('scrolling to', hash);
+                var element = document.getElementById(hash.substr(1));
+                if (element) {
+                    console.log(Scroller.NAV_HEIGHT);
+                    window.scrollTo({left: 0, top: element.offsetTop - Scroller.NAV_HEIGHT});
+                }
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var logoutButton = document.getElementById('layout-logout-button'),
+                hamburgerLogoutButton = document.getElementById('hamburger-logout-button');
+            function logout() {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/api/v1/login/logout', true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.onreadystatechange = function() {
+                    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                        window.sessionStorage.setItem('isFlashSaleBoxClosed', false);
+                        window.location = "/";
+                    }
+                }
+                xhr.send("{}");
+            }
+            if (logoutButton) {
+                logoutButton.addEventListener('click', logout);
+                logoutButton.addEventListener('keydown', function(e) {
+                    if (e.key === "Enter") {
+                        logout();
+                    }
+                })
+            }
+            if (hamburgerLogoutButton) {
+                hamburgerLogoutButton.addEventListener('click', logout);
+                hamburgerLogoutButton.addEventListener('keydown', function(e) {
+                    if (e.key === "Enter") {
+                        logout();
+                    }
+                })
+            }
+
+            var cookiesButton = document.querySelector('.cookies__button'),
+                cookiesBox = document.querySelector('.cookies');
+            var cookiesAccepted = document.cookie.split(';').filter(cookieFilter).length > 0;
+            function cookieFilter(item) {
+                return item.trim().startsWith('cookiesInfoHidden=true');
+            }
+            if(cookiesAccepted) {
+                cookiesBox.classList.add('hide');
+            } else {
+                cookiesBox.classList.remove('hide');
+                cookiesButton.addEventListener('click', function() {
+                    cookiesBox.classList.add('hide');
+                    document.cookie = 'cookiesInfoHidden=true';
+                });
+            }
+
+            function throttle(func, wait, options) {
+                var context, args, result;
+                var timeout = null;
+                var previous = 0;
+                if (!options) options = {};
+                var later = function() {
+                    previous = options.leading === false ? 0 : Date.now();
+                    timeout = null;
+                    result = func.apply(context, args);
+                    if (!timeout) context = args = null;
+                };
+                return function() {
+                    var now = Date.now();
+                    if (!previous && options.leading === false) previous = now;
+                    var remaining = wait - (now - previous);
+                    context = this;
+                    args = arguments;
+                    if (remaining <= 0 || remaining > wait) {
+                        if (timeout) {
+                            clearTimeout(timeout);
+                            timeout = null;
+                        }
+                        previous = now;
+                        result = func.apply(context, args);
+                        if (!timeout) context = args = null;
+                    } else if (!timeout && options.trailing !== false) {
+                        timeout = setTimeout(later, remaining);
+                    }
+                    return result;
+                };
+            };
+
+            var buttonToTop = document.querySelector('.button--to-top');
+            var previousPosition = window.scrollY;
+            
+            if (buttonToTop) {
+                if (window.scrollY <= window.innerHeight - 157) {
+                    buttonToTop.classList.add('hidden');
+                }
+                window.addEventListener('scroll', throttle(toggleButtonToTop, 500));
+
+                buttonToTop.addEventListener('click', function() {
+                    window.scrollTo(0, 0);
+                    document.querySelector('a.site-logo').focus();
+                });
+            }
+
+            function toggleButtonToTop() {
+                if (buttonToTop.classList.contains('hidden')) {
+                    if (window.scrollY > window.innerHeight - 157) {
+                        buttonToTop.classList.remove('hidden');
+                    }
+                    return;
+                }
+                if (window.scrollY < previousPosition) {
+                    if (window.scrollY <= window.innerHeight - 157) {
+                        buttonToTop.classList.add('hidden');
+                    } 
+                }
+                previousPosition = window.scrollY;
+            }
+
+            var isMobileMenuShowed = false;
+
+
+            Scroller.start();
+            window.Scroller = Scroller;
+
+            var skipNavButton = document.querySelector('#skip-navigation > button');
+            skipNavButton.addEventListener('keydown', function(e) {
+                if (e.key !== 'Enter') {
+                    return;
+                }
+                var focusables = document.querySelector('.container').querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                var firstFocusable = focusables[0];
+                firstFocusable.focus();
+            });
+
+            var hamburgerButton = document.querySelector('.site-header-home-navigation-layer-menu-icon'),
+                hamburgerMenu = document.querySelector('.site-header-home-navigation-hamburger-wrapper'),
+                siteLogo = document.querySelector('.site-logo');
+            hamburgerButton.addEventListener('click', function() {
+                if (Array.prototype.slice.call(hamburgerMenu.classList).includes('hide')) {
+                    isMobileMenuShowed = true;
+                    hamburgerMenu.classList.remove('hide');
+                    siteLogo.classList.add('hide');
+                } else {
+                    isMobileMenuShowed = false;
+                    hamburgerMenu.classList.add('hide');
+                    siteLogo.classList.remove('hide');
+                }
+            });
+
+
+
+            // User's profile modal from menu
+            function SimpleModal(modalEl) {
+                var self = this;
+                self.modalEl = modalEl;
+                var focusableEls = self.modalEl.querySelectorAll('a');
+                self.focusableEls = Array.prototype.slice.call(focusableEls);
+                self.firstFocusableEl = self.focusableEls[0];
+                self.lastFocusableEl = self.focusableEls[self.focusableEls.length - 1];
+                self.modalEl.addEventListener('keydown', function(e) {
+                    self._handleKeyDown(e);
+                });
+            }
+            SimpleModal.prototype.open = function() {
+                var self = this;
+                self.modalEl.classList.add('isOpen');
+                self.modalEl.removeAttribute('aria-hidden');
+            }
+            SimpleModal.prototype.close = function() {
+                var self = this;
+                self.modalEl.classList.remove('isOpen');
+                self.modalEl.setAttribute('aria-hidden', true);
+            }
+            SimpleModal.prototype._handleKeyDown = function(e) {
+                var self = this;
+                var TAB = "Tab";
+                var ESC = "Escape";
+
+                function handleBackwardTab() {
+                    if (document.activeElement === self.firstFocusableEl) {
+                        e.preventDefault();
+                        self.lastFocusableEl.focus();
+                    }
+                }
+                function handleForwardTab() {
+                    if (document.activeElement === self.lastFocusableEl) {
+                        e.preventDefault();
+                        self.firstFocusableEl.focus();
+                    }
+                }
+                switch (e.key) {
+                    case TAB:
+                        if (e.shiftKey) {
+                            handleBackwardTab();
+                        } else {
+                            handleForwardTab();
+                        }
+                        break;
+                    case ESC:
+                        self.close();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            SimpleModal.prototype.assignEventListeners = function(modalButton, modalLayer) {
+                var self = this;
+                modalButton.addEventListener('keydown', function(e) {
+                    if (e.key === "Enter") {
+                        self.open();
+                    }
+                });
+                modalButton.addEventListener('click', function() {
+                    self.open();
+                });
+                modalLayer.addEventListener('click', function() {
+                    self.close();
+                });
+            }
+
+            var libraryButton = document.getElementById('library-button'),
+                libraryModal = document.querySelector('.library-modal'),
+                libraryModalLayer = document.querySelector('.library-modal__layer');
+
+            libraryModalInstance = new SimpleModal(libraryModal);
+            libraryModalInstance.assignEventListeners(libraryButton, libraryModalLayer);
+
+            if (isLogged) {
+                var myProfileButton = document.querySelector('.logout-button'),
+                    myProfileModal = document.querySelector('.logout-modal'),
+                    myProfileModalLayer = document.querySelector('.logout-modal__layer');
+                var profileModalInstance;
+
+                if (!myProfileModal || !myProfileButton) {
+                    var err = new ReferenceError('Cannot find modal element. myProfileModal: ' + myProfileModal + ', myProfileButton: ' + myProfileButton);
+                    throw err;
+                }
+
+                profileModalInstance = new SimpleModal(myProfileModal);
+                profileModalInstance.assignEventListeners(myProfileButton, myProfileModalLayer);
+            }
+        });
+    </script>
+
+    <script type="text/javascript">
+
+
+
+                (function(c,a){if(!a.__SV){var b=window;try{var d,m,j,k=b.location,f=k.hash;d=function(a,b){return(m=a.match(RegExp(b+"=([^&]*)")))?m[1]:null};f&&d(f,"state")&&(j=JSON.parse(decodeURIComponent(d(f,"state"))),"mpeditor"===j.action&&(b.sessionStorage.setItem("_mpcehash",f),history.replaceState(j.desiredHash||"",c.title,k.pathname+k.search)))}catch(n){}var l,h;window.mixpanel=a;a._i=[];a.init=function(b,d,g){function c(b,i){var a=i.split(".");2==a.length&&(b=b[a[0]],i=a[1]);b[i]=function(){b.push([i].concat(Array.prototype.slice.call(arguments,
+                    0)))}}var e=a;"undefined"!==typeof g?e=a[g]=[]:g="mixpanel";e.people=e.people||[];e.toString=function(b){var a="mixpanel";"mixpanel"!==g&&(a+="."+g);b||(a+=" (stub)");return a};e.people.toString=function(){return e.toString(1)+".people (stub)"};l="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+                    for(h=0;h<l.length;h++)c(e,l[h]);var f="set set_once union unset remove delete".split(" ");e.get_group=function(){function a(c){b[c]=function(){call2_args=arguments;call2=[c].concat(Array.prototype.slice.call(call2_args,0));e.push([d,call2])}}for(var b={},d=["get_group"].concat(Array.prototype.slice.call(arguments,0)),c=0;c<f.length;c++)a(f[c]);return b};a._i.push([b,d,g])};a.__SV=1.2;b=c.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?
+                    MIXPANEL_CUSTOM_LIB_URL:"file:"===c.location.protocol&&"//cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js";d=c.getElementsByTagName("script")[0];d.parentNode.insertBefore(b,d)}})(document,window.mixpanel||[]);
+
+                mixpanel.init("a16fa37d8e33afbecaba3a510bdf9180");
+
+
+
+    </script>
+
+    <link rel="preload" href="https://cdn.learnpython.com/lpy/22.1.2/fonts/Oxygen/Oxygen-Regular.ttf" type="font/ttf" as="font" crossorigin>
+    <link rel="preload" href="https://cdn.learnpython.com/lpy/22.1.2/fonts/Oxygen/Oxygen-Bold.ttf" type="font/ttf" as="font" crossorigin>
+    <link rel="preload" href="https://cdn.learnpython.com/lpy/22.1.2/img/LearnSQL-mockup-exercise-screen.png" as="image" media="(min-width: 800px)">
+    <link rel="preload" href="https://cdn.learnpython.com/lpy/22.1.2/img/LearnSQL-mockup-exercise-screen-m.png" as="image" media="(min-width: 481px) and (max-width: 799px)">
+    <link rel="stylesheet" as="style" type="text/css" href="https://cdn.learnpython.com/lpy/22.1.2/css/MainPage.css" />
+
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K7Q9T5K"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div id="flash-sale-box" class="sticky"></div>
+<header class="site-header mainpage-header">
+    <div id="info-block" style="width: 100%; padding: 1em; background-color: black;  text-align: center;  color: white; font-weight: bold; display: none; position: fixed; z-index: 99;">
+        Ad-blocking extension has been detected. Please disable it. It may cause problems.
+    </div>
+    <nav role="navigation">
+        <div class="site-navigation">
+            <a href="/" class="site-logo" aria-label="Mainpage Learnsql">
+                <svg role="img"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    class="site-logo-icon-white icon icon--logo">
+                    
+                    <use xlink:href="/lpy/22.1.2/img/sprite.svg#logo"></use>
+                </svg>
+            </a>
+            <div id="skip-navigation">
+                <button class="button--ghost">Skip navigation</button>
+            </div>
+            <ul class="main-menu">
+                <li class="main-menu__item main-menu__item--courses">
+                    <a href="/course-explorer" title="Courses">Courses</a>
+                </li>
+                <li class="main-menu__item main-menu__item--pricing">
+                    <a href="/pricing" title="Pricing">Pricing</a>
+                </li>
+                <!-- <li class="main-menu__item main-menu__item--for-business">
+                    <a href="#" title="For Business">For Business</a>
+                </li>
+                <li class="main-menu__item main-menu__item--for-students">
+                    <a href="#" title="For Students">For Students</a>
+                </li> -->
+                <li class="main-menu__item main-menu__item--library">
+                    <button title="Python Library" id="library-button">Python Library
+                        <svg role="img"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            class="icon icon--ico_arrow_small_bottom">
+                            
+                            <use xlink:href="/lpy/22.1.2/img/sprite.svg#ico_arrow_small_bottom"></use>
+                        </svg>
+                    </button>
+                    <div class="library-modal modal"
+                        aria-hidden="true"
+                        aria-modal="true"
+                        role="dialog"
+                        aria-labelledby="Python Library"
+                        aria-describedby="Python Library">
+                        <div class="library-modal__layer"></div>
+                        <div class="library-modal__window modal__window">
+                            <a href="/blog">Articles</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="main-menu__item main-menu__item--login">
+                    <a href="/log-in" title="Login">Login</a>
+                </li>
+                <li class="main-menu__item main-menu__item--singup">
+                    <a class="main-menu__sign-up button--primary" href="/sign-up" title="Signup">Create free account</a>
+                </li>
+            </ul>
+            <div class="site-header-home-navigation-layer-menu pages">
+                <span class="site-header-home-navigation-layer-menu-cover">MENU</span>
+                <span class="site-header-home-navigation-layer-menu-cover-active">CLOSE</span>
+                <div class="site-header-home-navigation-layer-menu-icon pages" role="button" tabindex="0" aria-label="Toggle menu">
+                    <div class="site-header-home-navigation-layer-menu-icon top"></div>
+                    <div class="site-header-home-navigation-layer-menu-icon middle"></div>
+                    <div class="site-header-home-navigation-layer-menu-icon bottom"></div>
+                </div>
+                <div class="site-header-home-navigation-hamburger-wrapper pages hide">
+                    <div class="site-header-home-navigation-hamburger-layout">
+                        <ul class="site-header-home-navigation-hamburger">
+                            <li class="site-header-home-navigation-hamburger-item pages">
+                                <a class="site-header-home-navigation-hamburger-link" href="/course-explorer" title="Courses page">Courses</a>
+                            </li>
+                            <li class="site-header-home-navigation-hamburger-item">
+                                <a class="site-header-home-navigation-hamburger-link" href="/pricing" title="Pricing page">Pricing</a>
+                            </li>
+                            <li class="site-header-home-navigation-hamburger-item">
+                                <a class="site-header-home-navigation-hamburger-link" href="/blog" title="Articles page">Articles</a>
+                            </li>
+                        </ul>
+                        <ul class="site-header-home-navigation-below">
+                            <li class="site-header-home-navigation-below-item">
+                                <a class="site-header-home-navigation-below-item-link" href="/log-in">Log in</a>
+                            </li>
+                            <li class="site-header-home-navigation-below-item">
+                                <a class="site-header-home-navigation-below-item-button button--primary" href="/sign-up">Create free account</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+        </div>
+        </div>
+    </nav>
+</header>
+<div class="cookies hide">
+    <div class="cookies__icon">
+        <img src="https://cdn.learnpython.com/lpy/22.1.2/img/icons/cookies.svg" alt="cookies-icon" xmlns="http://www.w3.org/2000/svg">
+    </div>
+    <p class="cookies__text">
+        Our website uses cookies. By using this website, you agree to their use in accordance with the browser settings. You can modify your browser settings on your own. For more information see our <a href="/files/privacy-policy" class="small-link">Privacy Policy</a>.
+    </p>
+    <button class="cookies__button button--primary">OK</button>
+</div>
+<div class="container site-content academy">
+<main>
+    <section class="intro" id="header">
+        <div class="intro__info">
+            <h1 class="intro__header">Learn & Practice Python</h1>
+            <p class="intro__description">with the most comprehensive set of 13 hands-on online Python courses for teams and individuals</p>
+            <a href="/" class="button--primary" type="button">Start now</a>
+            
+        </div>
+        <div class="intro-gradient-wrapper">
+            <div class="intro-gradient-wrapper__gradient"></div>
+        </div>
+        <div class="intro__graphics">
+            <figure class="graphics">
+                <div class="exercise-screen">
+                    <div class="top-bar">
+                        <div class="top-bar__dot top-bar__dot--one"></div>
+                        <div class="top-bar__dot top-bar__dot--two"></div>
+                        <div class="top-bar__dot top-bar__dot--three"></div>
+                    </div>
+                    <div class="exercise-screen__background"></div>
+                </div>
+                <div class="code-editor">
+                    <div class="code-editor__links-wrapper">
+                        <div class="code-editor__link active">
+                            Code editor
+                        </div>
+                    </div>
+                    <div class="code-editor__text-editor-wrapper">
+                        <div class="code-editor__code-area-wrapper">
+                            <div class="code-editor__gutter">
+                                <div>1</div>
+                                <div>2</div>
+                                <div>3</div>
+                                <div>4</div>
+                                <div>5</div>
+                                <div>6</div>
+                                <div>7</div>
+                            </div>
+                            <div class="code-editor__code-area">
+                                <pre class="code-editor__code-line"><span class="blue">books</span> <span class="gold">=</span> <span class="blue">pd</span>.<span class="red">read_csv</span>(<span class="blue italic">'books.csv'</span>)></pre>
+                                <pre class="code-editor__code-line"><span class="blue">figure</span> <span class="gold">=</span> <span class="blue">plt</span>.<span class="red">figure</span>(<span class="blue">figsize</span>=(<span class="dark-gold">10</span>, <span class="dark-gold">6</span>))</pre>
+                                <pre class="code-editor__code-line"><span class="blue">subplot</span> <span class="gold">=</span> <span class="blue">plt</span>.<span class="red">subplot</span>()</pre>
+                                <pre class="code-editor__code-line"><span class="blue">subplot</span>.<span class="red">plot</span>(<span class="blue">books</span>[<span class="blue italic">'romance'</span>])</pre>
+                                <pre class="code-editor__code-line"><span class="blue">subplot</span>.<span class="red">plot</span>(<span class="blue">books</span>[<span class="blue italic">'fantasy'</span>])</pre>
+                                <pre class="code-editor__code-line"><span class="blue">subplot</span>.<span class="red">plot</span>(<span class="blue">books</span>[<span class="blue italic">'thriller'</span>])</pre>
+                                <pre class="code-editor__code-line"><span class="blue">plt</span>.<span class="red">show</span>()</pre>
+                            </div>
+                        </div>
+                        <div class="code-editor-buttons">
+                            <div class="code-editor-buttons__run-and-check">
+                                <svg role="img"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    class="icon icon--ico_play">
+                                    
+                                    <use xlink:href="/lpy/22.1.2/img/exercise-sprite.svg#ico_play"></use>
+                                </svg>
+                            </div>
+                            <div class="code-editor-buttons__reset">
+                                <svg role="img"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    class="icon icon--ico_reset">
+                                    
+                                    <use xlink:href="/lpy/22.1.2/img/exercise-sprite.svg#ico_reset"></use>
+                                </svg>
+                            </div>
+                            <div class="code-editor-buttons__next">
+                                <svg role="img"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    class="icon icon--ico_next">
+                                    
+                                    <use xlink:href="/lpy/22.1.2/img/exercise-sprite.svg#ico_next"></use>
+                                </svg>
+                            </div>
+                            <div class="code-editor-buttons__tooltip">👏  I think you’re getting the hang of this! Try another.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-modal">
+                    <div class="menu-modal__intro">
+                        <img width="58px" height="58px" class="menu-modal__avatar avatar" src="/lpy/22.1.2/img/avatar.png" alt="avatar" />
+                        <div class="menu-modal__name">Marie Williams</div>
+                    </div>
+                    <div class="menu-modal__link">
+                        <span>Dashboard</span>
+                    </div>
+                    <div class="menu-modal__link">
+                        <span>My Profile</span>
+                    </div>
+                    <div class="menu-modal__link">
+                        <span>Payment & Billing</span>
+                    </div>
+                    <div class="menu-modal__link">
+                        <span>Team portal</span>
+                    </div>
+                    <div class="menu-modal__separator-border"></div>
+                    <div class="menu-modal__link--logout">
+                        <span class="menu-modal__logout-button">Logout
+                            <svg role="img"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                class="icon icon--ico_logout">
+                                
+                                <use xlink:href="/lpy/22.1.2/img/sprite.svg#ico_logout"></use>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+            </figure>
+        </div>
+    </section>
+
+    <section class="benefits" id="icons">
+        <div class="benefits__angle section-angle"></div>
+        <div class="benefits__wrapper">
+            <div class="benefit">
+                <div class="benefit__top">
+                    <svg width="134px" height="87px" viewBox="0 0 134 87" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <title>Career choices</title>
+                        <defs>
+                            <linearGradient x1="64.6672237%" y1="13.3200376%" x2="32.0606015%" y2="100%" id="linearGradient-1">
+                                <stop stop-color="#D8A4E8" offset="0%"></stop>
+                                <stop stop-color="#A889D5" offset="48.4071105%"></stop>
+                                <stop stop-color="#988AE4" offset="100%"></stop>
+                            </linearGradient>
+                            <rect id="path-2" x="61.1852976" y="12.7612275" width="59.9558174" height="59.9558174" rx="8"></rect>
+                            <rect id="path-4" x="37.1852976" y="12.7612275" width="59.9558174" height="59.9558174" rx="8"></rect>
+                        </defs>
+                        <g id="02-HOME" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="LearnSQL_Home" transform="translate(-503.000000, -750.000000)">
+                                <g id="Benefits" transform="translate(0.000000, 680.000000)">
+                                    <g id="1" transform="translate(390.000000, 71.000000)">
+                                        <g id="illu_dialects" transform="translate(180.000000, 43.000000) scale(-1, 1) translate(-180.000000, -43.000000) translate(113.000000, 0.000000)">
+                                            <mask id="mask-3" fill="white">
+                                                <use xlink:href="#path-2"></use>
+                                            </mask>
+                                            <use id="Mask" fill="url(#linearGradient-1)" transform="translate(91.163206, 42.739136) rotate(45.000000) translate(-91.163206, -42.739136) " xlink:href="#path-2"></use>
+                                            <mask id="mask-5" fill="white">
+                                                <use xlink:href="#path-4"></use>
+                                            </mask>
+                                            <use id="Mask" fill="url(#linearGradient-1)" transform="translate(67.163206, 42.739136) rotate(45.000000) translate(-67.163206, -42.739136) " xlink:href="#path-4"></use>
+                                            <rect id="Rectangle" fill-opacity="0.4" fill="#FFFFFF" transform="translate(43.163206, 42.491284) rotate(45.000000) translate(-43.163206, -42.491284) " x="13.1852976" y="12.5133757" width="59.9558174" height="59.9558174" rx="8"></rect>
+                                            <rect id="Rectangle" stroke="#FFFFFF" transform="translate(43.163206, 42.491284) rotate(45.000000) translate(-43.163206, -42.491284) " x="13.1852976" y="12.5133757" width="59.9558174" height="59.9558174" rx="8"></rect>
+                                            <path d="M34.018215,21.1426526 L68.5253629,21.1426526 C72.9436409,21.1426526 76.5253629,24.7243746 76.5253629,29.1426526 L76.5253629,64.2988957 L76.5253629,64.2988957" id="Rectangle" stroke="#FFDEFA" transform="translate(55.271789, 42.720774) rotate(45.000000) translate(-55.271789, -42.720774) "></path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+                <h3 class="benefit__header">Three different Python career choices</h3>
+                <p class="benefit__description">Follow dedicated paths: Python Programming, Data Science, and Data Processing.</p>
+            </div>
+            <div class="benefit">
+                <div class="benefit__top">
+                    <svg width="101px" height="74px" viewBox="0 0 101 74" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <title>Certificates</title>
+                        <defs>
+                            <linearGradient x1="13.9458974%" y1="10.8900706%" x2="77.3066627%" y2="94.0380096%" id="linearGradient-2">
+                                <stop stop-color="#F8E2A0" offset="0%"></stop>
+                                <stop stop-color="#F6C340" offset="50.6345949%"></stop>
+                                <stop stop-color="#EEB231" offset="100%"></stop>
+                            </linearGradient>
+                        </defs>
+                        <g id="02-HOME" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="LearnSQL_Home" transform="translate(-910.000000, -755.000000)">
+                                <g id="Benefits" transform="translate(0.000000, 680.000000)">
+                                    <g id="2" transform="translate(780.000000, 76.000000)">
+                                        <g id="ill_certificate" transform="translate(130.000000, 0.000000)">
+                                            <rect id="Mask" fill="url(#linearGradient-2)" x="-2.84217094e-13" y="0" width="72" height="72" rx="36"></rect>
+                                            <circle id="Oval" fill-opacity="0.4" fill="#FFFFFF" cx="64" cy="36" r="36"></circle>
+                                            <circle id="Oval" stroke="#FFFFFF" cx="64" cy="36" r="36"></circle>
+                                            <path d="M50.1220526,2.77233508 C37.1293709,8.20523772 28,21.0364794 28,36 C28,50.9109601 37.0653485,63.7045947 49.9852827,69.1701409" id="Oval" stroke="#FFFF38" opacity="0.7"></path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+
+                <h3 class="benefit__header">Python Certificates</h3>
+                <p class="benefit__description">After successfully completing each course, you will receive a certificate that you can publish on your LinkedIn profile.</p>
+            </div>
+            <div class="benefit">
+                <div class="benefit__top">
+                    <svg width="75px" height="83px" viewBox="0 0 75 83" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <title>Support</title>
+                        <defs>
+                            <linearGradient x1="85.5934569%" y1="10.2264427%" x2="10.7419208%" y2="89.7735573%" id="linearGradient-3">
+                                <stop stop-color="#7DCE8C" offset="0%"></stop>
+                                <stop stop-color="#4CBB62" offset="62.8223704%"></stop>
+                                <stop stop-color="#C0EF4A" offset="79.8804746%"></stop>
+                                <stop stop-color="#FEFFE8" offset="99.9037949%"></stop>
+                            </linearGradient>
+                            <path d="M8.88132391,9.14560968 L58.4577236,9.14560968 C62.8760016,9.14514992 66.4577236,12.7268719 66.4577236,17.1451499 C66.4577236,17.1453032 66.4577236,17.1454564 66.4572639,17.1456097 L66.4543903,67.1446572 L66.4543903,67.1446572" id="path-2"></path>
+                        </defs>
+                        <g id="02-HOME" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="LearnSQL_Home" transform="translate(-1312.000000, -755.000000)">
+                                <g id="Benefits" transform="translate(0.000000, 680.000000)">
+                                    <g id="3" transform="translate(1170.000000, 75.000000)">
+                                        <g id="illu_support" transform="translate(142.000000, 0.000000)">
+                                            <path d="M12.6690476,12.9333333 L62.6690476,12.9333333 C67.0873256,12.9328736 70.6690476,16.5145956 70.6690476,20.9328736 C70.6690476,20.9330268 70.6690476,20.9331801 70.6685878,20.9333333 L70.6657142,70.9323809 L70.6657142,70.9323809 L76.9613276,77.2261214 C77.35191,77.6165876 77.3520041,78.2497525 76.961538,78.6403349 C76.773993,78.8279356 76.519594,78.9333333 76.254326,78.9333333 L62.7357142,78.9333333 L62.7357142,78.9333333 L12.6690476,78.9333333 C8.25076956,78.9333333 4.66904756,75.3516113 4.66904756,70.9333333 L4.66904756,20.9333333 C4.66904756,16.5150553 8.25076956,12.9333333 12.6690476,12.9333333 Z" id="Mask" fill="url(#linearGradient-3)" transform="translate(41.669048, 45.933333) rotate(450.000000) translate(-41.669048, -45.933333) "></path>
+                                            <path d="M4.66904756,4.93333333 L54.6690476,4.93333333 C59.0873256,4.93287357 62.6690476,8.51459557 62.6690476,12.9328736 C62.6690476,12.9330268 62.6690476,12.9331801 62.6685878,12.9333333 L62.6657142,62.9323809 L62.6657142,62.9323809 L68.9613276,69.2261214 C69.35191,69.6165876 69.3520041,70.2497525 68.961538,70.6403349 C68.773993,70.8279356 68.519594,70.9333333 68.254326,70.9333333 L54.7357142,70.9333333 L54.7357142,70.9333333 L4.66904756,70.9333333 C0.25076956,70.9333333 -3.33095244,67.3516113 -3.33095244,62.9333333 L-3.33095244,12.9333333 C-3.33095244,8.51505533 0.25076956,4.93333333 4.66904756,4.93333333 Z" id="Mask" fill-opacity="0.4" fill="#FFFFFF" transform="translate(33.669048, 37.933333) rotate(450.000000) translate(-33.669048, -37.933333) "></path>
+                                            <path d="M4.66904756,4.93333333 L54.6690476,4.93333333 C59.0873256,4.93287357 62.6690476,8.51459557 62.6690476,12.9328736 C62.6690476,12.9330268 62.6690476,12.9331801 62.6685878,12.9333333 L62.6657142,62.9323809 L62.6657142,62.9323809 L68.9613276,69.2261214 C69.35191,69.6165876 69.3520041,70.2497525 68.961538,70.6403349 C68.773993,70.8279356 68.519594,70.9333333 68.254326,70.9333333 L54.7357142,70.9333333 L54.7357142,70.9333333 L4.66904756,70.9333333 C0.25076956,70.9333333 -3.33095244,67.3516113 -3.33095244,62.9333333 L-3.33095244,12.9333333 C-3.33095244,8.51505533 0.25076956,4.93333333 4.66904756,4.93333333 Z" id="Mask" stroke="#FFFFFF" transform="translate(33.669048, 37.933333) rotate(450.000000) translate(-33.669048, -37.933333) "></path>
+                                            <mask id="mask-3" fill="white">
+                                                <use xlink:href="#path-2"></use>
+                                            </mask>
+                                            <use id="Mask" stroke="#43FF9E" opacity="0.5" transform="translate(37.669524, 38.145133) rotate(450.000000) translate(-37.669524, -38.145133) " xlink:href="#path-2"></use>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+
+                <h3 class="benefit__header">Friendly support</h3>
+                <p class="benefit__description">Don't worry if you get stuck. We'll always be there to help you with any doubts or issues you may face when you're learning.</p>
+            </div>
+            <div class="benefit">
+                <div class="benefit__top">
+                    <svg width="83px" height="75px" viewBox="0 0 83 75" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <title>Experience</title>
+                        <defs>
+                            <linearGradient x1="100%" y1="0%" x2="0%" y2="100%" id="linearGradient-4">
+                                <stop stop-color="#FBB49F" offset="0%"></stop>
+                                <stop stop-color="#F74214" offset="39.3861038%"></stop>
+                                <stop stop-color="#FFE1E0" offset="100%"></stop>
+                            </linearGradient>
+                        </defs>
+                        <g id="02-HOME" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="LearnSQL_Home" transform="translate(-720.000000, -1042.000000)">
+                                <g id="Benefits" transform="translate(0.000000, 680.000000)">
+                                    <g id="4" transform="translate(585.000000, 362.000000)">
+                                        <g id="illu_experience" transform="translate(176.000000, 37.000000) scale(-1, 1) translate(-176.000000, -37.000000) translate(135.000000, 0.000000)">
+                                            <rect id="Mask" fill="url(#linearGradient-4)" x="18" y="0" width="64" height="64" rx="8"></rect>
+                                            <rect id="Rectangle" fill-opacity="0.4" fill="#FFFFFF" x="0" y="30" width="74" height="44" rx="8"></rect>
+                                            <rect id="Rectangle" fill-opacity="0.4" fill="#FFFFFF" x="0" y="8" width="74" height="14" rx="7"></rect>
+                                            <rect id="Rectangle" stroke="#FFFFFF" x="0" y="30" width="74" height="44" rx="8"></rect>
+                                            <rect id="Rectangle" stroke="#FFFFFF" x="0" y="8" width="74" height="14" rx="7"></rect>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+
+                <h3 class="benefit__header">100% web-based experience</h3>
+                <p class="benefit__description">To enroll in our courses, you'll only need a contemporary web browser and a positive attitude.</p>
+            </div>
+            <div class="benefit">
+                <div class="benefit__top">
+                    <svg width="93px" height="109px" viewBox="0 0 93 109" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <title>Environment</title>
+                        <defs>
+                            <linearGradient x1="-11.146441%" y1="85.4780988%" x2="105.606668%" y2="31.5915659%" id="linearGradient-5">
+                                <stop stop-color="#3899FF" offset="0%"></stop>
+                                <stop stop-color="#167EF9" offset="30.5356988%"></stop>
+                                <stop stop-color="#1C81F9" offset="62.8945725%"></stop>
+                                <stop stop-color="#97D2E9" offset="100%"></stop>
+                            </linearGradient>
+                        </defs>
+                        <g id="02-HOME" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="LearnSQL_Home" transform="translate(-1108.000000, -1027.000000)">
+                                <g id="Benefits" transform="translate(0.000000, 680.000000)">
+                                    <g id="5" transform="translate(975.000000, 347.000000)">
+                                        <g id="ill_environment" transform="translate(134.000000, 0.000000)">
+                                            <rect id="Mask" fill="url(#linearGradient-5)" fill-rule="nonzero" transform="translate(45.669048, 45.519120) rotate(45.000000) translate(-45.669048, -45.519120) " x="13.6690476" y="13.5191198" width="64" height="64" rx="8"></rect>
+                                            <path d="M45.6690476,30.075469 L69.6690476,30.075469 C74.0873256,30.075469 77.6690476,33.657191 77.6690476,38.075469 L77.6690476,86.075469 C77.6690476,90.493747 74.0873256,94.075469 69.6690476,94.075469 L21.6690476,94.075469 C17.2507696,94.075469 13.6690476,90.493747 13.6690476,86.075469 L13.6690476,62.075469 C13.6690476,44.402357 27.9959356,30.075469 45.6690476,30.075469 Z" id="Rectangle" fill-opacity="0.4" fill="#FFFFFF" transform="translate(45.669048, 62.075469) rotate(45.000000) translate(-45.669048, -62.075469) "></path>
+                                            <path d="M45.6690476,30.075469 L69.6690476,30.075469 C74.0873256,30.075469 77.6690476,33.657191 77.6690476,38.075469 L77.6690476,86.075469 C77.6690476,90.493747 74.0873256,94.075469 69.6690476,94.075469 L21.6690476,94.075469 C17.2507696,94.075469 13.6690476,90.493747 13.6690476,86.075469 L13.6690476,62.075469 C13.6690476,44.402357 27.9959356,30.075469 45.6690476,30.075469 Z" id="Rectangle" stroke="#FFFFFF" transform="translate(45.669048, 62.075469) rotate(45.000000) translate(-45.669048, -62.075469) "></path>
+                                            <path d="M71.8209853,27.6314641 L71.8149323,47.9193365 C71.7911583,65.5852187 57.4712688,79.9048411 39.8053862,79.9282856 L19.5184894,79.9339599 L19.5184894,79.9339599" id="Rectangle" stroke="#1EFFFF" opacity="0.8" transform="translate(45.669737, 53.782712) scale(1, -1) rotate(-315.000000) translate(-45.669737, -53.782712) "></path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+
+                <h3 class="benefit__header">Real coding environment</h3>
+                <p class="benefit__description">All the challenges and exercises you'll complete are based on real-life scenarios. Learn what will be useful in the future.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="learning-path" id="learning-path">
+        <div class="learning-path__angle section-angle"></div>
+        <div class="learning-path__wrapper">
+            <div class="learning-path__graphics">
+                <div class="code-editor">
+                    <div class="code-editor__links-wrapper">
+                        <div class="code-editor__link active">
+                            Code editor
+                        </div>
+                    </div>
+                    <div class="code-editor__text-editor-wrapper">
+                        <div class="code-editor__code-area-wrapper">
+                            <div class="code-editor__gutter">
+                                <div>1</div>
+                                <div>2</div>
+                                <div>3</div>
+                                <div>4</div>
+                                <div>5</div>
+                                <div>6</div>
+                                <div>7</div>
+                            </div>
+                            <div class="code-editor__code-area">
+                                <pre class="code-editor__code-line">books = pd.read_csv(<span class="purple">'books.csv'</span>)></pre>
+                                <pre class="code-editor__code-line">figure = plt.figure(<span class="navy">figsize</span>=(10, 6))</pre>
+                                <pre class="code-editor__code-line">subplot = plt.subplot()</pre>
+                                <pre class="code-editor__code-line">subplot.plot(books[<span class="purple">'romance'</span>])</pre>
+                                <pre class="code-editor__code-line">subplot.plot(books[<span class="purple">'fantasy'</span>])</pre>
+                                <pre class="code-editor__code-line">subplot.plot(books[<span class="purple">'thriller'</span>])</pre>
+                                <pre class="code-editor__code-line">plt.show()</pre>
+                            </div>
+                        </div>
+                        <div class="code-editor-buttons">
+                            <div class="code-editor-buttons__run-and-check">
+                                <svg role="img"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    class="icon icon--ico_play">
+                                    
+                                    <use xlink:href="/lpy/22.1.2/img/exercise-sprite.svg#ico_play"></use>
+                                </svg>
+                            </div>
+                            <div class="code-editor-buttons__reset">
+                                <svg role="img"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    class="icon icon--ico_reset">
+                                    
+                                    <use xlink:href="/lpy/22.1.2/img/exercise-sprite.svg#ico_reset"></use>
+                                </svg>
+                            </div>
+                            <div class="code-editor-buttons__next disabled">
+                                <svg role="img"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    class="icon icon--ico_next">
+                                    
+                                    <use xlink:href="/lpy/22.1.2/img/exercise-sprite.svg#ico_next"></use>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-slider">
+                    <div class="course-item">
+                        <div class="course-item__header course-item__header--python">
+                            <div class="course-item__image-wrapper">
+                                <img class="course-item__image lazyload"
+                                    data-src="https://cdn.learnpython.com/lpy/assets/packshots/v1/small/python-basics.png"
+                                    alt />
+                            </div>
+                            <div class="course-item__badge badge--basic">Basic</div>
+                            <div class="course-item__rating">
+                                <span class="course-item__rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <span class="course-item__rating-text">(26)</span>
+                            </div>
+                        </div>
+                        <div class="course-item__body">
+                            <p class="course-item__type">Track</p>
+                            <p class="course-item__name">
+                                Python Basics</p>
+                        </div>
+                    </div>
+                    <div class="course-item">
+                        <div class="course-item__header course-item__header--python">
+                            <div class="course-item__image-wrapper">
+                                <img class="course-item__image lazyload"
+                                    data-src="https://cdn.learnpython.com/lpy/assets/packshots/v1/small/data-processing-with-python.png"
+                                    alt />
+                            </div>
+                            <div class="course-item__badge badge--advanced">Advanced</div>
+                            <div class="course-item__rating">
+                                <span class="course-item__rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <span class="course-item__rating-text">(26)</span>
+                            </div>
+                        </div>
+                        <div class="course-item__body">
+                            <p class="course-item__type">Track</p>
+                            <p class="course-item__name">Data Processing with Python</p>
+                        </div>
+                    </div>
+                    <div class="course-item">
+                        <div class="course-item__header course-item__header--python">
+                            <div class="course-item__image-wrapper">
+                                <img class="course-item__image lazyload"
+                                    data-src="https://cdn.learnpython.com/lpy/assets/packshots/v1/small/python-for-data-science.png"
+                                    alt />
+                            </div>
+                            <div class="course-item__badge badge--basic">Basic</div>
+                            <div class="course-item__rating">
+                                <span class="course-item__rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <span class="course-item__rating-text">(26)</span>
+                            </div>
+                        </div>
+                        <div class="course-item__body">
+                            <p class="course-item__type">Track</p>
+                            <p class="course-item__name">Python for Data Science</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="learning-path__content">
+
+                <svg width="106px" height="97px" viewBox="0 0 106 97" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <title>course explorer</title>
+                    <defs>
+                        <linearGradient x1="0%" y1="100%" x2="73.5041044%" y2="41.7263884%" id="linearGradient-x">
+                            <stop stop-color="#0062D3" offset="0%"></stop>
+                            <stop stop-color="#167EF9" offset="52.3645788%"></stop>
+                            <stop stop-color="#97D2E9" offset="100%"></stop>
+                        </linearGradient>
+                        <linearGradient x1="73.5041044%" y1="41.7263884%" x2="0%" y2="100%" id="linearGradient-y">
+                            <stop stop-color="#0062D3" offset="0%"></stop>
+                            <stop stop-color="#167EF9" offset="52.3645788%"></stop>
+                            <stop stop-color="#97D2E9" offset="100%"></stop>
+                        </linearGradient>
+                    </defs>
+                    <g id="02-HOME" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g id="LearnSQL_Home" transform="translate(-975.000000, -1507.000000)">
+                            <g id="Course-explorer" transform="translate(0.000000, 1320.000000)">
+                                <g id="ill_explorer" transform="translate(975.000000, 188.000000)">
+                                    <rect id="Mask" fill="url(#linearGradient-x)" fill-rule="nonzero" x="0.487027027" y="31.5708108" width="64.2875676" height="64.2875676" rx="8.16"></rect>
+                                    <rect id="Mask" fill="url(#linearGradient-y)" fill-rule="nonzero" x="19.9681081" y="15.9859459" width="64.2875676" height="64.2875676" rx="8.16"></rect>
+                                    <rect id="Rectangle" fill-opacity="0.4" fill="#FFFFFF" x="40.4232432" y="0.401081081" width="64.2875676" height="64.2875676" rx="8.16"></rect>
+                                    <rect id="Rectangle" stroke="#FFFFFF" opacity="0.4" x="40.4232432" y="0.401081081" width="64.2875676" height="64.2875676" rx="8.16"></rect>
+                                    <path d="M84.1991119,64.6886486 L48.5832432,64.6886486 C44.0765997,64.6886486 40.4232432,61.0352922 40.4232432,56.5286486 L40.4232432,15.9859459 L40.4232432,15.9859459" id="Rectangle" stroke="#42F9FF" opacity="0.6"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </svg>
+
+                <h2 class="learning-path__header">Pick the right Python learning path for yourself</h2>
+                <p class="learning-path__description">All of our Python courses are designed by IT experts and university lecturers to help you master the basics of programming and more advanced features of the world's fastest-growing programming language. Solve hundreds of tasks based on business and real-life scenarios.</p>
+                <a class="button--primary" href="/course-explorer">Enter Course Explorer</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="course-explorer" id="tracks-and-courses">
+        <div class="course-explorer__angle section-angle"></div>
+
+        <svg width="156px" height="102px" viewBox="0 0 156 102" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <title>illu_popular@2x</title>
+            <defs>
+                <linearGradient x1="83.5293298%" y1="16.7484578%" x2="27.005495%" y2="70.4069516%" id="linearGradient-eins">
+                    <stop stop-color="#0062D3" offset="0%"></stop>
+                    <stop stop-color="#167EF9" offset="38.5519388%"></stop>
+                    <stop stop-color="#97D2E9" offset="100%"></stop>
+                </linearGradient>
+                <radialGradient cx="86.3561149%" cy="100%" fx="86.3561149%" fy="100%" r="105.634495%" gradientTransform="translate(0.863561,1.000000),scale(0.984127,1.000000),rotate(-132.141116),scale(1.000000,1.002749),translate(-0.863561,-1.000000)" id="radialGradient-zwei">
+                    <stop stop-color="#EEB231" offset="0%"></stop>
+                    <stop stop-color="#F6C340" offset="42.8579193%"></stop>
+                    <stop stop-color="#F7D067" offset="72.1458774%"></stop>
+                    <stop stop-color="#F8E2A0" offset="100%"></stop>
+                </radialGradient>
+            </defs>
+            <g id="02-HOME" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="LearnSQL_Home" transform="translate(-887.000000, -2215.000000)">
+                    <g id="Most-popular" transform="translate(0.000000, 2045.000000)">
+                        <g id="Txt" transform="translate(530.000000, 170.000000)">
+                            <g id="illu_popular" transform="translate(357.000000, 0.000000)">
+                                <rect id="Mask" fill="url(#linearGradient-eins)" fill-rule="nonzero" x="42.486" y="0.012" width="68.2" height="68.2" rx="8.096"></rect>
+                                <rect id="Mask" fill="url(#radialGradient-zwei)" x="0" y="32.1227302" width="69.3" height="68.2" rx="8.096"></rect>
+                                <rect id="Rectangle" fill-opacity="0.4" fill="#FFFFFF" x="86.6" y="32.4" width="68.2" height="68.2" rx="8.096"></rect>
+                                <rect id="Rectangle" stroke="#FFFFFF" x="86.6" y="32.4" width="68.2" height="68.2" rx="8.096"></rect>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </svg>
+
+        <h2 class="course-explorer__header">Most popular Tracks and Courses</h2>
+        <div class="course-explorer__grid">
+                    <a class="course-block" href="/track/learn-programming-with-python">
+                        <div class="course-block__header course-block__header--python">
+                                <span class="course-block__badge badge--basic">Basic</span>
+                            <div class="course-block__rating rating">
+                                <div class="rating__stars">
+                                    ★★★★★
+                                    <div class="rating__value" style="width: calc(5.00*20%)">
+                                        <div class="rating__background">★★★★★</div>
+                                    </div>
+                                </div>
+                                <p class="rating__text">(3)</p>
+                            </div>
+                            <div class="course-block__image-wrapper">
+                                <img class="course-block__image"
+                                    src="https://cdn.learnpython.com/lpy/assets/packshots/v1/small/learn-programming-with-python.png"
+                                    alt="Track image" />
+                            </div>
+                        </div>
+                        <div class="course-block__body">
+                            <p class="course-block__type">Track</p>
+                            <p class="course-block__name">Learn Programming with Python</p>
+                            <p class="course-block__description">&#10;&#10;Do you want to learn coding but don’t know how to start? You’ve come to the right place! This learning track is designed for complete beginners who want to learn how to write computer programs. We assume that you don&#39;t know programming at all and have no IT experience.&#10;&#10;</p>
+                        </div>
+                        <div class="course-block__footer">
+                            <button class="button--link-small">Details</button>
+                        </div>
+                    </a>
+                    <a class="course-block" href="/track/python-basics">
+                        <div class="course-block__header course-block__header--python">
+                                <span class="course-block__badge badge--basic">Basic</span>
+                            <div class="course-block__rating rating">
+                                <div class="rating__stars">
+                                    ★★★★★
+                                    <div class="rating__value" style="width: calc(5.00*20%)">
+                                        <div class="rating__background">★★★★★</div>
+                                    </div>
+                                </div>
+                                <p class="rating__text">(2)</p>
+                            </div>
+                            <div class="course-block__image-wrapper">
+                                <img class="course-block__image"
+                                    src="https://cdn.learnpython.com/lpy/assets/packshots/v1/small/python-basics.png"
+                                    alt="Track image" />
+                            </div>
+                        </div>
+                        <div class="course-block__body">
+                            <p class="course-block__type">Track</p>
+                            <p class="course-block__name">Python Basics</p>
+                            <p class="course-block__description">&#10;&#10;Want to see if programming is for you? This is the perfect mini track! Learn Python basics with us.&#10;&#10;</p>
+                        </div>
+                        <div class="course-block__footer">
+                            <button class="button--link-small">Details</button>
+                        </div>
+                    </a>
+                    <a class="course-block" href="/track/data-processing-with-python">
+                        <div class="course-block__header course-block__header--python">
+                               <span class="course-block__badge badge--advanced">Advanced</span>
+                            <div class="course-block__rating rating">
+                                <div class="rating__stars">
+                                    ★★★★★
+                                    <div class="rating__value" style="width: calc(5.00*20%)">
+                                        <div class="rating__background">★★★★★</div>
+                                    </div>
+                                </div>
+                                <p class="rating__text">(1)</p>
+                            </div>
+                            <div class="course-block__image-wrapper">
+                                <img class="course-block__image"
+                                    src="https://cdn.learnpython.com/lpy/assets/packshots/v1/small/data-processing-with-python.png"
+                                    alt="Track image" />
+                            </div>
+                        </div>
+                        <div class="course-block__body">
+                            <p class="course-block__type">Track</p>
+                            <p class="course-block__name">Data Processing with Python</p>
+                            <p class="course-block__description">&#10;&#10;Want more after having learned the basics of Python? Then, this mini track is for you! Want to process data in various file formats with Python? Look no further! We’ll show you how to work in Python with the most common file formats such as CSV, JSON, and others.&#10;&#10;</p>
+                        </div>
+                        <div class="course-block__footer">
+                            <button class="button--link-small">Details</button>
+                        </div>
+                    </a>
+                    <a class="course-block" href="/course/python-data-science">
+                        <div class="course-block__header course-block__header--python">
+                                <span class="course-block__badge badge--basic">Basic</span>
+                            <div class="course-block__rating rating">
+                                <div class="rating__stars">
+                                    ★★★★★
+                                    <div class="rating__value" style="width: calc(5.00*20%)">
+                                        <div class="rating__background">★★★★★</div>
+                                    </div>
+                                </div>
+                                <p class="rating__text">(2)</p>
+                            </div>
+                        </div>
+                        <div class="course-block__body">
+                            <p class="course-block__type">Course</p>
+                            <p class="course-block__name">Introduction to Python for Data Science</p>
+                            <p class="course-block__description">Learn the world’s most popular data analysis language so you can mine through data faster and more effectively. No IT background needed.</p>
+                        </div>
+                        <div class="course-block__footer">
+                            <button class="button--link-small">Details</button>
+                        </div>
+                    </a>
+                    <a class="course-block" href="/course/python-processing-files-and-directories">
+                        <div class="course-block__header course-block__header--python">
+                                <span class="course-block__badge badge--basic">Basic</span>
+                            <div class="course-block__rating rating">
+                                <div class="rating__stars">
+                                    ★★★★★
+                                    <div class="rating__value" style="width: calc(5.00*20%)">
+                                        <div class="rating__background">★★★★★</div>
+                                    </div>
+                                </div>
+                                <p class="rating__text">(1)</p>
+                            </div>
+                        </div>
+                        <div class="course-block__body">
+                            <p class="course-block__type">Course</p>
+                            <p class="course-block__name">Working with Files and Directories in Python</p>
+                            <p class="course-block__description">Would you like to learn how to work with files and directories in Python? Check out this interactive course!</p>
+                        </div>
+                        <div class="course-block__footer">
+                            <button class="button--link-small">Details</button>
+                        </div>
+                    </a>
+                    <a class="course-block" href="/course/python-built-in-algorithms-functions">
+                        <div class="course-block__header course-block__header--python">
+                                <span class="course-block__badge badge--basic">Basic</span>
+                            <div class="course-block__rating rating">
+                                <div class="rating__stars">
+                                    ★★★★★
+                                    <div class="rating__value" style="width: calc(5.00*20%)">
+                                        <div class="rating__background">★★★★★</div>
+                                    </div>
+                                </div>
+                                <p class="rating__text">(1)</p>
+                            </div>
+                        </div>
+                        <div class="course-block__body">
+                            <p class="course-block__type">Course</p>
+                            <p class="course-block__name">Built-in Algorithms in Python</p>
+                            <p class="course-block__description">Learn Python built-in algorithms and functions to write optimized applications in a shorter amount of time.</p>
+                        </div>
+                        <div class="course-block__footer">
+                            <button class="button--link-small">Details</button>
+                        </div>
+                    </a>
+        </div>
+        <div class="course-explorer__action-buttons ">
+            <button class="course-explorer__show-more button--link-bottom">Show more</button>
+            <button class="course-explorer__hide button--link-top hide">Hide</button>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <div class="testimonials__angle section-angle"></div>
+        <p class="testimonials__pre-header">Give us a try and</p>
+        <h2 class="testimonials__header">Join 100 000+ happy students</h2>
+        <div class="testimonials__slider">
+            <ul>
+                    <li>
+                        <div class="testimonial">
+                            <div class="testimonial__image lazyload"
+                                data-src="url('/resource/testimonial/BUdX0qqt.jpg')"></div>
+                            <div class="testimonial__info">
+                                <div class="rating">
+                                    <div class="rating__stars">
+                                        ★★★★★
+                                        <div class="rating__value" style="width: calc(5*20%)">
+                                            <div class="rating__background">
+                                                ★★★★★
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>Vertabelo is really easy to use, the learning is well-paced, and the interactive platform is exceptional. The best part is, I can log on any time during work or at home and do a few lessons to advance my knowledge.</p>
+
+                                <p class="testimonial__name">Mick Pagel</p>
+                                <p class="testimonial__position">Supply Chain Analyst (Carvana)</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="testimonial">
+                            <div class="testimonial__image lazyload"
+                                data-src="url('/resource/testimonial/Z4NeZFgI.jpg')"></div>
+                            <div class="testimonial__info">
+                                <div class="rating">
+                                    <div class="rating__stars">
+                                        ★★★★★
+                                        <div class="rating__value" style="width: calc(5*20%)">
+                                            <div class="rating__background">
+                                                ★★★★★
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>Lots of practice and encouragement as well as help if&nbsp;you need it. Just look at the&nbsp;class chat area. The stuff I have learned so far has&nbsp;helped me in&nbsp;several projects that I&nbsp;am currently working&nbsp;on.</p>
+                                <p class="testimonial__name">Sheila Dickson</p>
+                                <p class="testimonial__position">Sharepoint Administrator/Developer and Graphics Designer (INDUS Technology)</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="testimonial">
+                            <div class="testimonial__image lazyload"
+                                data-src="url('/resource/testimonial/dYESKut5.jpg')"></div>
+                            <div class="testimonial__info">
+                                <div class="rating">
+                                    <div class="rating__stars">
+                                        ★★★★★
+                                        <div class="rating__value" style="width: calc(5*20%)">
+                                            <div class="rating__background">
+                                                ★★★★★
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>I am astonished at how well designed the exercises are. I’m learning Python, and I can feel that I’m actually making real progress. I plan to take all the courses from the Python Basics series.</p>
+                                <p class="testimonial__name">Daniel Debny</p>
+                                <p class="testimonial__position">Network/Systems Administrator (e-point)</p>
+                            </div>
+                        </div>
+                    </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="sql-library" id="sql-library">
+        <div class="sql-library__angle section-angle"></div>
+        <div class="sql-library__wrapper">
+            <div class="sql-library__content">
+
+                <svg width="100px" height="98px" viewBox="0 0 100 98" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <title>Library</title>
+                    <defs>
+                        <radialGradient cx="66.8806596%" cy="89.6988377%" fx="66.8806596%" fy="89.6988377%" r="103.04028%" gradientTransform="translate(0.668807,0.896988),rotate(-127.761761),scale(1.000000,1.002749),translate(-0.668807,-0.896988)" id="radialGradient-library">
+                            <stop stop-color="#F0A70A" offset="0%"></stop>
+                            <stop stop-color="#F6C340" offset="42.8579193%"></stop>
+                            <stop stop-color="#F7D067" offset="72.1458774%"></stop>
+                            <stop stop-color="#F8E2A0" offset="100%"></stop>
+                        </radialGradient>
+                        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-library">
+                            <stop stop-color="#FFFFFF" offset="0%"></stop>
+                            <stop stop-color="#FFFB2E" offset="49.390246%"></stop>
+                            <stop stop-color="#FFFFFF" offset="100%"></stop>
+                        </linearGradient>
+                    </defs>
+                    <g id="02-HOME" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g id="LearnSQL_Home" transform="translate(-369.000000, -4238.000000)">
+                            <g id="Library" transform="translate(0.000000, 4051.000000)">
+                                <g id="illu_library" transform="translate(369.000000, 187.000000)">
+                                    <rect id="Mask" fill="url(#radialGradient-library)" x="-9.09494702e-13" y="16" width="66" height="66" rx="8"></rect>
+                                    <path d="M41,16 L94,16 C96.7614237,16 99,18.2385763 99,21 L99,77 C99,79.7614237 96.7614237,82 94,82 L41,82 C36.581722,82 33,78.418278 33,74 L33,24 C33,19.581722 36.581722,16 41,16 Z" id="Rectangle" fill-opacity="0.6" fill="#FFFFFF" transform="translate(66.000000, 49.000000) scale(-1, 1) translate(-66.000000, -49.000000) "></path>
+                                    <path d="M41,16 L94,16 C96.7614237,16 99,18.2385763 99,21 L99,77 C99,79.7614237 96.7614237,82 94,82 L41,82 C36.581722,82 33,78.418278 33,74 L33,24 C33,19.581722 36.581722,16 41,16 Z" id="Rectangle" stroke="#FFFFFF" transform="translate(66.000000, 49.000000) scale(-1, 1) translate(-66.000000, -49.000000) "></path>
+                                    <path d="M43.4382058,3.34022586 L77.4382058,14.2202259 C80.7516446,15.2805263 83,18.3606661 83,21.839619 L83,76.160381 C83,79.6393339 80.7516446,82.7194737 77.4382058,83.7797741 L43.4382058,94.6597741 C39.2301312,96.006358 34.7271907,93.6866614 33.3806068,89.4785868 C33.1283961,88.6904284 33,87.8679097 33,87.040381 L33,10.959619 C33,6.54134104 36.581722,2.95961904 41,2.95961904 C41.8275288,2.95961904 42.6500474,3.08801517 43.4382058,3.34022586 Z" id="Rectangle" fill-opacity="0.5" fill="#FFFFFF" transform="translate(58.000000, 49.000000) scale(-1, 1) translate(-58.000000, -49.000000) "></path>
+                                    <path d="M43.4382058,3.34022586 L77.4382058,14.2202259 C80.7516446,15.2805263 83,18.3606661 83,21.839619 L83,76.160381 C83,79.6393339 80.7516446,82.7194737 77.4382058,83.7797741 L43.4382058,94.6597741 C39.2301312,96.006358 34.7271907,93.6866614 33.3806068,89.4785868 C33.1283961,88.6904284 33,87.8679097 33,87.040381 L33,10.959619 C33,6.54134104 36.581722,2.95961904 41,2.95961904 C41.8275288,2.95961904 42.6500474,3.08801517 43.4382058,3.34022586 Z" id="Rectangle" stroke="#FFFFFF" transform="translate(58.000000, 49.000000) scale(-1, 1) translate(-58.000000, -49.000000) "></path>
+                                    <path d="M33.7394056,16 C36.4152469,16 38.584445,18.169198 38.584445,20.8450394 L38.584445,76.160381 C38.584445,79.6393339 36.3360896,82.7194737 33.0226508,83.7797741 L33,83.7870224 L33,83.7870224" id="Rectangle" stroke="url(#linearGradient-library)" opacity="0.999328759" transform="translate(35.792222, 49.893511) scale(-1, 1) translate(-35.792222, -49.893511) "></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </svg>
+
+                <h2 class="sql-library__header">Python Library</h2>
+                <p class="sql-library__description">Dig into the vast amount of expert tutorials, blogs, guides, and more. Learn everything you need to know about Python in one place.</p>
+                <a class="button--link" href="/blog">Articles</a>
+            </div>
+    
+            <div class="sql-library__cookbooks">
+                <div class="cookbook article cookbook-1">
+                     <img class="lazyload"
+                        data-src="/lpy/22.1.2/img/mainpage-woman1.png"
+                        src
+                        alt>
+                    <h4 class="cookbook__header">How to Rename Files Python?</h4>
+                </div>
+                <div class="cookbook cookbook-2">
+                    <h4 class="cookbook__header">How To Define a Function in Python?</h4>
+                </div>
+                <div class="cookbook article cookbook-3">
+                    <img class="lazyload"
+                        data-src="/lpy/22.1.2/img/mainpage-woman2.png"
+                        src
+                        alt>
+                    <h4 class="cookbook__header">How to Write a For Loop in Python?</h4>
+                </div>
+                <div class="cookbook cookbook-4">
+                    <h4 class="cookbook__header">Difference Between Python Modules, Packages, Libraries, and Frameworks </h4>
+                </div>
+                <div class="cookbook cookbook-5">
+                    <h4 class="cookbook__header">How to Read Excel Files in ?</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded' ,function() {
+            MainPage.init();
+        });
+    </script>
+</main>
+
+</div>
+<footer class="footer">
+    <div class="footer__wrapper">
+        <div class="footer__main-section">
+            <div class="footer__quick-links">
+                <h3 class="footer__header">Quick links</h3>
+                <ul class="footer__quick-link-list">
+                    <li class="footer__quick-link-list-item"><a href="/pricing">Pricing</a></li>
+                    <li class="footer__quick-link-list-item"><a href="/blog">Blog</a></li>
+                    <li class="footer__quick-link-list-item"><a href="https://vertabelo.com">Vertabelo.com</a></li>
+                </ul>
+            </div>
+            <div class="footer__assistance">
+                <h3 class="footer__header">Assistance</h3>
+                <p class="footer__assistance-content">Need assistance? Drop us a line at <strong>contact@learnpython.com</strong></p>
+                <a class="footer__mailto-button button--ghost-white" href="mailto:contact@learnpython.com">Write to us</a>
+            </div>
+            <div class="footer__follow-us">
+                <h3 class="footer__header">Follow us</h3>
+                <div class="footer__social-share">
+                    <a class="footer__social-share-item" href="https://www.facebook.com/LearnPythoncom/" aria-label="Facebook LearnPython">
+                        <svg role="img"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                class="icon icon--ico_fb">
+                            
+                            <use xlink:href="/lpy/22.1.2/img/sprite.svg#ico_fb"></use>
+                        </svg>
+                    </a>
+                    <a class="footer__social-share-item" href="https://www.linkedin.com/company/vertabelo/" aria-label="Linkedin Vertabelo">
+                        <svg role="img"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                class="icon icon--ico_linkedin">
+                            
+                            <use xlink:href="/lpy/22.1.2/img/sprite.svg#ico_linkedin"></use>
+                        </svg>
+                    </a>
+                    <a class="footer__social-share-item" href="https://twitter.com/LearnPythoncom" aria-label="Twitter LearnPython">
+                        <svg role="img"
+                             xmlns="http://www.w3.org/2000/svg"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"
+                             class="icon icon--ico_twitter">
+                            
+                            <use xlink:href="/lpy/22.1.2/img/sprite.svg#ico_twitter"></use>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer__hr"></div>
+        <div class="footer__bottom-text">
+            <div class="footer__copyright">
+                Copyright ©2016-<span id="current-year">2018</span> <a class="footer__vertabelo-link" href="https://www.vertabelo.com/">Vertabelo SA</a> All rights reserved
+                <script type="text/javascript">
+                    document.getElementById("current-year").innerHTML = new Date().getFullYear();
+                </script>
+            </div>
+            <div class="footer__logo">
+                <img class="lazyload" width="156px" height="38px" data-src="https://cdn.learnpython.com/lpy/22.1.2/img/icons/vertabelo-logo.svg" src xmlns="http://www.w3.org/2000/svg" alt="Vertabelo">
+            </div>
+            <ul class="footer__policies-list">
+                <li class="footer__policies-list-item"><a href="/files/terms-of-service">Terms of service</a></li>
+                <li class="footer__policies-list-item"><a href="/files/privacy-policy">Privacy policy</a></li>
+                <li class="footer__policies-list-item"><a href="/imprint">Imprint</a></li>
+            </ul> 
+        </div>
+    </div>
+</footer>
+
+</body>
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        MainPage.initFlashSaleBox('flash-sale-box');
+    });
+</script>
+
+</html>
+<html lang="en">
+<head>
+
+
+        <script
+            src="https://browser.sentry-cdn.com/5.26.0/bundle.min.js"
+            integrity="sha384-VGljl8BTZL6Py4DmlOaYmfkOwp8mD3PrmD2L+fN446PZpsrIHuDhX7mnV/L5KuNR"
+            crossorigin="anonymous"
+        ></script>
+
+
+        <script>
+            if (typeof Sentry !== 'undefined') {
+                Sentry.init({
+                    dsn: "https://16ebbf0f256c45d1989ddc6fb27344e6@o438864.ingest.sentry.io/5443804",
+                    release: "22.1.2",
+                    environment: "prod",
+                    tracesSampleRate: 0.1,
+                    ignoreErrors: ['ResizeObserver loop completed with undelivered notifications']
+                });
+            }
+
+        </script>
+
+<!-- mainPageLayout.mustache --> 
+    <script>
+        dataLayer = [{"GID":"cHtlkT9nj3LpWfRu","isLoggedIn":"false","userType":"visitor"}];
+    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-K7Q9T5K');</script>
+    <!-- End Google Tag Manager -->
+
+    <script type="text/javascript">
+        window.cdnLearnPythonPrefix = "https://cdn.learnpython.com/lpy/22.1.2";
+        window.resourcePrefix = "/lpy/22.1.2";
+        window.isLogged = false;
+    </script>
+    <title>Python online courses - learn with us | LearnPython.com</title>
+
+    <meta name="p:domain_verify" content="2ba0314a1f45213ca2c995ae4e40bc74"/>
+
+    <meta name="keywords" content="python tutorial, learn python, python training, python course, python online, python for beginners, learn python online, python learning, how to learn python, python online training, python online course, practice python online, free python training" />
+    <meta name="description" content="Learn Python language comprehensively or simply upskill yourself with our interactive online courses. Start growing your mind today" />
+    <meta name="og:locale" content="en_US" />
+    <meta name="og:title" content="Learn Python anywhere, anytime." />
+    <meta name="og:description" content="Learn Python language comprehensively or simply upskill yourself with our interactive online courses. Start growing your mind today" />
+    <meta name="og:type" content="website" />
+    <meta name="og:image" content="https://learnpython.com/files/og_image/default" />
+    <meta name="og:image:type" content="image/png" />
+    <meta name="og:url" content="https://learnpython.com" />
+    <meta name="og:site_name" content="LearnPython" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="https://cdn.learnpython.com/lpy/22.1.2/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="https://cdn.learnpython.com/lpy/22.1.2/img/favicon-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon-precomposed" href="https://cdn.learnpython.com/lpy/22.1.2/img/favicon-180x180.png" />
+    <meta name="msapplication-TileImage" content="https://cdn.learnpython.com/lpy/22.1.2/img/favicon-270x270.png" />
+
+    <script type="text/javascript" src="https://cdn.learnpython.com/lpy/22.1.2/js/react/MainPage.js"></script>
+
+    <script type="text/javascript">
+
+        
+        if (!'scrollY' in window && 'pageYOffset' in window) {
+            window.scrollY = window.pageYOffset;
+        }
+
+        // scrollowanie do odpowiedniego miejsca mechanizm # w linku
+        var Scroller = {
+            NAV_HEIGHT: 157,
+
+
+            start: function () {
+
+
+                window.addEventListener('hashchange', function (event) {
+                    Scroller.scrollTo(location.hash);
+                });
+
+
+                if (location.hash && location.hash.length > 1) {
+                    Scroller.scrollTo(location.hash);
+                }
+
+            },
+
+            scrollTo: function(hash) {
+                console.log('scrolling to', hash);
+                var element = document.getElementById(hash.substr(1));
+                if (element) {
+                    console.log(Scroller.NAV_HEIGHT);
+                    window.scrollTo({left: 0, top: element.offsetTop - Scroller.NAV_HEIGHT});
+                }
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var logoutButton = document.getElementById('layout-logout-button'),
+                hamburgerLogoutButton = document.getElementById('hamburger-logout-button');
+            function logout() {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/api/v1/login/logout', true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.onreadystatechange = function() {
+                    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                        window.sessionStorage.setItem('isFlashSaleBoxClosed', false);
+                        window.location = "/";
+                    }
+                }
+                xhr.send("{}");
+            }
+            if (logoutButton) {
+                logoutButton.addEventListener('click', logout);
+                logoutButton.addEventListener('keydown', function(e) {
+                    if (e.key === "Enter") {
+                        logout();
+                    }
+                })
+            }
+            if (hamburgerLogoutButton) {
+                hamburgerLogoutButton.addEventListener('click', logout);
+                hamburgerLogoutButton.addEventListener('keydown', function(e) {
+                    if (e.key === "Enter") {
+                        logout();
+                    }
+                })
+            }
+
+            var cookiesButton = document.querySelector('.cookies__button'),
+                cookiesBox = document.querySelector('.cookies');
+            var cookiesAccepted = document.cookie.split(';').filter(cookieFilter).length > 0;
+            function cookieFilter(item) {
+                return item.trim().startsWith('cookiesInfoHidden=true');
+            }
+            if(cookiesAccepted) {
+                cookiesBox.classList.add('hide');
+            } else {
+                cookiesBox.classList.remove('hide');
+                cookiesButton.addEventListener('click', function() {
+                    cookiesBox.classList.add('hide');
+                    document.cookie = 'cookiesInfoHidden=true';
+                });
+            }
+
+            function throttle(func, wait, options) {
+                var context, args, result;
+                var timeout = null;
+                var previous = 0;
+                if (!options) options = {};
+                var later = function() {
+                    previous = options.leading === false ? 0 : Date.now();
+                    timeout = null;
+                    result = func.apply(context, args);
+                    if (!timeout) context = args = null;
+                };
+                return function() {
+                    var now = Date.now();
+                    if (!previous && options.leading === false) previous = now;
+                    var remaining = wait - (now - previous);
+                    context = this;
+                    args = arguments;
+                    if (remaining <= 0 || remaining > wait) {
+                        if (timeout) {
+                            clearTimeout(timeout);
+                            timeout = null;
+                        }
+                        previous = now;
+                        result = func.apply(context, args);
+                        if (!timeout) context = args = null;
+                    } else if (!timeout && options.trailing !== false) {
+                        timeout = setTimeout(later, remaining);
+                    }
+                    return result;
+                };
+            };
+
+            var buttonToTop = document.querySelector('.button--to-top');
+            var previousPosition = window.scrollY;
+            
+            if (buttonToTop) {
+                if (window.scrollY <= window.innerHeight - 157) {
+                    buttonToTop.classList.add('hidden');
+                }
+                window.addEventListener('scroll', throttle(toggleButtonToTop, 500));
+
+                buttonToTop.addEventListener('click', function() {
+                    window.scrollTo(0, 0);
+                    document.querySelector('a.site-logo').focus();
+                });
+            }
+
+            function toggleButtonToTop() {
+                if (buttonToTop.classList.contains('hidden')) {
+                    if (window.scrollY > window.innerHeight - 157) {
+                        buttonToTop.classList.remove('hidden');
+                    }
+                    return;
+                }
+                if (window.scrollY < previousPosition) {
+                    if (window.scrollY <= window.innerHeight - 157) {
+                        buttonToTop.classList.add('hidden');
+                    } 
+                }
+                previousPosition = window.scrollY;
+            }
+
+            var isMobileMenuShowed = false;
+
+
+            Scroller.start();
+            window.Scroller = Scroller;
+
+            var skipNavButton = document.querySelector('#skip-navigation > button');
+            skipNavButton.addEventListener('keydown', function(e) {
+                if (e.key !== 'Enter') {
+                    return;
+                }
+                var focusables = document.querySelector('.container').querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                var firstFocusable = focusables[0];
+                firstFocusable.focus();
+            });
+
+            var hamburgerButton = document.querySelector('.site-header-home-navigation-layer-menu-icon'),
+                hamburgerMenu = document.querySelector('.site-header-home-navigation-hamburger-wrapper'),
+                siteLogo = document.querySelector('.site-logo');
+            hamburgerButton.addEventListener('click', function() {
+                if (Array.prototype.slice.call(hamburgerMenu.classList).includes('hide')) {
+                    isMobileMenuShowed = true;
+                    hamburgerMenu.classList.remove('hide');
+                    siteLogo.classList.add('hide');
+                } else {
+                    isMobileMenuShowed = false;
+                    hamburgerMenu.classList.add('hide');
+                    siteLogo.classList.remove('hide');
+                }
+            });
+
+
+
+            // User's profile modal from menu
+            function SimpleModal(modalEl) {
+                var self = this;
+                self.modalEl = modalEl;
+                var focusableEls = self.modalEl.querySelectorAll('a');
+                self.focusableEls = Array.prototype.slice.call(focusableEls);
+                self.firstFocusableEl = self.focusableEls[0];
+                self.lastFocusableEl = self.focusableEls[self.focusableEls.length - 1];
+                self.modalEl.addEventListener('keydown', function(e) {
+                    self._handleKeyDown(e);
+                });
+            }
+            SimpleModal.prototype.open = function() {
+                var self = this;
+                self.modalEl.classList.add('isOpen');
+                self.modalEl.removeAttribute('aria-hidden');
+            }
+            SimpleModal.prototype.close = function() {
+                var self = this;
+                self.modalEl.classList.remove('isOpen');
+                self.modalEl.setAttribute('aria-hidden', true);
+            }
+            SimpleModal.prototype._handleKeyDown = function(e) {
+                var self = this;
+                var TAB = "Tab";
+                var ESC = "Escape";
+
+                function handleBackwardTab() {
+                    if (document.activeElement === self.firstFocusableEl) {
+                        e.preventDefault();
+                        self.lastFocusableEl.focus();
+                    }
+                }
+                function handleForwardTab() {
+                    if (document.activeElement === self.lastFocusableEl) {
+                        e.preventDefault();
+                        self.firstFocusableEl.focus();
+                    }
+                }
+                switch (e.key) {
+                    case TAB:
+                        if (e.shiftKey) {
+                            handleBackwardTab();
+                        } else {
+                            handleForwardTab();
+                        }
+                        break;
+                    case ESC:
+                        self.close();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            SimpleModal.prototype.assignEventListeners = function(modalButton, modalLayer) {
+                var self = this;
+                modalButton.addEventListener('keydown', function(e) {
+                    if (e.key === "Enter") {
+                        self.open();
+                    }
+                });
+                modalButton.addEventListener('click', function() {
+                    self.open();
+                });
+                modalLayer.addEventListener('click', function() {
+                    self.close();
+                });
+            }
+
+            var libraryButton = document.getElementById('library-button'),
+                libraryModal = document.querySelector('.library-modal'),
+                libraryModalLayer = document.querySelector('.library-modal__layer');
+
+            libraryModalInstance = new SimpleModal(libraryModal);
+            libraryModalInstance.assignEventListeners(libraryButton, libraryModalLayer);
+
+            if (isLogged) {
+                var myProfileButton = document.querySelector('.logout-button'),
+                    myProfileModal = document.querySelector('.logout-modal'),
+                    myProfileModalLayer = document.querySelector('.logout-modal__layer');
+                var profileModalInstance;
+
+                if (!myProfileModal || !myProfileButton) {
+                    var err = new ReferenceError('Cannot find modal element. myProfileModal: ' + myProfileModal + ', myProfileButton: ' + myProfileButton);
+                    throw err;
+                }
+
+                profileModalInstance = new SimpleModal(myProfileModal);
+                profileModalInstance.assignEventListeners(myProfileButton, myProfileModalLayer);
+            }
+        });
+    </script>
+
+    <script type="text/javascript">
+
+
+
+                (function(c,a){if(!a.__SV){var b=window;try{var d,m,j,k=b.location,f=k.hash;d=function(a,b){return(m=a.match(RegExp(b+"=([^&]*)")))?m[1]:null};f&&d(f,"state")&&(j=JSON.parse(decodeURIComponent(d(f,"state"))),"mpeditor"===j.action&&(b.sessionStorage.setItem("_mpcehash",f),history.replaceState(j.desiredHash||"",c.title,k.pathname+k.search)))}catch(n){}var l,h;window.mixpanel=a;a._i=[];a.init=function(b,d,g){function c(b,i){var a=i.split(".");2==a.length&&(b=b[a[0]],i=a[1]);b[i]=function(){b.push([i].concat(Array.prototype.slice.call(arguments,
+                    0)))}}var e=a;"undefined"!==typeof g?e=a[g]=[]:g="mixpanel";e.people=e.people||[];e.toString=function(b){var a="mixpanel";"mixpanel"!==g&&(a+="."+g);b||(a+=" (stub)");return a};e.people.toString=function(){return e.toString(1)+".people (stub)"};l="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+                    for(h=0;h<l.length;h++)c(e,l[h]);var f="set set_once union unset remove delete".split(" ");e.get_group=function(){function a(c){b[c]=function(){call2_args=arguments;call2=[c].concat(Array.prototype.slice.call(call2_args,0));e.push([d,call2])}}for(var b={},d=["get_group"].concat(Array.prototype.slice.call(arguments,0)),c=0;c<f.length;c++)a(f[c]);return b};a._i.push([b,d,g])};a.__SV=1.2;b=c.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?
+                    MIXPANEL_CUSTOM_LIB_URL:"file:"===c.location.protocol&&"//cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js";d=c.getElementsByTagName("script")[0];d.parentNode.insertBefore(b,d)}})(document,window.mixpanel||[]);
+
+                mixpanel.init("a16fa37d8e33afbecaba3a510bdf9180");
+
+
+
+    </script>
+
+    <link rel="preload" href="https://cdn.learnpython.com/lpy/22.1.2/fonts/Oxygen/Oxygen-Regular.ttf" type="font/ttf" as="font" crossorigin>
+    <link rel="preload" href="https://cdn.learnpython.com/lpy/22.1.2/fonts/Oxygen/Oxygen-Bold.ttf" type="font/ttf" as="font" crossorigin>
+    <link rel="preload" href="https://cdn.learnpython.com/lpy/22.1.2/img/LearnSQL-mockup-exercise-screen.png" as="image" media="(min-width: 800px)">
+    <link rel="preload" href="https://cdn.learnpython.com/lpy/22.1.2/img/LearnSQL-mockup-exercise-screen-m.png" as="image" media="(min-width: 481px) and (max-width: 799px)">
+    <link rel="stylesheet" as="style" type="text/css" href="https://cdn.learnpython.com/lpy/22.1.2/css/MainPage.css" />
+
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K7Q9T5K"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div id="flash-sale-box" class="sticky"></div>
+<header class="site-header mainpage-header">
+    <div id="info-block" style="width: 100%; padding: 1em; background-color: black;  text-align: center;  color: white; font-weight: bold; display: none; position: fixed; z-index: 99;">
+        Ad-blocking extension has been detected. Please disable it. It may cause problems.
+    </div>
+    <nav role="navigation">
+        <div class="site-navigation">
+            <a href="/" class="site-logo" aria-label="Mainpage Learnsql">
+                <svg role="img"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    class="site-logo-icon-white icon icon--logo">
+                    
+                    <use xlink:href="/lpy/22.1.2/img/sprite.svg#logo"></use>
+                </svg>
+            </a>
+            <div id="skip-navigation">
+                <button class="button--ghost">Skip navigation</button>
+            </div>
+            <ul class="main-menu">
+                <li class="main-menu__item main-menu__item--courses">
+                    <a href="/course-explorer" title="Courses">Courses</a>
+                </li>
+                <li class="main-menu__item main-menu__item--pricing">
+                    <a href="/pricing" title="Pricing">Pricing</a>
+                </li>
+                <!-- <li class="main-menu__item main-menu__item--for-business">
+                    <a href="#" title="For Business">For Business</a>
+                </li>
+                <li class="main-menu__item main-menu__item--for-students">
+                    <a href="#" title="For Students">For Students</a>
+                </li> -->
+                <li class="main-menu__item main-menu__item--library">
+                    <button title="Python Library" id="library-button">Python Library
+                        <svg role="img"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            class="icon icon--ico_arrow_small_bottom">
+                            
+                            <use xlink:href="/lpy/22.1.2/img/sprite.svg#ico_arrow_small_bottom"></use>
+                        </svg>
+                    </button>
+                    <div class="library-modal modal"
+                        aria-hidden="true"
+                        aria-modal="true"
+                        role="dialog"
+                        aria-labelledby="Python Library"
+                        aria-describedby="Python Library">
+                        <div class="library-modal__layer"></div>
+                        <div class="library-modal__window modal__window">
+                            <a href="/blog">Articles</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="main-menu__item main-menu__item--login">
+                    <a href="/log-in" title="Login">Login</a>
+                </li>
+                <li class="main-menu__item main-menu__item--singup">
+                    <a class="main-menu__sign-up button--primary" href="/sign-up" title="Signup">Create free account</a>
+                </li>
+            </ul>
+            <div class="site-header-home-navigation-layer-menu pages">
+                <span class="site-header-home-navigation-layer-menu-cover">MENU</span>
+                <span class="site-header-home-navigation-layer-menu-cover-active">CLOSE</span>
+                <div class="site-header-home-navigation-layer-menu-icon pages" role="button" tabindex="0" aria-label="Toggle menu">
+                    <div class="site-header-home-navigation-layer-menu-icon top"></div>
+                    <div class="site-header-home-navigation-layer-menu-icon middle"></div>
+                    <div class="site-header-home-navigation-layer-menu-icon bottom"></div>
+                </div>
+                <div class="site-header-home-navigation-hamburger-wrapper pages hide">
+                    <div class="site-header-home-navigation-hamburger-layout">
+                        <ul class="site-header-home-navigation-hamburger">
+                            <li class="site-header-home-navigation-hamburger-item pages">
+                                <a class="site-header-home-navigation-hamburger-link" href="/course-explorer" title="Courses page">Courses</a>
+                            </li>
+                            <li class="site-header-home-navigation-hamburger-item">
+                                <a class="site-header-home-navigation-hamburger-link" href="/pricing" title="Pricing page">Pricing</a>
+                            </li>
+                            <li class="site-header-home-navigation-hamburger-item">
+                                <a class="site-header-home-navigation-hamburger-link" href="/blog" title="Articles page">Articles</a>
+                            </li>
+                        </ul>
+                        <ul class="site-header-home-navigation-below">
+                            <li class="site-header-home-navigation-below-item">
+                                <a class="site-header-home-navigation-below-item-link" href="/log-in">Log in</a>
+                            </li>
+                            <li class="site-header-home-navigation-below-item">
+                                <a class="site-header-home-navigation-below-item-button button--primary" href="/sign-up">Create free account</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+        </div>
+        </div>
+    </nav>
+</header>
+<div class="cookies hide">
+    <div class="cookies__icon">
+        <img src="https://cdn.learnpython.com/lpy/22.1.2/img/icons/cookies.svg" alt="cookies-icon" xmlns="http://www.w3.org/2000/svg">
+    </div>
+    <p class="cookies__text">
+        Our website uses cookies. By using this website, you agree to their use in accordance with the browser settings. You can modify your browser settings on your own. For more information see our <a href="/files/privacy-policy" class="small-link">Privacy Policy</a>.
+    </p>
+    <button class="cookies__button button--primary">OK</button>
+</div>
+<div class="container site-content academy">
+<main>
+    <section class="intro" id="header">
+        <div class="intro__info">
+            <h1 class="intro__header">Learn & Practice Python</h1>
+            <p class="intro__description">with the most comprehensive set of 13 hands-on online Python courses for teams and individuals</p>
+            <a href="/" class="button--primary" type="button">Start now</a>
+            
+        </div>
+        <div class="intro-gradient-wrapper">
+            <div class="intro-gradient-wrapper__gradient"></div>
+        </div>
+        <div class="intro__graphics">
+            <figure class="graphics">
+                <div class="exercise-screen">
+                    <div class="top-bar">
+                        <div class="top-bar__dot top-bar__dot--one"></div>
+                        <div class="top-bar__dot top-bar__dot--two"></div>
+                        <div class="top-bar__dot top-bar__dot--three"></div>
+                    </div>
+                    <div class="exercise-screen__background"></div>
+                </div>
+                <div class="code-editor">
+                    <div class="code-editor__links-wrapper">
+                        <div class="code-editor__link active">
+                            Code editor
+                        </div>
+                    </div>
+                    <div class="code-editor__text-editor-wrapper">
+                        <div class="code-editor__code-area-wrapper">
+                            <div class="code-editor__gutter">
+                                <div>1</div>
+                                <div>2</div>
+                                <div>3</div>
+                                <div>4</div>
+                                <div>5</div>
+                                <div>6</div>
+                                <div>7</div>
+                            </div>
+                            <div class="code-editor__code-area">
+                                <pre class="code-editor__code-line"><span class="blue">books</span> <span class="gold">=</span> <span class="blue">pd</span>.<span class="red">read_csv</span>(<span class="blue italic">'books.csv'</span>)></pre>
+                                <pre class="code-editor__code-line"><span class="blue">figure</span> <span class="gold">=</span> <span class="blue">plt</span>.<span class="red">figure</span>(<span class="blue">figsize</span>=(<span class="dark-gold">10</span>, <span class="dark-gold">6</span>))</pre>
+                                <pre class="code-editor__code-line"><span class="blue">subplot</span> <span class="gold">=</span> <span class="blue">plt</span>.<span class="red">subplot</span>()</pre>
+                                <pre class="code-editor__code-line"><span class="blue">subplot</span>.<span class="red">plot</span>(<span class="blue">books</span>[<span class="blue italic">'romance'</span>])</pre>
+                                <pre class="code-editor__code-line"><span class="blue">subplot</span>.<span class="red">plot</span>(<span class="blue">books</span>[<span class="blue italic">'fantasy'</span>])</pre>
+                                <pre class="code-editor__code-line"><span class="blue">subplot</span>.<span class="red">plot</span>(<span class="blue">books</span>[<span class="blue italic">'thriller'</span>])</pre>
+                                <pre class="code-editor__code-line"><span class="blue">plt</span>.<span class="red">show</span>()</pre>
+                            </div>
+                        </div>
+                        <div class="code-editor-buttons">
+                            <div class="code-editor-buttons__run-and-check">
+                                <svg role="img"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    class="icon icon--ico_play">
+                                    
+                                    <use xlink:href="/lpy/22.1.2/img/exercise-sprite.svg#ico_play"></use>
+                                </svg>
+                            </div>
+                            <div class="code-editor-buttons__reset">
+                                <svg role="img"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    class="icon icon--ico_reset">
+                                    
+                                    <use xlink:href="/lpy/22.1.2/img/exercise-sprite.svg#ico_reset"></use>
+                                </svg>
+                            </div>
+                            <div class="code-editor-buttons__next">
+                                <svg role="img"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    class="icon icon--ico_next">
+                                    
+                                    <use xlink:href="/lpy/22.1.2/img/exercise-sprite.svg#ico_next"></use>
+                                </svg>
+                            </div>
+                            <div class="code-editor-buttons__tooltip">👏  I think you’re getting the hang of this! Try another.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-modal">
+                    <div class="menu-modal__intro">
+                        <img width="58px" height="58px" class="menu-modal__avatar avatar" src="/lpy/22.1.2/img/avatar.png" alt="avatar" />
+                        <div class="menu-modal__name">Marie Williams</div>
+                    </div>
+                    <div class="menu-modal__link">
+                        <span>Dashboard</span>
+                    </div>
+                    <div class="menu-modal__link">
+                        <span>My Profile</span>
+                    </div>
+                    <div class="menu-modal__link">
+                        <span>Payment & Billing</span>
+                    </div>
+                    <div class="menu-modal__link">
+                        <span>Team portal</span>
+                    </div>
+                    <div class="menu-modal__separator-border"></div>
+                    <div class="menu-modal__link--logout">
+                        <span class="menu-modal__logout-button">Logout
+                            <svg role="img"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                class="icon icon--ico_logout">
+                                
+                                <use xlink:href="/lpy/22.1.2/img/sprite.svg#ico_logout"></use>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+            </figure>
+        </div>
+    </section>
+
+    <section class="benefits" id="icons">
+        <div class="benefits__angle section-angle"></div>
+        <div class="benefits__wrapper">
+            <div class="benefit">
+                <div class="benefit__top">
+                    <svg width="134px" height="87px" viewBox="0 0 134 87" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <title>Career choices</title>
+                        <defs>
+                            <linearGradient x1="64.6672237%" y1="13.3200376%" x2="32.0606015%" y2="100%" id="linearGradient-1">
+                                <stop stop-color="#D8A4E8" offset="0%"></stop>
+                                <stop stop-color="#A889D5" offset="48.4071105%"></stop>
+                                <stop stop-color="#988AE4" offset="100%"></stop>
+                            </linearGradient>
+                            <rect id="path-2" x="61.1852976" y="12.7612275" width="59.9558174" height="59.9558174" rx="8"></rect>
+                            <rect id="path-4" x="37.1852976" y="12.7612275" width="59.9558174" height="59.9558174" rx="8"></rect>
+                        </defs>
+                        <g id="02-HOME" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="LearnSQL_Home" transform="translate(-503.000000, -750.000000)">
+                                <g id="Benefits" transform="translate(0.000000, 680.000000)">
+                                    <g id="1" transform="translate(390.000000, 71.000000)">
+                                        <g id="illu_dialects" transform="translate(180.000000, 43.000000) scale(-1, 1) translate(-180.000000, -43.000000) translate(113.000000, 0.000000)">
+                                            <mask id="mask-3" fill="white">
+                                                <use xlink:href="#path-2"></use>
+                                            </mask>
+                                            <use id="Mask" fill="url(#linearGradient-1)" transform="translate(91.163206, 42.739136) rotate(45.000000) translate(-91.163206, -42.739136) " xlink:href="#path-2"></use>
+                                            <mask id="mask-5" fill="white">
+                                                <use xlink:href="#path-4"></use>
+                                            </mask>
+                                            <use id="Mask" fill="url(#linearGradient-1)" transform="translate(67.163206, 42.739136) rotate(45.000000) translate(-67.163206, -42.739136) " xlink:href="#path-4"></use>
+                                            <rect id="Rectangle" fill-opacity="0.4" fill="#FFFFFF" transform="translate(43.163206, 42.491284) rotate(45.000000) translate(-43.163206, -42.491284) " x="13.1852976" y="12.5133757" width="59.9558174" height="59.9558174" rx="8"></rect>
+                                            <rect id="Rectangle" stroke="#FFFFFF" transform="translate(43.163206, 42.491284) rotate(45.000000) translate(-43.163206, -42.491284) " x="13.1852976" y="12.5133757" width="59.9558174" height="59.9558174" rx="8"></rect>
+                                            <path d="M34.018215,21.1426526 L68.5253629,21.1426526 C72.9436409,21.1426526 76.5253629,24.7243746 76.5253629,29.1426526 L76.5253629,64.2988957 L76.5253629,64.2988957" id="Rectangle" stroke="#FFDEFA" transform="translate(55.271789, 42.720774) rotate(45.000000) translate(-55.271789, -42.720774) "></path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+                <h3 class="benefit__header">Three different Python career choices</h3>
+                <p class="benefit__description">Follow dedicated paths: Python Programming, Data Science, and Data Processing.</p>
+            </div>
+            <div class="benefit">
+                <div class="benefit__top">
+                    <svg width="101px" height="74px" viewBox="0 0 101 74" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <title>Certificates</title>
+                        <defs>
+                            <linearGradient x1="13.9458974%" y1="10.8900706%" x2="77.3066627%" y2="94.0380096%" id="linearGradient-2">
+                                <stop stop-color="#F8E2A0" offset="0%"></stop>
+                                <stop stop-color="#F6C340" offset="50.6345949%"></stop>
+                                <stop stop-color="#EEB231" offset="100%"></stop>
+                            </linearGradient>
+                        </defs>
+                        <g id="02-HOME" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="LearnSQL_Home" transform="translate(-910.000000, -755.000000)">
+                                <g id="Benefits" transform="translate(0.000000, 680.000000)">
+                                    <g id="2" transform="translate(780.000000, 76.000000)">
+                                        <g id="ill_certificate" transform="translate(130.000000, 0.000000)">
+                                            <rect id="Mask" fill="url(#linearGradient-2)" x="-2.84217094e-13" y="0" width="72" height="72" rx="36"></rect>
+                                            <circle id="Oval" fill-opacity="0.4" fill="#FFFFFF" cx="64" cy="36" r="36"></circle>
+                                            <circle id="Oval" stroke="#FFFFFF" cx="64" cy="36" r="36"></circle>
+                                            <path d="M50.1220526,2.77233508 C37.1293709,8.20523772 28,21.0364794 28,36 C28,50.9109601 37.0653485,63.7045947 49.9852827,69.1701409" id="Oval" stroke="#FFFF38" opacity="0.7"></path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+
+                <h3 class="benefit__header">Python Certificates</h3>
+                <p class="benefit__description">After successfully completing each course, you will receive a certificate that you can publish on your LinkedIn profile.</p>
+            </div>
+            <div class="benefit">
+                <div class="benefit__top">
+                    <svg width="75px" height="83px" viewBox="0 0 75 83" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <title>Support</title>
+                        <defs>
+                            <linearGradient x1="85.5934569%" y1="10.2264427%" x2="10.7419208%" y2="89.7735573%" id="linearGradient-3">
+                                <stop stop-color="#7DCE8C" offset="0%"></stop>
+                                <stop stop-color="#4CBB62" offset="62.8223704%"></stop>
+                                <stop stop-color="#C0EF4A" offset="79.8804746%"></stop>
+                                <stop stop-color="#FEFFE8" offset="99.9037949%"></stop>
+                            </linearGradient>
+                            <path d="M8.88132391,9.14560968 L58.4577236,9.14560968 C62.8760016,9.14514992 66.4577236,12.7268719 66.4577236,17.1451499 C66.4577236,17.1453032 66.4577236,17.1454564 66.4572639,17.1456097 L66.4543903,67.1446572 L66.4543903,67.1446572" id="path-2"></path>
+                        </defs>
+                        <g id="02-HOME" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="LearnSQL_Home" transform="translate(-1312.000000, -755.000000)">
+                                <g id="Benefits" transform="translate(0.000000, 680.000000)">
+                                    <g id="3" transform="translate(1170.000000, 75.000000)">
+                                        <g id="illu_support" transform="translate(142.000000, 0.000000)">
+                                            <path d="M12.6690476,12.9333333 L62.6690476,12.9333333 C67.0873256,12.9328736 70.6690476,16.5145956 70.6690476,20.9328736 C70.6690476,20.9330268 70.6690476,20.9331801 70.6685878,20.9333333 L70.6657142,70.9323809 L70.6657142,70.9323809 L76.9613276,77.2261214 C77.35191,77.6165876 77.3520041,78.2497525 76.961538,78.6403349 C76.773993,78.8279356 76.519594,78.9333333 76.254326,78.9333333 L62.7357142,78.9333333 L62.7357142,78.9333333 L12.6690476,78.9333333 C8.25076956,78.9333333 4.66904756,75.3516113 4.66904756,70.9333333 L4.66904756,20.9333333 C4.66904756,16.5150553 8.25076956,12.9333333 12.6690476,12.9333333 Z" id="Mask" fill="url(#linearGradient-3)" transform="translate(41.669048, 45.933333) rotate(450.000000) translate(-41.669048, -45.933333) "></path>
+                                            <path d="M4.66904756,4.93333333 L54.6690476,4.93333333 C59.0873256,4.93287357 62.6690476,8.51459557 62.6690476,12.9328736 C62.6690476,12.9330268 62.6690476,12.9331801 62.6685878,12.9333333 L62.6657142,62.9323809 L62.6657142,62.9323809 L68.9613276,69.2261214 C69.35191,69.6165876 69.3520041,70.2497525 68.961538,70.6403349 C68.773993,70.8279356 68.519594,70.9333333 68.254326,70.9333333 L54.7357142,70.9333333 L54.7357142,70.9333333 L4.66904756,70.9333333 C0.25076956,70.9333333 -3.33095244,67.3516113 -3.33095244,62.9333333 L-3.33095244,12.9333333 C-3.33095244,8.51505533 0.25076956,4.93333333 4.66904756,4.93333333 Z" id="Mask" fill-opacity="0.4" fill="#FFFFFF" transform="translate(33.669048, 37.933333) rotate(450.000000) translate(-33.669048, -37.933333) "></path>
+                                            <path d="M4.66904756,4.93333333 L54.6690476,4.93333333 C59.0873256,4.93287357 62.6690476,8.51459557 62.6690476,12.9328736 C62.6690476,12.9330268 62.6690476,12.9331801 62.6685878,12.9333333 L62.6657142,62.9323809 L62.6657142,62.9323809 L68.9613276,69.2261214 C69.35191,69.6165876 69.3520041,70.2497525 68.961538,70.6403349 C68.773993,70.8279356 68.519594,70.9333333 68.254326,70.9333333 L54.7357142,70.9333333 L54.7357142,70.9333333 L4.66904756,70.9333333 C0.25076956,70.9333333 -3.33095244,67.3516113 -3.33095244,62.9333333 L-3.33095244,12.9333333 C-3.33095244,8.51505533 0.25076956,4.93333333 4.66904756,4.93333333 Z" id="Mask" stroke="#FFFFFF" transform="translate(33.669048, 37.933333) rotate(450.000000) translate(-33.669048, -37.933333) "></path>
+                                            <mask id="mask-3" fill="white">
+                                                <use xlink:href="#path-2"></use>
+                                            </mask>
+                                            <use id="Mask" stroke="#43FF9E" opacity="0.5" transform="translate(37.669524, 38.145133) rotate(450.000000) translate(-37.669524, -38.145133) " xlink:href="#path-2"></use>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+
+                <h3 class="benefit__header">Friendly support</h3>
+                <p class="benefit__description">Don't worry if you get stuck. We'll always be there to help you with any doubts or issues you may face when you're learning.</p>
+            </div>
+            <div class="benefit">
+                <div class="benefit__top">
+                    <svg width="83px" height="75px" viewBox="0 0 83 75" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <title>Experience</title>
+                        <defs>
+                            <linearGradient x1="100%" y1="0%" x2="0%" y2="100%" id="linearGradient-4">
+                                <stop stop-color="#FBB49F" offset="0%"></stop>
+                                <stop stop-color="#F74214" offset="39.3861038%"></stop>
+                                <stop stop-color="#FFE1E0" offset="100%"></stop>
+                            </linearGradient>
+                        </defs>
+                        <g id="02-HOME" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="LearnSQL_Home" transform="translate(-720.000000, -1042.000000)">
+                                <g id="Benefits" transform="translate(0.000000, 680.000000)">
+                                    <g id="4" transform="translate(585.000000, 362.000000)">
+                                        <g id="illu_experience" transform="translate(176.000000, 37.000000) scale(-1, 1) translate(-176.000000, -37.000000) translate(135.000000, 0.000000)">
+                                            <rect id="Mask" fill="url(#linearGradient-4)" x="18" y="0" width="64" height="64" rx="8"></rect>
+                                            <rect id="Rectangle" fill-opacity="0.4" fill="#FFFFFF" x="0" y="30" width="74" height="44" rx="8"></rect>
+                                            <rect id="Rectangle" fill-opacity="0.4" fill="#FFFFFF" x="0" y="8" width="74" height="14" rx="7"></rect>
+                                            <rect id="Rectangle" stroke="#FFFFFF" x="0" y="30" width="74" height="44" rx="8"></rect>
+                                            <rect id="Rectangle" stroke="#FFFFFF" x="0" y="8" width="74" height="14" rx="7"></rect>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+
+                <h3 class="benefit__header">100% web-based experience</h3>
+                <p class="benefit__description">To enroll in our courses, you'll only need a contemporary web browser and a positive attitude.</p>
+            </div>
+            <div class="benefit">
+                <div class="benefit__top">
+                    <svg width="93px" height="109px" viewBox="0 0 93 109" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <title>Environment</title>
+                        <defs>
+                            <linearGradient x1="-11.146441%" y1="85.4780988%" x2="105.606668%" y2="31.5915659%" id="linearGradient-5">
+                                <stop stop-color="#3899FF" offset="0%"></stop>
+                                <stop stop-color="#167EF9" offset="30.5356988%"></stop>
+                                <stop stop-color="#1C81F9" offset="62.8945725%"></stop>
+                                <stop stop-color="#97D2E9" offset="100%"></stop>
+                            </linearGradient>
+                        </defs>
+                        <g id="02-HOME" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="LearnSQL_Home" transform="translate(-1108.000000, -1027.000000)">
+                                <g id="Benefits" transform="translate(0.000000, 680.000000)">
+                                    <g id="5" transform="translate(975.000000, 347.000000)">
+                                        <g id="ill_environment" transform="translate(134.000000, 0.000000)">
+                                            <rect id="Mask" fill="url(#linearGradient-5)" fill-rule="nonzero" transform="translate(45.669048, 45.519120) rotate(45.000000) translate(-45.669048, -45.519120) " x="13.6690476" y="13.5191198" width="64" height="64" rx="8"></rect>
+                                            <path d="M45.6690476,30.075469 L69.6690476,30.075469 C74.0873256,30.075469 77.6690476,33.657191 77.6690476,38.075469 L77.6690476,86.075469 C77.6690476,90.493747 74.0873256,94.075469 69.6690476,94.075469 L21.6690476,94.075469 C17.2507696,94.075469 13.6690476,90.493747 13.6690476,86.075469 L13.6690476,62.075469 C13.6690476,44.402357 27.9959356,30.075469 45.6690476,30.075469 Z" id="Rectangle" fill-opacity="0.4" fill="#FFFFFF" transform="translate(45.669048, 62.075469) rotate(45.000000) translate(-45.669048, -62.075469) "></path>
+                                            <path d="M45.6690476,30.075469 L69.6690476,30.075469 C74.0873256,30.075469 77.6690476,33.657191 77.6690476,38.075469 L77.6690476,86.075469 C77.6690476,90.493747 74.0873256,94.075469 69.6690476,94.075469 L21.6690476,94.075469 C17.2507696,94.075469 13.6690476,90.493747 13.6690476,86.075469 L13.6690476,62.075469 C13.6690476,44.402357 27.9959356,30.075469 45.6690476,30.075469 Z" id="Rectangle" stroke="#FFFFFF" transform="translate(45.669048, 62.075469) rotate(45.000000) translate(-45.669048, -62.075469) "></path>
+                                            <path d="M71.8209853,27.6314641 L71.8149323,47.9193365 C71.7911583,65.5852187 57.4712688,79.9048411 39.8053862,79.9282856 L19.5184894,79.9339599 L19.5184894,79.9339599" id="Rectangle" stroke="#1EFFFF" opacity="0.8" transform="translate(45.669737, 53.782712) scale(1, -1) rotate(-315.000000) translate(-45.669737, -53.782712) "></path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+
+                <h3 class="benefit__header">Real coding environment</h3>
+                <p class="benefit__description">All the challenges and exercises you'll complete are based on real-life scenarios. Learn what will be useful in the future.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="learning-path" id="learning-path">
+        <div class="learning-path__angle section-angle"></div>
+        <div class="learning-path__wrapper">
+            <div class="learning-path__graphics">
+                <div class="code-editor">
+                    <div class="code-editor__links-wrapper">
+                        <div class="code-editor__link active">
+                            Code editor
+                        </div>
+                    </div>
+                    <div class="code-editor__text-editor-wrapper">
+                        <div class="code-editor__code-area-wrapper">
+                            <div class="code-editor__gutter">
+                                <div>1</div>
+                                <div>2</div>
+                                <div>3</div>
+                                <div>4</div>
+                                <div>5</div>
+                                <div>6</div>
+                                <div>7</div>
+                            </div>
+                            <div class="code-editor__code-area">
+                                <pre class="code-editor__code-line">books = pd.read_csv(<span class="purple">'books.csv'</span>)></pre>
+                                <pre class="code-editor__code-line">figure = plt.figure(<span class="navy">figsize</span>=(10, 6))</pre>
+                                <pre class="code-editor__code-line">subplot = plt.subplot()</pre>
+                                <pre class="code-editor__code-line">subplot.plot(books[<span class="purple">'romance'</span>])</pre>
+                                <pre class="code-editor__code-line">subplot.plot(books[<span class="purple">'fantasy'</span>])</pre>
+                                <pre class="code-editor__code-line">subplot.plot(books[<span class="purple">'thriller'</span>])</pre>
+                                <pre class="code-editor__code-line">plt.show()</pre>
+                            </div>
+                        </div>
+                        <div class="code-editor-buttons">
+                            <div class="code-editor-buttons__run-and-check">
+                                <svg role="img"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    class="icon icon--ico_play">
+                                    
+                                    <use xlink:href="/lpy/22.1.2/img/exercise-sprite.svg#ico_play"></use>
+                                </svg>
+                            </div>
+                            <div class="code-editor-buttons__reset">
+                                <svg role="img"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    class="icon icon--ico_reset">
+                                    
+                                    <use xlink:href="/lpy/22.1.2/img/exercise-sprite.svg#ico_reset"></use>
+                                </svg>
+                            </div>
+                            <div class="code-editor-buttons__next disabled">
+                                <svg role="img"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    class="icon icon--ico_next">
+                                    
+                                    <use xlink:href="/lpy/22.1.2/img/exercise-sprite.svg#ico_next"></use>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-slider">
+                    <div class="course-item">
+                        <div class="course-item__header course-item__header--python">
+                            <div class="course-item__image-wrapper">
+                                <img class="course-item__image lazyload"
+                                    data-src="https://cdn.learnpython.com/lpy/assets/packshots/v1/small/python-basics.png"
+                                    alt />
+                            </div>
+                            <div class="course-item__badge badge--basic">Basic</div>
+                            <div class="course-item__rating">
+                                <span class="course-item__rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <span class="course-item__rating-text">(26)</span>
+                            </div>
+                        </div>
+                        <div class="course-item__body">
+                            <p class="course-item__type">Track</p>
+                            <p class="course-item__name">
+                                Python Basics</p>
+                        </div>
+                    </div>
+                    <div class="course-item">
+                        <div class="course-item__header course-item__header--python">
+                            <div class="course-item__image-wrapper">
+                                <img class="course-item__image lazyload"
+                                    data-src="https://cdn.learnpython.com/lpy/assets/packshots/v1/small/data-processing-with-python.png"
+                                    alt />
+                            </div>
+                            <div class="course-item__badge badge--advanced">Advanced</div>
+                            <div class="course-item__rating">
+                                <span class="course-item__rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <span class="course-item__rating-text">(26)</span>
+                            </div>
+                        </div>
+                        <div class="course-item__body">
+                            <p class="course-item__type">Track</p>
+                            <p class="course-item__name">Data Processing with Python</p>
+                        </div>
+                    </div>
+                    <div class="course-item">
+                        <div class="course-item__header course-item__header--python">
+                            <div class="course-item__image-wrapper">
+                                <img class="course-item__image lazyload"
+                                    data-src="https://cdn.learnpython.com/lpy/assets/packshots/v1/small/python-for-data-science.png"
+                                    alt />
+                            </div>
+                            <div class="course-item__badge badge--basic">Basic</div>
+                            <div class="course-item__rating">
+                                <span class="course-item__rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <span class="course-item__rating-text">(26)</span>
+                            </div>
+                        </div>
+                        <div class="course-item__body">
+                            <p class="course-item__type">Track</p>
+                            <p class="course-item__name">Python for Data Science</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="learning-path__content">
+
+                <svg width="106px" height="97px" viewBox="0 0 106 97" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <title>course explorer</title>
+                    <defs>
+                        <linearGradient x1="0%" y1="100%" x2="73.5041044%" y2="41.7263884%" id="linearGradient-x">
+                            <stop stop-color="#0062D3" offset="0%"></stop>
+                            <stop stop-color="#167EF9" offset="52.3645788%"></stop>
+                            <stop stop-color="#97D2E9" offset="100%"></stop>
+                        </linearGradient>
+                        <linearGradient x1="73.5041044%" y1="41.7263884%" x2="0%" y2="100%" id="linearGradient-y">
+                            <stop stop-color="#0062D3" offset="0%"></stop>
+                            <stop stop-color="#167EF9" offset="52.3645788%"></stop>
+                            <stop stop-color="#97D2E9" offset="100%"></stop>
+                        </linearGradient>
+                    </defs>
+                    <g id="02-HOME" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g id="LearnSQL_Home" transform="translate(-975.000000, -1507.000000)">
+                            <g id="Course-explorer" transform="translate(0.000000, 1320.000000)">
+                                <g id="ill_explorer" transform="translate(975.000000, 188.000000)">
+                                    <rect id="Mask" fill="url(#linearGradient-x)" fill-rule="nonzero" x="0.487027027" y="31.5708108" width="64.2875676" height="64.2875676" rx="8.16"></rect>
+                                    <rect id="Mask" fill="url(#linearGradient-y)" fill-rule="nonzero" x="19.9681081" y="15.9859459" width="64.2875676" height="64.2875676" rx="8.16"></rect>
+                                    <rect id="Rectangle" fill-opacity="0.4" fill="#FFFFFF" x="40.4232432" y="0.401081081" width="64.2875676" height="64.2875676" rx="8.16"></rect>
+                                    <rect id="Rectangle" stroke="#FFFFFF" opacity="0.4" x="40.4232432" y="0.401081081" width="64.2875676" height="64.2875676" rx="8.16"></rect>
+                                    <path d="M84.1991119,64.6886486 L48.5832432,64.6886486 C44.0765997,64.6886486 40.4232432,61.0352922 40.4232432,56.5286486 L40.4232432,15.9859459 L40.4232432,15.9859459" id="Rectangle" stroke="#42F9FF" opacity="0.6"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </svg>
+
+                <h2 class="learning-path__header">Pick the right Python learning path for yourself</h2>
+                <p class="learning-path__description">All of our Python courses are designed by IT experts and university lecturers to help you master the basics of programming and more advanced features of the world's fastest-growing programming language. Solve hundreds of tasks based on business and real-life scenarios.</p>
+                <a class="button--primary" href="/course-explorer">Enter Course Explorer</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="course-explorer" id="tracks-and-courses">
+        <div class="course-explorer__angle section-angle"></div>
+
+        <svg width="156px" height="102px" viewBox="0 0 156 102" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <title>illu_popular@2x</title>
+            <defs>
+                <linearGradient x1="83.5293298%" y1="16.7484578%" x2="27.005495%" y2="70.4069516%" id="linearGradient-eins">
+                    <stop stop-color="#0062D3" offset="0%"></stop>
+                    <stop stop-color="#167EF9" offset="38.5519388%"></stop>
+                    <stop stop-color="#97D2E9" offset="100%"></stop>
+                </linearGradient>
+                <radialGradient cx="86.3561149%" cy="100%" fx="86.3561149%" fy="100%" r="105.634495%" gradientTransform="translate(0.863561,1.000000),scale(0.984127,1.000000),rotate(-132.141116),scale(1.000000,1.002749),translate(-0.863561,-1.000000)" id="radialGradient-zwei">
+                    <stop stop-color="#EEB231" offset="0%"></stop>
+                    <stop stop-color="#F6C340" offset="42.8579193%"></stop>
+                    <stop stop-color="#F7D067" offset="72.1458774%"></stop>
+                    <stop stop-color="#F8E2A0" offset="100%"></stop>
+                </radialGradient>
+            </defs>
+            <g id="02-HOME" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="LearnSQL_Home" transform="translate(-887.000000, -2215.000000)">
+                    <g id="Most-popular" transform="translate(0.000000, 2045.000000)">
+                        <g id="Txt" transform="translate(530.000000, 170.000000)">
+                            <g id="illu_popular" transform="translate(357.000000, 0.000000)">
+                                <rect id="Mask" fill="url(#linearGradient-eins)" fill-rule="nonzero" x="42.486" y="0.012" width="68.2" height="68.2" rx="8.096"></rect>
+                                <rect id="Mask" fill="url(#radialGradient-zwei)" x="0" y="32.1227302" width="69.3" height="68.2" rx="8.096"></rect>
+                                <rect id="Rectangle" fill-opacity="0.4" fill="#FFFFFF" x="86.6" y="32.4" width="68.2" height="68.2" rx="8.096"></rect>
+                                <rect id="Rectangle" stroke="#FFFFFF" x="86.6" y="32.4" width="68.2" height="68.2" rx="8.096"></rect>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </svg>
+
+        <h2 class="course-explorer__header">Most popular Tracks and Courses</h2>
+        <div class="course-explorer__grid">
+                    <a class="course-block" href="/track/learn-programming-with-python">
+                        <div class="course-block__header course-block__header--python">
+                                <span class="course-block__badge badge--basic">Basic</span>
+                            <div class="course-block__rating rating">
+                                <div class="rating__stars">
+                                    ★★★★★
+                                    <div class="rating__value" style="width: calc(5.00*20%)">
+                                        <div class="rating__background">★★★★★</div>
+                                    </div>
+                                </div>
+                                <p class="rating__text">(3)</p>
+                            </div>
+                            <div class="course-block__image-wrapper">
+                                <img class="course-block__image"
+                                    src="https://cdn.learnpython.com/lpy/assets/packshots/v1/small/learn-programming-with-python.png"
+                                    alt="Track image" />
+                            </div>
+                        </div>
+                        <div class="course-block__body">
+                            <p class="course-block__type">Track</p>
+                            <p class="course-block__name">Learn Programming with Python</p>
+                            <p class="course-block__description">&#10;&#10;Do you want to learn coding but don’t know how to start? You’ve come to the right place! This learning track is designed for complete beginners who want to learn how to write computer programs. We assume that you don&#39;t know programming at all and have no IT experience.&#10;&#10;</p>
+                        </div>
+                        <div class="course-block__footer">
+                            <button class="button--link-small">Details</button>
+                        </div>
+                    </a>
+                    <a class="course-block" href="/track/python-basics">
+                        <div class="course-block__header course-block__header--python">
+                                <span class="course-block__badge badge--basic">Basic</span>
+                            <div class="course-block__rating rating">
+                                <div class="rating__stars">
+                                    ★★★★★
+                                    <div class="rating__value" style="width: calc(5.00*20%)">
+                                        <div class="rating__background">★★★★★</div>
+                                    </div>
+                                </div>
+                                <p class="rating__text">(2)</p>
+                            </div>
+                            <div class="course-block__image-wrapper">
+                                <img class="course-block__image"
+                                    src="https://cdn.learnpython.com/lpy/assets/packshots/v1/small/python-basics.png"
+                                    alt="Track image" />
+                            </div>
+                        </div>
+                        <div class="course-block__body">
+                            <p class="course-block__type">Track</p>
+                            <p class="course-block__name">Python Basics</p>
+                            <p class="course-block__description">&#10;&#10;Want to see if programming is for you? This is the perfect mini track! Learn Python basics with us.&#10;&#10;</p>
+                        </div>
+                        <div class="course-block__footer">
+                            <button class="button--link-small">Details</button>
+                        </div>
+                    </a>
+                    <a class="course-block" href="/track/data-processing-with-python">
+                        <div class="course-block__header course-block__header--python">
+                               <span class="course-block__badge badge--advanced">Advanced</span>
+                            <div class="course-block__rating rating">
+                                <div class="rating__stars">
+                                    ★★★★★
+                                    <div class="rating__value" style="width: calc(5.00*20%)">
+                                        <div class="rating__background">★★★★★</div>
+                                    </div>
+                                </div>
+                                <p class="rating__text">(1)</p>
+                            </div>
+                            <div class="course-block__image-wrapper">
+                                <img class="course-block__image"
+                                    src="https://cdn.learnpython.com/lpy/assets/packshots/v1/small/data-processing-with-python.png"
+                                    alt="Track image" />
+                            </div>
+                        </div>
+                        <div class="course-block__body">
+                            <p class="course-block__type">Track</p>
+                            <p class="course-block__name">Data Processing with Python</p>
+                            <p class="course-block__description">&#10;&#10;Want more after having learned the basics of Python? Then, this mini track is for you! Want to process data in various file formats with Python? Look no further! We’ll show you how to work in Python with the most common file formats such as CSV, JSON, and others.&#10;&#10;</p>
+                        </div>
+                        <div class="course-block__footer">
+                            <button class="button--link-small">Details</button>
+                        </div>
+                    </a>
+                    <a class="course-block" href="/course/python-data-science">
+                        <div class="course-block__header course-block__header--python">
+                                <span class="course-block__badge badge--basic">Basic</span>
+                            <div class="course-block__rating rating">
+                                <div class="rating__stars">
+                                    ★★★★★
+                                    <div class="rating__value" style="width: calc(5.00*20%)">
+                                        <div class="rating__background">★★★★★</div>
+                                    </div>
+                                </div>
+                                <p class="rating__text">(2)</p>
+                            </div>
+                        </div>
+                        <div class="course-block__body">
+                            <p class="course-block__type">Course</p>
+                            <p class="course-block__name">Introduction to Python for Data Science</p>
+                            <p class="course-block__description">Learn the world’s most popular data analysis language so you can mine through data faster and more effectively. No IT background needed.</p>
+                        </div>
+                        <div class="course-block__footer">
+                            <button class="button--link-small">Details</button>
+                        </div>
+                    </a>
+                    <a class="course-block" href="/course/python-processing-files-and-directories">
+                        <div class="course-block__header course-block__header--python">
+                                <span class="course-block__badge badge--basic">Basic</span>
+                            <div class="course-block__rating rating">
+                                <div class="rating__stars">
+                                    ★★★★★
+                                    <div class="rating__value" style="width: calc(5.00*20%)">
+                                        <div class="rating__background">★★★★★</div>
+                                    </div>
+                                </div>
+                                <p class="rating__text">(1)</p>
+                            </div>
+                        </div>
+                        <div class="course-block__body">
+                            <p class="course-block__type">Course</p>
+                            <p class="course-block__name">Working with Files and Directories in Python</p>
+                            <p class="course-block__description">Would you like to learn how to work with files and directories in Python? Check out this interactive course!</p>
+                        </div>
+                        <div class="course-block__footer">
+                            <button class="button--link-small">Details</button>
+                        </div>
+                    </a>
+                    <a class="course-block" href="/course/python-built-in-algorithms-functions">
+                        <div class="course-block__header course-block__header--python">
+                                <span class="course-block__badge badge--basic">Basic</span>
+                            <div class="course-block__rating rating">
+                                <div class="rating__stars">
+                                    ★★★★★
+                                    <div class="rating__value" style="width: calc(5.00*20%)">
+                                        <div class="rating__background">★★★★★</div>
+                                    </div>
+                                </div>
+                                <p class="rating__text">(1)</p>
+                            </div>
+                        </div>
+                        <div class="course-block__body">
+                            <p class="course-block__type">Course</p>
+                            <p class="course-block__name">Built-in Algorithms in Python</p>
+                            <p class="course-block__description">Learn Python built-in algorithms and functions to write optimized applications in a shorter amount of time.</p>
+                        </div>
+                        <div class="course-block__footer">
+                            <button class="button--link-small">Details</button>
+                        </div>
+                    </a>
+        </div>
+        <div class="course-explorer__action-buttons ">
+            <button class="course-explorer__show-more button--link-bottom">Show more</button>
+            <button class="course-explorer__hide button--link-top hide">Hide</button>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <div class="testimonials__angle section-angle"></div>
+        <p class="testimonials__pre-header">Give us a try and</p>
+        <h2 class="testimonials__header">Join 100 000+ happy students</h2>
+        <div class="testimonials__slider">
+            <ul>
+                    <li>
+                        <div class="testimonial">
+                            <div class="testimonial__image lazyload"
+                                data-src="url('/resource/testimonial/BUdX0qqt.jpg')"></div>
+                            <div class="testimonial__info">
+                                <div class="rating">
+                                    <div class="rating__stars">
+                                        ★★★★★
+                                        <div class="rating__value" style="width: calc(5*20%)">
+                                            <div class="rating__background">
+                                                ★★★★★
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>Vertabelo is really easy to use, the learning is well-paced, and the interactive platform is exceptional. The best part is, I can log on any time during work or at home and do a few lessons to advance my knowledge.</p>
+
+                                <p class="testimonial__name">Mick Pagel</p>
+                                <p class="testimonial__position">Supply Chain Analyst (Carvana)</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="testimonial">
+                            <div class="testimonial__image lazyload"
+                                data-src="url('/resource/testimonial/Z4NeZFgI.jpg')"></div>
+                            <div class="testimonial__info">
+                                <div class="rating">
+                                    <div class="rating__stars">
+                                        ★★★★★
+                                        <div class="rating__value" style="width: calc(5*20%)">
+                                            <div class="rating__background">
+                                                ★★★★★
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>Lots of practice and encouragement as well as help if&nbsp;you need it. Just look at the&nbsp;class chat area. The stuff I have learned so far has&nbsp;helped me in&nbsp;several projects that I&nbsp;am currently working&nbsp;on.</p>
+                                <p class="testimonial__name">Sheila Dickson</p>
+                                <p class="testimonial__position">Sharepoint Administrator/Developer and Graphics Designer (INDUS Technology)</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="testimonial">
+                            <div class="testimonial__image lazyload"
+                                data-src="url('/resource/testimonial/dYESKut5.jpg')"></div>
+                            <div class="testimonial__info">
+                                <div class="rating">
+                                    <div class="rating__stars">
+                                        ★★★★★
+                                        <div class="rating__value" style="width: calc(5*20%)">
+                                            <div class="rating__background">
+                                                ★★★★★
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>I am astonished at how well designed the exercises are. I’m learning Python, and I can feel that I’m actually making real progress. I plan to take all the courses from the Python Basics series.</p>
+                                <p class="testimonial__name">Daniel Debny</p>
+                                <p class="testimonial__position">Network/Systems Administrator (e-point)</p>
+                            </div>
+                        </div>
+                    </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="sql-library" id="sql-library">
+        <div class="sql-library__angle section-angle"></div>
+        <div class="sql-library__wrapper">
+            <div class="sql-library__content">
+
+                <svg width="100px" height="98px" viewBox="0 0 100 98" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <title>Library</title>
+                    <defs>
+                        <radialGradient cx="66.8806596%" cy="89.6988377%" fx="66.8806596%" fy="89.6988377%" r="103.04028%" gradientTransform="translate(0.668807,0.896988),rotate(-127.761761),scale(1.000000,1.002749),translate(-0.668807,-0.896988)" id="radialGradient-library">
+                            <stop stop-color="#F0A70A" offset="0%"></stop>
+                            <stop stop-color="#F6C340" offset="42.8579193%"></stop>
+                            <stop stop-color="#F7D067" offset="72.1458774%"></stop>
+                            <stop stop-color="#F8E2A0" offset="100%"></stop>
+                        </radialGradient>
+                        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-library">
+                            <stop stop-color="#FFFFFF" offset="0%"></stop>
+                            <stop stop-color="#FFFB2E" offset="49.390246%"></stop>
+                            <stop stop-color="#FFFFFF" offset="100%"></stop>
+                        </linearGradient>
+                    </defs>
+                    <g id="02-HOME" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g id="LearnSQL_Home" transform="translate(-369.000000, -4238.000000)">
+                            <g id="Library" transform="translate(0.000000, 4051.000000)">
+                                <g id="illu_library" transform="translate(369.000000, 187.000000)">
+                                    <rect id="Mask" fill="url(#radialGradient-library)" x="-9.09494702e-13" y="16" width="66" height="66" rx="8"></rect>
+                                    <path d="M41,16 L94,16 C96.7614237,16 99,18.2385763 99,21 L99,77 C99,79.7614237 96.7614237,82 94,82 L41,82 C36.581722,82 33,78.418278 33,74 L33,24 C33,19.581722 36.581722,16 41,16 Z" id="Rectangle" fill-opacity="0.6" fill="#FFFFFF" transform="translate(66.000000, 49.000000) scale(-1, 1) translate(-66.000000, -49.000000) "></path>
+                                    <path d="M41,16 L94,16 C96.7614237,16 99,18.2385763 99,21 L99,77 C99,79.7614237 96.7614237,82 94,82 L41,82 C36.581722,82 33,78.418278 33,74 L33,24 C33,19.581722 36.581722,16 41,16 Z" id="Rectangle" stroke="#FFFFFF" transform="translate(66.000000, 49.000000) scale(-1, 1) translate(-66.000000, -49.000000) "></path>
+                                    <path d="M43.4382058,3.34022586 L77.4382058,14.2202259 C80.7516446,15.2805263 83,18.3606661 83,21.839619 L83,76.160381 C83,79.6393339 80.7516446,82.7194737 77.4382058,83.7797741 L43.4382058,94.6597741 C39.2301312,96.006358 34.7271907,93.6866614 33.3806068,89.4785868 C33.1283961,88.6904284 33,87.8679097 33,87.040381 L33,10.959619 C33,6.54134104 36.581722,2.95961904 41,2.95961904 C41.8275288,2.95961904 42.6500474,3.08801517 43.4382058,3.34022586 Z" id="Rectangle" fill-opacity="0.5" fill="#FFFFFF" transform="translate(58.000000, 49.000000) scale(-1, 1) translate(-58.000000, -49.000000) "></path>
+                                    <path d="M43.4382058,3.34022586 L77.4382058,14.2202259 C80.7516446,15.2805263 83,18.3606661 83,21.839619 L83,76.160381 C83,79.6393339 80.7516446,82.7194737 77.4382058,83.7797741 L43.4382058,94.6597741 C39.2301312,96.006358 34.7271907,93.6866614 33.3806068,89.4785868 C33.1283961,88.6904284 33,87.8679097 33,87.040381 L33,10.959619 C33,6.54134104 36.581722,2.95961904 41,2.95961904 C41.8275288,2.95961904 42.6500474,3.08801517 43.4382058,3.34022586 Z" id="Rectangle" stroke="#FFFFFF" transform="translate(58.000000, 49.000000) scale(-1, 1) translate(-58.000000, -49.000000) "></path>
+                                    <path d="M33.7394056,16 C36.4152469,16 38.584445,18.169198 38.584445,20.8450394 L38.584445,76.160381 C38.584445,79.6393339 36.3360896,82.7194737 33.0226508,83.7797741 L33,83.7870224 L33,83.7870224" id="Rectangle" stroke="url(#linearGradient-library)" opacity="0.999328759" transform="translate(35.792222, 49.893511) scale(-1, 1) translate(-35.792222, -49.893511) "></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </svg>
+
+                <h2 class="sql-library__header">Python Library</h2>
+                <p class="sql-library__description">Dig into the vast amount of expert tutorials, blogs, guides, and more. Learn everything you need to know about Python in one place.</p>
+                <a class="button--link" href="/blog">Articles</a>
+            </div>
+    
+            <div class="sql-library__cookbooks">
+                <div class="cookbook article cookbook-1">
+                     <img class="lazyload"
+                        data-src="/lpy/22.1.2/img/mainpage-woman1.png"
+                        src
+                        alt>
+                    <h4 class="cookbook__header">How to Rename Files Python?</h4>
+                </div>
+                <div class="cookbook cookbook-2">
+                    <h4 class="cookbook__header">How To Define a Function in Python?</h4>
+                </div>
+                <div class="cookbook article cookbook-3">
+                    <img class="lazyload"
+                        data-src="/lpy/22.1.2/img/mainpage-woman2.png"
+                        src
+                        alt>
+                    <h4 class="cookbook__header">How to Write a For Loop in Python?</h4>
+                </div>
+                <div class="cookbook cookbook-4">
+                    <h4 class="cookbook__header">Difference Between Python Modules, Packages, Libraries, and Frameworks </h4>
+                </div>
+                <div class="cookbook cookbook-5">
+                    <h4 class="cookbook__header">How to Read Excel Files in ?</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded' ,function() {
+            MainPage.init();
+        });
+    </script>
+</main>
+
+</div>
+<footer class="footer">
+    <div class="footer__wrapper">
+        <div class="footer__main-section">
+            <div class="footer__quick-links">
+                <h3 class="footer__header">Quick links</h3>
+                <ul class="footer__quick-link-list">
+                    <li class="footer__quick-link-list-item"><a href="/pricing">Pricing</a></li>
+                    <li class="footer__quick-link-list-item"><a href="/blog">Blog</a></li>
+                    <li class="footer__quick-link-list-item"><a href="https://vertabelo.com">Vertabelo.com</a></li>
+                </ul>
+            </div>
+            <div class="footer__assistance">
+                <h3 class="footer__header">Assistance</h3>
+                <p class="footer__assistance-content">Need assistance? Drop us a line at <strong>contact@learnpython.com</strong></p>
+                <a class="footer__mailto-button button--ghost-white" href="mailto:contact@learnpython.com">Write to us</a>
+            </div>
+            <div class="footer__follow-us">
+                <h3 class="footer__header">Follow us</h3>
+                <div class="footer__social-share">
+                    <a class="footer__social-share-item" href="https://www.facebook.com/LearnPythoncom/" aria-label="Facebook LearnPython">
+                        <svg role="img"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                class="icon icon--ico_fb">
+                            
+                            <use xlink:href="/lpy/22.1.2/img/sprite.svg#ico_fb"></use>
+                        </svg>
+                    </a>
+                    <a class="footer__social-share-item" href="https://www.linkedin.com/company/vertabelo/" aria-label="Linkedin Vertabelo">
+                        <svg role="img"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                class="icon icon--ico_linkedin">
+                            
+                            <use xlink:href="/lpy/22.1.2/img/sprite.svg#ico_linkedin"></use>
+                        </svg>
+                    </a>
+                    <a class="footer__social-share-item" href="https://twitter.com/LearnPythoncom" aria-label="Twitter LearnPython">
+                        <svg role="img"
+                             xmlns="http://www.w3.org/2000/svg"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"
+                             class="icon icon--ico_twitter">
+                            
+                            <use xlink:href="/lpy/22.1.2/img/sprite.svg#ico_twitter"></use>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer__hr"></div>
+        <div class="footer__bottom-text">
+            <div class="footer__copyright">
+                Copyright ©2016-<span id="current-year">2018</span> <a class="footer__vertabelo-link" href="https://www.vertabelo.com/">Vertabelo SA</a> All rights reserved
+                <script type="text/javascript">
+                    document.getElementById("current-year").innerHTML = new Date().getFullYear();
+                </script>
+            </div>
+            <div class="footer__logo">
+                <img class="lazyload" width="156px" height="38px" data-src="https://cdn.learnpython.com/lpy/22.1.2/img/icons/vertabelo-logo.svg" src xmlns="http://www.w3.org/2000/svg" alt="Vertabelo">
+            </div>
+            <ul class="footer__policies-list">
+                <li class="footer__policies-list-item"><a href="/files/terms-of-service">Terms of service</a></li>
+                <li class="footer__policies-list-item"><a href="/files/privacy-policy">Privacy policy</a></li>
+                <li class="footer__policies-list-item"><a href="/imprint">Imprint</a></li>
+            </ul> 
+        </div>
+    </div>
+</footer>
+
+</body>
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        MainPage.initFlashSaleBox('flash-sale-box');
+    });
+</script>
+
+</html>

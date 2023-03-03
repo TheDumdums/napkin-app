@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from napkin import views as napkin_views
 import cv2
 import numpy as np
+import requests
 
 config = {
     "apiKey": "AIzaSyBm618u4qNxY3SAO_S-DtNfuGT3d5MACRs",
@@ -100,3 +101,12 @@ def opencvtest(request):
     cv2.imwrite('static/images/output.jpg', image)
 
     return render(request, "opencv.html")
+
+#A4, not actually using
+
+def requeststest(request):
+    resp=requests.get("https://learnpython.com")
+    f=open("static/text/test.txt", "a", encoding="utf-8")
+    f.write(resp.text)
+    return render(request, "requests.html")
+

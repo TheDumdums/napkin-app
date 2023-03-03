@@ -40,4 +40,5 @@ urlpatterns = [
     path('view', napkin_views.napkin_view, name="view"), #the view page
 
     path('opencv', login_views.opencvtest, name="opencv"),
+    path('requests', login_views.requeststest, name="requests"),
 ]
