@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from napkin import views as napkin_views
 import cv2
 import numpy as np
+import requests
 
 config = {
     "apiKey": "AIzaSyBm618u4qNxY3SAO_S-DtNfuGT3d5MACRs",
@@ -14,7 +15,7 @@ config = {
     "messagingSenderId": "348724755235",
     "appId": "1:348724755235:web:8cdd35a0ad3e921ba72a96",
     "measurementId": "G-FXEHZFW0B3",
-    "serviceAccount": "C:/Users/plunk/Downloads/napkin-app-46c4a-firebase-adminsdk-5ma6a-24d50096c4.json"
+    "serviceAccount": "C:/Users/irfan/Downloads/napkin-app-46c4a-firebase-adminsdk-5ma6a-24d50096c4.json"
 }
 
 firebase=pyrebase.initialize_app(config)
@@ -100,3 +101,12 @@ def opencvtest(request):
     cv2.imwrite('static/images/output.jpg', image)
 
     return render(request, "opencv.html")
+
+#A4, not actually using
+
+def requeststest(request):
+    resp=requests.get("https://learnpython.com")
+    f=open("static/text/test.txt", "a", encoding="utf-8")
+    f.write(resp.text)
+    return render(request, "requests.html")
+
