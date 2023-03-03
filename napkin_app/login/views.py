@@ -2,8 +2,6 @@ from django.shortcuts import render
 import pyrebase
 from django.http import HttpResponse
 from napkin import views as napkin_views
-import cv2
-import numpy as np
 
 config = {
     "apiKey": "AIzaSyBm618u4qNxY3SAO_S-DtNfuGT3d5MACRs",
@@ -83,20 +81,3 @@ def logout(request):
     except:
         pass
     return napkin_views.unlogged_napkin(request)
-
-#we aren't using opencv in this project.
-#probably delete it later.
-def opencvtest(request):
-    image = cv2.imread("static/images/napkin.jpg",cv2.IMREAD_COLOR)
-
-    cv2.putText(
-        img=image,
-        text="This text was written to test out opencv.", 
-        org=(0,100), 
-        fontFace=cv2.FONT_HERSHEY_PLAIN, #font family
-        fontScale=1,
-        color=(255, 0, 0, 255), #font color
-    ) #font stroke
-    cv2.imwrite('static/images/output.jpg', image)
-
-    return render(request, "opencv.html")
