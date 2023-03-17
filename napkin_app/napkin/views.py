@@ -28,7 +28,11 @@ def unlogged_napkin(request):
 #there is an option for this page to be loaded with other arguments. For example, on completion,
 #this method is called, with a confirmation message passed in.
 def logged_napkin(request, additional_params=None):
-    uid = request.session['uid']
+    try:
+        uid = request.session['uid']
+    except:
+        return render(request, 'index.html', status=403)
+
     name = database.child("profiles").child(uid).child("username").get().val()
 
     user_params={"username":name}
@@ -62,7 +66,11 @@ def upload_complete(request):
 #gets all the napkins that a user has made in the database, and the user's name, and
 #returns a napking viewing page with the prior data as arguments.
 def napkin_view(request):
-    uid = request.session['uid']
+    try:
+        uid = request.session['uid']
+    except:
+        return render(request, 'index.html', status=403)
+    
     name = database.child("profiles").child(uid).child("username").get().val()
 
     napkins = database.child("napkins").child(uid).get().val()
