@@ -38,7 +38,4 @@ urlpatterns = [
     path('signUp/', login_views.signUp, name="signup"), #the sign up page
     path('about/', napkin_views.about, name="aboutpage"), #the about page
     path('view', napkin_views.napkin_view, name="view"), #the view page
-
-    path('opencv', login_views.opencvtest, name="opencv"),
-    path('requests', login_views.requeststest, name="requests"),
 ]
