@@ -38,9 +38,11 @@
     <canvas id="napkin" class="napkin" width=500 height=500></canvas>
   </div>
   <div class="tools">
-    <button class="color-black" onclick="colorChangeBlack()"></button>
-    <button class="color-red" onclick="colorChangeRed()"></button>
-    <button class="color-blue" onclick="colorChangeBlue()"></button>
+    <button class="color-black" id="black" onclick="colorChangeBlack()"></button>
+    <button class="color-red" id="red" onclick="colorChangeRed()"></button>
+    <button class="color-blue" id="blue" onclick="colorChangeBlue()"></button>
+    <button class="add-text" id="text" onclick="switchToTextMode()">Text</button>
+    <input type="number" id="text-size" name="text-size" min="20" max="90" value="20">
   </div>
   <div class="napkin-name-container">
     <textarea name="napkin-name" id="napkin-name" cols="30" rows="1">Give your napkin a name!</textarea>

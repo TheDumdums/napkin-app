@@ -2,7 +2,6 @@ from django.shortcuts import render
 import pyrebase
 from django.http import HttpResponse
 from napkin import views as napkin_views
-import numpy as np
 
 config = {
     "apiKey": "AIzaSyBm618u4qNxY3SAO_S-DtNfuGT3d5MACRs",
