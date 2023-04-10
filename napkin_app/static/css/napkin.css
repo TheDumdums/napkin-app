@@ -99,8 +99,18 @@ nav {
     color: black;
 }
 
-.tools {
+.tooltype {
     width: 25%;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 40px;
+    margin: auto;
+    justify-content: space-evenly;
+    display: flex;
+    margin-bottom: 2%;
+}
+
+.tools {
+    width: 50%;
     background-color: rgba(255, 255, 255, 0.3);
     border-radius: 50px;
     margin: auto;
@@ -109,48 +119,73 @@ nav {
     margin-bottom: 2%;
 }
 
-.color-black {
-    background-color: #333;
-    width: 50px;
-    height: 50px;
+.clear-btn {
+    background-color: transparent; 
+    width: 50px; 
+    height: 50px; 
+    font-size:30px; 
     border-radius: 50px;
-    border: 3px solid #000000;
+    border: transparent;
+    cursor: pointer;
 }
 
-.color-red {
-    background-color: rgb(203, 5, 5);
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-    border: 3px solid #000000;
+.undo-btn {
+    background-color: transparent; 
+    width: 50px; 
+    height: 50px; 
+    font-size:30px; 
+    border-radius: 50px; 
+    border: transparent;
+    cursor: pointer;
 }
 
-.color-blue {
-    background-color: rgb(21, 18, 193);
+.colorpicker {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
     width: 50px;
     height: 50px;
-    border-radius: 50px;
-    border: 3px solid #000000;
+    border: none;
+    cursor: pointer;
+}
+
+.colorpicker::-webkit-color-swatch {
+    border-radius: 50%;
+    border: 7px solid #000000;
+}
+
+.colorpicker::-moz-color-swatch {
+    border-radius: 50%;
+    border: 7px solid #000000;
+}
+
+.colorpicker:active {
+    opacity: 0.5;
 }
 
 .add-text {
-    background-color: rgb(0, 185, 120);
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-    border: 3px solid #000000;
+    background-color: transparent; 
+    width: 50px; 
+    height: 50px; 
+    font-size:20px; 
+    font-weight: bold;
+    font-variant: small-caps;
+    border-radius: 50px; 
+    border: transparent;
+    cursor: pointer;
 }
 
-.upload-button {
-    height: 50px;
-    width: 25%;
-    background-color: #333;
-    border-radius: 25px;
-    color: white;
-    border: none;
-    font-family: 'Tilt Neon';
-    font-size: 25px;
-    filter: drop-shadow(0px 0px 10px rgb(0,0,0,1));
+.add-text:active {
+    opacity: 0.5;
+}
+
+.textSize {
+    border-radius: 50px;
+    width: 50px;
+    height: 25px;
+    margin-top: 10px;
+    background-color: rgba(242, 232, 232, 0.5);
 }
 
 .upload-button:hover {

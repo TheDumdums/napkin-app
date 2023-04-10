@@ -2,17 +2,17 @@ var canvas = document.getElementById('napkin')
 let ctx = canvas.getContext('2d');
 let textMode = false;
 let mousePos;
-let redButton = document.getElementById('red');
-let blackButton = document.getElementById('black');
-let blueButton = document.getElementById('blue');
+var previouslyToggled;
+var timesClicked = 0;
 let textButton = document.getElementById('text');
+var drawMode = document.getElementById("type1");
+var writeMode = document.getElementById("type2");
+const modeHTML = document.getElementById("mode");
 
 var signaturePad = new SignaturePad(canvas, {
     minWidth: 3,
     maxWidth: 8
 });
-
-colorChangeBlack();
 
 document.addEventListener("keydown", function (event) {
     if (event.ctrlKey && event.key === 'z') {
@@ -25,31 +25,36 @@ document.addEventListener("keydown", function (event) {
     }
 });
 
-function colorChangeBlack() {
-    signaturePad.penColor = 'rgb(0,0,0)';
-    ctx.fillStyle = 'rgb(0,0,0)';
+document.getElementById('clear').addEventListener('click', function () {
+    signaturePad.clear();
+});
 
-    redButton.style["border"] = "3px solid #000000";
-    blackButton.style["border"] = "6px solid #ffffff";
-    blueButton.style["border"] = "3px solid #000000";
+document.getElementById('undo').addEventListener('click', function () {
+    var data = signaturePad.toData();
+    if (data) {
+        data.pop();
+        signaturePad.fromData(data);
+    }
+});
+
+function colorChanged() {
+    document.getElementById("mode").innerHTML = "Drawing Mode";
+    const inputVal = document.getElementById("color-picker").value;
+    signaturePad.penColor = inputVal;
+    signaturePad.on();
 }
 
-function colorChangeRed() {
-    signaturePad.penColor = 'rgb(203,5,5)';
-    ctx.fillStyle = 'rgb(203,5,5)';
-
-    redButton.style["border"] = "6px solid #ffffff";
-    blackButton.style["border"] = "3px solid #000000";
-    blueButton.style["border"] = "3px solid #000000";
-}
-
-function colorChangeBlue() {
-    signaturePad.penColor = 'rgb(21,18,193)';
-    ctx.fillStyle = 'rgb(21,18,193)';
-
-    redButton.style["border"] = "3px solid #000000";
-    blackButton.style["border"] = "3px solid #000000";
-    blueButton.style["border"] = "6px solid #ffffff";
+function mode(num) {
+    if (num == 1) {
+        modeHTML.innerHTML = "Drawing Mode";
+    }
+    else if (num == 2) {
+        timesClicked++;
+        if (timesClicked % 2 == 0) {
+            textButton.click();
+        }
+        modeHTML.innerHTML = "Writing Mode";
+    }
 }
 
 function switchToTextMode() {
@@ -57,11 +62,9 @@ function switchToTextMode() {
     console.log(textMode);
     if (textMode) {
         console.log("turning off signature pad");
-        textButton.style["border"] = "6px solid #ffffff";
         signaturePad.off();
     } else {
         console.log("turning on signature pad");
-        textButton.style["border"] = "3px solid #000000";
         signaturePad.on();
     }
 }

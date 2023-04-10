@@ -11,6 +11,7 @@
 </head>
 
 <body>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href='https://fonts.googleapis.com/css?family=Tilt+Neon' rel='stylesheet'>
   <nav>
       <div class="title">Napking</div>
@@ -38,11 +39,14 @@
     <canvas id="napkin" class="napkin" width=500 height=500></canvas>
   </div>
   <div class="tools">
-    <button class="color-black" id="black" onclick="colorChangeBlack()"></button>
-    <button class="color-red" id="red" onclick="colorChangeRed()"></button>
-    <button class="color-blue" id="blue" onclick="colorChangeBlue()"></button>
-    <button class="add-text" id="text" onclick="switchToTextMode()">Text</button>
-    <input type="number" id="text-size" name="text-size" min="20" max="90" value="20">
+    <button class="clear-btn" id="clear"><i class="fa fa-trash"></i></button>
+    <button class="undo-btn" id="undo"><i class="fa fa-undo"></i></button>
+    <input type='color' class="colorpicker" value="#808080" id="color-picker" onclick="mode(1)" oninput="colorChanged(this);"/>
+    <button class="add-text" id="text" onclick="switchToTextMode(); mode(2)">Text</button>
+    <input type="number" class="textSize" id="text-size" name="text-size" min="20" max="90" value="20">
+  </div>
+  <div class="tooltype">
+    <div id="mode" style="display: block;">Drawing Mode</div>
   </div>
   <div class="napkin-name-container">
     <textarea name="napkin-name" id="napkin-name" cols="30" rows="1">Give your napkin a name!</textarea>
