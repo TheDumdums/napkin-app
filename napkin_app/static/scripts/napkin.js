@@ -115,38 +115,28 @@ function click(e) {
 window.addEventListener('mousemove', detect, false);
 window.addEventListener('mousedown', click, false);
 
-const start = document.getElementById("start");
-const stop = document.getElementById("stop");
-const video = document.querySelector("video");
-let recorder, stream;
+const record = document.getElementById('record');
+const stop = document.getElementById('stop');
+const recordedVideo = document.getElementById('video');
 
-async function startRecording() {
-  stream = await navigator.mediaDevices.getDisplayMedia({
-    video: { mediaSource: "screen" }
-  });
-  recorder = new MediaRecorder(stream);
+let mediaRecorder;
+let recordedChunks = [];
 
-  const chunks = [];
-  recorder.ondataavailable = e => chunks.push(e.data);
-  recorder.onstop = e => {
-    const completeBlob = new Blob(chunks, { type: chunks[0].type });
-    video.src = URL.createObjectURL(completeBlob);
-  };
-
-  recorder.start();
-}
-
-start.addEventListener("click", () => {
-  start.setAttribute("disabled", true);
-  stop.removeAttribute("disabled");
-
-  startRecording();
+record.addEventListener('click', () => {
+    const canvasStream = canvas.captureStream();
+    mediaRecorder = new MediaRecorder(canvasStream);
+    mediaRecorder.addEventListener('dataavailable', (event) => {
+        recordedChunks.push(event.data);
+    });
+    mediaRecorder.addEventListener('stop', () => {
+        const recordedBlob = new Blob(recordedChunks, { type: 'video/webm' });
+        const recordedUrl = URL.createObjectURL(recordedBlob);
+        recordedVideo.src = recordedUrl;
+        recordedVideo.muted = false;
+    });
+    mediaRecorder.start();
 });
 
-stop.addEventListener("click", () => {
-  stop.setAttribute("disabled", true);
-  start.removeAttribute("disabled");
-
-  recorder.stop();
-  stream.getVideoTracks()[0].stop();
+stop.addEventListener('click', () => {
+    mediaRecorder.stop();
 });
