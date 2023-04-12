@@ -4,20 +4,43 @@
 </script>
 {% endif %}
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<title>Sign In</title>
-	</head>
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}"> 
+
 	<body>
-		<form action="/postsignIn" method="post">
-			{% csrf_token %}
-			<label for="email">Email</label>
-			<input type="email"id="email" name="email">
-			<br><br>
-			<label for="password">Password</label>
-			<input type="password" id="password" name="pass">
-			<br><br>
-			<input type="submit" value="SignIn">
-		</form>
+		
+		<div class="login">
+
+			<h1>Login</h1>
+
+			<div class="login-container">
+				<form action="/postsignIn" method="post">
+					{% csrf_token %}
+
+					<p class="fieldset">	
+						<label for="email"></label>
+						<input type="email"id="email" name="email" placeholder="E-mail">
+					
+					</p>
+				
+					<p class="fieldset">
+						<label for="password"></label>
+						<input type="password" id="password" name="pass" placeholder="Password">
+				
+						
+					</p>
+
+					<p class="fieldset">
+						<input type="submit" value="Login">
+					</p>
+
+					<div class="signup_link">
+						Don't have an account? <a href="../signUp/">Sign Up</a>
+					</div>
+				</form>
+			</div>
+		</div>
+
 	</body>
+
 </html>
