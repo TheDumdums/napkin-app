@@ -1,4 +1,4 @@
-name: Build and Test
+name: CI/CD counter app
 
 on:
   push:
@@ -27,7 +27,7 @@ jobs:
         python manage.py test
 
 deploy:
-    needs: [test]
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
@@ -37,16 +37,20 @@ deploy:
     - name: Generate deployment package
       run: zip -r deploy.zip . -x '*.git*'
 
-    - name: Deploy to EB
+    - name: Deploy to EC2
       uses: einaregilsson/beanstalk-deploy@v20
-      with:
-      
-        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        
-        application_name: napkin-app
-        environment_name: Napkinapp-env
-        
-        version_label: 12348
-        region: "us-west-1"
-        deployment_package: deploy.zip
+      env:
+            PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
+            HOSTNAME : ${{ secrets.HOSTNAME  }}
+            USER_NAME : ${{ secrets.USER_NAME  }}
+
+      run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+          
+            #Now we have got the access of EC2 and we will start the deploy .
+            cd /home/ubuntu/CounterApp &&
+            git checkout master &&
+            git fetch --all &&
+            git reset --hard origin/master &&
+            git pull origin master 
