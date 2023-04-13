@@ -1,0 +1,28 @@
+name: Django CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+
+      
+    - name: Run commands to start the Django
+      uses: appleboy/ssh-action@v0.1.9
+      with:
+        host: ec2-54-176-76-99.us-west-1.compute.amazonaws.com
+        username: ec2-user
+        key: ${{ secrets.KEY }}
+        port: 22
+        script: |
+          killall python
+          nohup python manage.py runserver  > log.txt &
+         
