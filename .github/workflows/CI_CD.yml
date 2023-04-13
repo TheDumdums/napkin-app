@@ -8,7 +8,8 @@ env:
 
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - main #Use your own branch here (Might be staging or testing)
 jobs:
   build:
     runs-on: ubuntu-latest
