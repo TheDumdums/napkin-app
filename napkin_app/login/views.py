@@ -12,7 +12,7 @@ config = {
     "messagingSenderId": "348724755235",
     "appId": "1:348724755235:web:8cdd35a0ad3e921ba72a96",
     "measurementId": "G-FXEHZFW0B3",
-    "serviceAccount": "C:/Users/plunk/Downloads/napkin-app-46c4a-firebase-adminsdk-5ma6a-24d50096c4.json"
+    "serviceAccount": "/home/ec2-user/napkin-app-46c4a-firebase-adminsdk-5ma6a-24d50096c4.json"
 }
 
 firebase=pyrebase.initialize_app(config)
