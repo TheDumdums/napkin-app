@@ -29,8 +29,8 @@ jobs:
           key: ${{ secrets.KEY }}
           port: 22
           script: |
-            sed -i 's/.*serviceAccount.*/    "serviceAccount": "\/home\/ec2-user\/napkin-app-46c4a-firebase-adminsdk-5ma6a-24d50096c4.json"/' napkin_app/napkin_app/login/views.py 
-            sed -i 's/.*serviceAccount.*/    "serviceAccount": "\/home\/ec2-user\/napkin-app-46c4a-firebase-adminsdk-5ma6a-24d50096c4.json"/' napkin_app/napkin_app/napkin/views.py 
+            sed -i 's/.*serviceAccount.*/    "serviceAccount": "\/home\/ec2-user\/napkin-app-46c4a-firebase-adminsdk-5ma6a-24d50096c4.json"/' napkin-app/napkin_app/login/views.py 
+            sed -i 's/.*serviceAccount.*/    "serviceAccount": "\/home\/ec2-user\/napkin-app-46c4a-firebase-adminsdk-5ma6a-24d50096c4.json"/' napkin-app/napkin_app/napkin/views.py 
             killall python3
             nohup python3 napkin_app/napkin_app/manage.py runserver 0.0.0.0:8000  > log.txt &
          
