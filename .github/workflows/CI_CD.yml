@@ -20,3 +20,17 @@ jobs:
           REMOTE_HOST: "ec2-54-176-76-99.us-west-1.compute.amazonaws.com"
           REMOTE_USER: "ec2-user"
           TARGET: "/home/ec2-user/napkin-app"
+          
+      - name: Run commands to change key path and restart server
+        uses: appleboy/ssh-action@v0.1.9
+        with:
+          host: ec2-54-176-76-99.us-west-1.compute.amazonaws.com
+          username: ec2-user
+          key: ${{ secrets.KEY }}
+          port: 22
+          script: |
+            sed -i 's/.*serviceAccount.*/    "serviceAccount": "\/home\/ec2-user\/napkin-app-46c4a-firebase-adminsdk-5ma6a-24d50096c4.json"/' login/views.py 
+            sed -i 's/.*serviceAccount.*/    "serviceAccount": "\/home\/ec2-user\/napkin-app-46c4a-firebase-adminsdk-5ma6a-24d50096c4.json"/' napkin/views.py 
+            killall python3
+            nohup python3 manage.py runserver  > log.txt &
+         
