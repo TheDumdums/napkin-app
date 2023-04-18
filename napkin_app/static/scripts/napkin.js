@@ -122,6 +122,12 @@ const recordedVideo = document.getElementById('video');
 let mediaRecorder;
 let recordedChunks = [];
 
+function blobToDataURL(blob, callback) {
+    var fileReader = new FileReader();
+    fileReader.onload = function(e) {callback(e.target.result);}
+    fileReader.readAsDataURL(blob);
+}
+
 record.addEventListener('click', () => {
     const canvasStream = canvas.captureStream();
     mediaRecorder = new MediaRecorder(canvasStream);
@@ -129,10 +135,12 @@ record.addEventListener('click', () => {
         recordedChunks.push(event.data);
     });
     mediaRecorder.addEventListener('stop', () => {
-        const recordedBlob = new Blob(recordedChunks, { type: 'video/webm' });
-        const recordedUrl = URL.createObjectURL(recordedBlob);
-        recordedVideo.src = recordedUrl;
-        recordedVideo.muted = false;
+        const recordedBlob = new Blob(recordedChunks, { type: 'video/mp4' });
+
+        blobToDataURL(recordedBlob, function(dataurl){
+            //do something
+        });
+
     });
     mediaRecorder.start();
 });

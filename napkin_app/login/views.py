@@ -31,6 +31,8 @@ def signUp(request):
 #this is required in order for other services to work.
 #when completed, return a logged in napkin page.
 def postsignIn(request):
+    print(request.POST)
+
     email=request.POST.get('email')
     password=request.POST.get('pass')
     
