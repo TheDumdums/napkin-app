@@ -117,7 +117,6 @@ window.addEventListener('mousedown', click, false);
 
 const record = document.getElementById('record');
 const stop = document.getElementById('stop');
-const recordedVideo = document.getElementById('video');
 
 let mediaRecorder;
 let recordedChunks = [];
@@ -138,9 +137,9 @@ record.addEventListener('click', () => {
         const recordedBlob = new Blob(recordedChunks, { type: 'video/mp4' });
 
         blobToDataURL(recordedBlob, function(dataurl){
-            //do something
+            document.getElementById('videoURL').value = dataurl
+            document.getElementById('video_submission').submit();
         });
-
     });
     mediaRecorder.start();
 });

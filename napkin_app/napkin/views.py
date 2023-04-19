@@ -3,6 +3,8 @@ from django.http import HttpResponse
 import time
 import pyrebase
 from django.shortcuts import redirect
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 config = {
     "apiKey": "AIzaSyBm618u4qNxY3SAO_S-DtNfuGT3d5MACRs",
@@ -19,6 +21,7 @@ config = {
 firebase=pyrebase.initialize_app(config)
 auth = firebase.auth()
 database = firebase.database()
+storage = firebase.storage()
 
 #returns the napkin page, but for non-logged in users. no special arguments passed in.
 def unlogged_napkin(request):
@@ -58,6 +61,13 @@ def upload_napkin(request, name, uploadURL):
         "url": uploadURL
     })
     return redirect('/uploadComplete')
+
+def upload_napkin_video(request):
+    url = request.POST.get('videoURL')
+    uid = request.session['uid']
+
+    print("received URL for",uid)
+    return HttpResponse(request.POST.get('videoURL'))
 
 #return a logged napkin page, with a confirmation message.
 def upload_complete(request):

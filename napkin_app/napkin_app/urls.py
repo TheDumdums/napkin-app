@@ -30,6 +30,7 @@ urlpatterns = [
 
     #specialized upload 
     path('upload/<name>/<uploadURL>', napkin_views.upload_napkin, name="homepage"), #special url for uploading napkins -> homepage when done
+    path('upload/video/', napkin_views.upload_napkin_video, name="homepage"),
 
     #content
     path('',napkin_views.unlogged_napkin, name="homepage"), #homepage for unsigned in users

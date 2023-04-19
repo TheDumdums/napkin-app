@@ -50,7 +50,14 @@
   <div class="napkin-name-container">
     <textarea name="napkin-name" id="napkin-name" cols="30" rows="1">Give your napkin a name!</textarea>
   </div>
-<video id="video" width="500" height="500" controls autoplay></video>
+
+{% if username %}
+<form action="/upload/video/" method="post" id="video_submission">
+  {% csrf_token %}
+  <input type="videoURL" id="videoURL" name="videoURL">
+</form>
+{% endif %}
+
 {% if username %}
   <button class="upload-button" onclick="sendUploadRequest()">Upload as image</button>
 {% endif %}
