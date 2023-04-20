@@ -5,6 +5,9 @@ import pyrebase
 from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 import json
+import urllib.request
+import cv2
+import moviepy.editor as mp
 
 config = {
     "apiKey": "AIzaSyBm618u4qNxY3SAO_S-DtNfuGT3d5MACRs",
@@ -64,9 +67,17 @@ def upload_napkin(request, name, uploadURL):
 
 def upload_napkin_video(request):
     url = request.POST.get('videoURL')
+    name = request.POST.get('videoname')
     uid = request.session['uid']
+    timestamp = str(int(time.time()))
+    
+    database.child("video-napkins").child(uid).child(timestamp).update({
+        "name": name,
+        "url": url
+    })
 
-    print("received URL for",uid)
+    urllib.request.urlretrieve(url, 'video_storage/' + uid + '-' + timestamp + '.mp4')
+
     return HttpResponse(request.POST.get('videoURL'))
 
 #return a logged napkin page, with a confirmation message.

@@ -1,5 +1,6 @@
 var canvas = document.getElementById('napkin')
 let ctx = canvas.getContext('2d');
+
 let textMode = false;
 let mousePos;
 var previouslyToggled;
@@ -138,6 +139,7 @@ record.addEventListener('click', () => {
 
         blobToDataURL(recordedBlob, function(dataurl){
             document.getElementById('videoURL').value = dataurl
+            document.getElementById('videoname').value = document.getElementById('napkin-name').value;
             document.getElementById('video_submission').submit();
         });
     });
@@ -147,3 +149,6 @@ record.addEventListener('click', () => {
 stop.addEventListener('click', () => {
     mediaRecorder.stop();
 });
+
+ctx.fillStyle='white';
+ctx.fillRect(0,0,canvas.width,canvas.height);
