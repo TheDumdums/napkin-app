@@ -15,6 +15,7 @@ var signaturePad = new SignaturePad(canvas, {
     maxWidth: 8
 });
 
+//UNDO HOTKEY
 document.addEventListener("keydown", function (event) {
     if (event.ctrlKey && event.key === 'z') {
         console.log("Undo key");
@@ -26,10 +27,13 @@ document.addEventListener("keydown", function (event) {
     }
 });
 
+//CLEAR BUTTON
 document.getElementById('clear').addEventListener('click', function () {
     signaturePad.clear();
+    fillBackground();
 });
 
+//UNDO BUTTON
 document.getElementById('undo').addEventListener('click', function () {
     var data = signaturePad.toData();
     if (data) {
@@ -38,6 +42,7 @@ document.getElementById('undo').addEventListener('click', function () {
     }
 });
 
+//CHANGE COLOR
 function colorChanged() {
     document.getElementById("mode").innerHTML = "Drawing Mode";
     const inputVal = document.getElementById("color-picker").value;
@@ -45,6 +50,7 @@ function colorChanged() {
     signaturePad.on();
 }
 
+//CHANEG MODE
 function mode(num) {
     if (num == 1) {
         modeHTML.innerHTML = "Drawing Mode";
@@ -58,6 +64,7 @@ function mode(num) {
     }
 }
 
+
 function switchToTextMode() {
     textMode = !textMode;
     console.log(textMode);
@@ -68,6 +75,23 @@ function switchToTextMode() {
         console.log("turning on signature pad");
         signaturePad.on();
     }
+}
+
+function downloadNapkin() {
+    var name = document.getElementById('napkin-name').value;
+    var id = signaturePad.toDataURL();
+
+    downloadURI(id, name);
+}
+
+function downloadURI(uri, name) {
+    var link = document.createElement("a");
+    link.download = name;
+    link.href = uri;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    delete link;
 }
 
 function sendUploadRequest() {
@@ -122,33 +146,69 @@ const stop = document.getElementById('stop');
 let mediaRecorder;
 let recordedChunks = [];
 
+var uploadVideoButton
+var downloadVideoButton
+
 function blobToDataURL(blob, callback) {
     var fileReader = new FileReader();
     fileReader.onload = function(e) {callback(e.target.result);}
     fileReader.readAsDataURL(blob);
 }
 
-record.addEventListener('click', () => {
+function startRecording() {
     const canvasStream = canvas.captureStream();
     mediaRecorder = new MediaRecorder(canvasStream);
     mediaRecorder.addEventListener('dataavailable', (event) => {
         recordedChunks.push(event.data);
     });
-    mediaRecorder.addEventListener('stop', () => {
-        const recordedBlob = new Blob(recordedChunks, { type: 'video/mp4' });
 
-        blobToDataURL(recordedBlob, function(dataurl){
-            document.getElementById('videoURL').value = dataurl
-            document.getElementById('videoname').value = document.getElementById('napkin-name').value;
-            document.getElementById('video_submission').submit();
+    var stopButton = document.createElement("button");
+    stopButton.innerText = "Stop";
+    document.getElementById("tools").appendChild(stopButton);
+
+    stopButton.addEventListener('click', () => {
+        mediaRecorder.stop();
+        document.getElementById("tools").removeChild(stopButton);
+        delete stopButton;
+
+        if (downloadVideoButton == null) {
+            downloadVideoButton = document.createElement("button");
+        }
+        downloadVideoButton.id = 'download-video'
+        downloadVideoButton.innerText = "Download Video";
+        document.getElementById("download-buttons").appendChild(downloadVideoButton);
+        downloadVideoButton.addEventListener('click', () => {
+            const recordedBlob = new Blob(recordedChunks, { type: 'video/mp4' });
+            blobToDataURL(recordedBlob, function(dataurl) {
+                var name = document.getElementById('napkin-name').value;
+                downloadURI(dataurl, name);            
+            })
+        });
+
+        if (uploadVideoButton == null) {
+            uploadVideoButton = document.createElement('button');
+        }
+        uploadVideoButton.id = 'upload-video'
+        uploadVideoButton.innerText = "Upload Video";
+        document.getElementById('download-buttons').appendChild(uploadVideoButton);
+        uploadVideoButton.addEventListener('click', () => {
+            const recordedBlob = new Blob(recordedChunks, { type: 'video/mp4' });
+
+            blobToDataURL(recordedBlob, function(dataurl){
+                document.getElementById('videoURL').value = dataurl
+                document.getElementById('videoname').value = document.getElementById('napkin-name').value;
+                document.getElementById('video_submission').submit();
+            });
         });
     });
+
     mediaRecorder.start();
-});
+    recordedChunks = [];
+}
 
-stop.addEventListener('click', () => {
-    mediaRecorder.stop();
-});
+function fillBackground() {
+    ctx.fillStyle='white';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+}
 
-ctx.fillStyle='white';
-ctx.fillRect(0,0,canvas.width,canvas.height);
+fillBackground()

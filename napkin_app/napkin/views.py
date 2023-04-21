@@ -65,6 +65,7 @@ def upload_napkin(request, name, uploadURL):
     })
     return redirect('/uploadComplete')
 
+@csrf_exempt
 def upload_napkin_video(request):
     url = request.POST.get('videoURL')
     name = request.POST.get('videoname')

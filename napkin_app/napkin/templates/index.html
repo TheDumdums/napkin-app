@@ -38,31 +38,32 @@
   <div class="napkin-container">
     <canvas id="napkin" class="napkin" width=500 height=500></canvas>
   </div>
-  <div class="tools">
+  <div class="tools" id="tools">
     <button class="clear-btn" id="clear"><i class="fa fa-trash"></i></button>
     <button class="undo-btn" id="undo"><i class="fa fa-undo"></i></button>
     <input type='color' class="colorpicker" value="#808080" id="color-picker" onclick="mode(1)" oninput="colorChanged(this);"/>
     <button class="add-text" id="text" onclick="switchToTextMode(); mode(2)">Text</button>
     <input type="number" class="textSize" id="text-size" name="text-size" min="20" max="90" value="20">
-    <button id="record">Record</button>
-    <button id="stop">Stop</button>
+    <button id="record" onclick="startRecording()">Record</button>
   </div>
   <div class="napkin-name-container">
     <textarea name="napkin-name" id="napkin-name" cols="30" rows="1">Give your napkin a name!</textarea>
   </div>
-<video id="video" width="500" height="500" controls autoplay></video>
+  <div id="download-buttons">
+    <button id="download" onclick="downloadNapkin()">Download</button>
+    {% if username %}
+      <button class="upload-button" onclick="sendUploadRequest()">Upload as image</button>
+    {% endif %}
+  </div>
 
 {% if username %}
-<form action="/upload/video/" method="post" id="video_submission">
+<form action="/upload/video/" method="post" id="video_submission" hidden>
   {% csrf_token %}
   <input type="videoname" id="videoname" name="videoname">
   <input type="videoURL" id="videoURL" name="videoURL">
 </form>
 {% endif %}
 
-{% if username %}
-  <button class="upload-button" onclick="sendUploadRequest()">Upload as image</button>
-{% endif %}
 <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
 <script src="{% static 'scripts/napkin.js' %}"></script>
 {% if upload_success %}
