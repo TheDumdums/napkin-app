@@ -29,15 +29,12 @@ document.getElementById('clear').addEventListener('click', function () {
     signaturePad.clear();
 });
 
-document.getElementById('undo').addEventListener('click', function () {
-    var data = signaturePad.toData();
-    if (data) {
-        data.pop();
-        signaturePad.fromData(data);
-    }
-});
+function erase() {
+    ctx.globalCompositeOperation = 'destination-out';
+}
 
 function colorChanged() {
+    ctx.globalCompositeOperation = 'source-over';
     document.getElementById("mode").innerHTML = "Drawing Mode";
     const inputVal = document.getElementById("color-picker").value;
     signaturePad.penColor = inputVal;
@@ -55,9 +52,13 @@ function mode(num) {
         }
         modeHTML.innerHTML = "Writing Mode";
     }
+    else if (num == 3) {
+        modeHTML.innerHTML = "Erase Mode";
+    }
 }
 
 function switchToTextMode() {
+    ctx.globalCompositeOperation = 'source-over';
     textMode = !textMode;
     console.log(textMode);
     if (textMode) {

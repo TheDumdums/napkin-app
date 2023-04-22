@@ -40,9 +40,9 @@
   </div>
   <div class="tools">
     <button class="clear-btn" id="clear"><i class="fa fa-trash"></i></button>
-    <button class="undo-btn" id="undo"><i class="fa fa-undo"></i></button>
+    <button  class="erase-btn" onclick="erase(); mode(3)"><i class="fa fa-eraser"></i></button>
     <input type='color' class="colorpicker" value="#808080" id="color-picker" onclick="mode(1)" oninput="colorChanged(this);"/>
-    <button class="add-text" id="text" onclick="switchToTextMode(); mode(2)">Text</button>
+    <button class="add-text" id="text" onclick="switchToTextMode(); mode(2)">T</button>
     <input type="number" class="textSize" id="text-size" name="text-size" min="20" max="90" value="20">
   </div>
   <div class="tooltype">
@@ -52,7 +52,7 @@
     <textarea name="napkin-name" id="napkin-name" cols="30" rows="1">Give your napkin a name!</textarea>
   </div>
   {% if username %}
-  <button class="upload-button" onclick="sendUploadRequest()">Upload to account</button>
+  <button class="upload-button" onclick="sendUploadRequest()"></i>Upload to account</button>
   {% endif %}
   </body>
 
