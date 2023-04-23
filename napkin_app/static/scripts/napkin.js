@@ -18,12 +18,14 @@ var signaturePad = new SignaturePad(canvas, {
 //UNDO HOTKEY
 document.addEventListener("keydown", function (event) {
     if (event.ctrlKey && event.key === 'z') {
-        console.log("Undo key");
         var data = signaturePad.toData();
         if (data) {
             data.pop();
+            if (data.isEmpty()) {
+                fillBackground();
+            }
+            signaturePad.fromData(data);
         }
-        signaturePad.fromData(data);
     }
 });
 
@@ -38,6 +40,9 @@ document.getElementById('undo').addEventListener('click', function () {
     var data = signaturePad.toData();
     if (data) {
         data.pop();
+        if (data.isEmpty()) {
+            fillBackground();
+        }
         signaturePad.fromData(data);
     }
 });
@@ -148,6 +153,7 @@ let recordedChunks = [];
 
 var uploadVideoButton
 var downloadVideoButton
+var video
 
 function blobToDataURL(blob, callback) {
     var fileReader = new FileReader();
@@ -156,10 +162,22 @@ function blobToDataURL(blob, callback) {
 }
 
 function startRecording() {
+    document.getElementById('record').hidden = true;
+    document.getElementById('video').hidden = true;
+
     const canvasStream = canvas.captureStream();
     mediaRecorder = new MediaRecorder(canvasStream);
     mediaRecorder.addEventListener('dataavailable', (event) => {
         recordedChunks.push(event.data);
+    });
+
+    mediaRecorder.addEventListener('stop', () => {
+        var video = document.getElementById('video');
+        const recordedBlob = new Blob(recordedChunks, { 
+            type: 'video/webm' 
+        });
+        const recordedUrl = URL.createObjectURL(recordedBlob);
+        video.src = recordedUrl;
     });
 
     var stopButton = document.createElement("button");
@@ -167,6 +185,9 @@ function startRecording() {
     document.getElementById("tools").appendChild(stopButton);
 
     stopButton.addEventListener('click', () => {
+        document.getElementById('record').hidden = false;
+        document.getElementById('video').hidden = false;
+
         mediaRecorder.stop();
         document.getElementById("tools").removeChild(stopButton);
         delete stopButton;
@@ -178,7 +199,7 @@ function startRecording() {
         downloadVideoButton.innerText = "Download Video";
         document.getElementById("download-buttons").appendChild(downloadVideoButton);
         downloadVideoButton.addEventListener('click', () => {
-            const recordedBlob = new Blob(recordedChunks, { type: 'video/mp4' });
+            const recordedBlob = new Blob(recordedChunks, { type: 'video/webm' });
             blobToDataURL(recordedBlob, function(dataurl) {
                 var name = document.getElementById('napkin-name').value;
                 downloadURI(dataurl, name);            
@@ -192,7 +213,7 @@ function startRecording() {
         uploadVideoButton.innerText = "Upload Video";
         document.getElementById('download-buttons').appendChild(uploadVideoButton);
         uploadVideoButton.addEventListener('click', () => {
-            const recordedBlob = new Blob(recordedChunks, { type: 'video/mp4' });
+            const recordedBlob = new Blob(recordedChunks, { type: 'video/webm' });
 
             blobToDataURL(recordedBlob, function(dataurl){
                 document.getElementById('videoURL').value = dataurl
