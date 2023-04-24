@@ -11,6 +11,7 @@
 </head>
 
 <body>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href='https://fonts.googleapis.com/css?family=Tilt+Neon' rel='stylesheet'>
   <nav>
       <div class="title">Napking</div>
@@ -27,17 +28,32 @@
       </ul>
   </nav>
   <!-- Main -->
-  <ul>
+  <div class="gallery">
     {% if napkins %}
       {% for timestamp, napkin in napkins.items %} 
-        <li>
-          <button class="napkin-link" onclick="openNapkinTab('{{napkin.url}}')">
+        
+          <!--button class="napkin-link" onclick="openNapkinTab('{{napkin.url}}')">
             {{napkin.name}}
-          </button>
-        </li>
+          </button-->
+          
+          
+          <div class="napkin-link-container">
+            
+              <img src={{napkin.url}} class="napkin-link">
+
+              <div class="overlay">
+                <a download={{napkin.name}} href={{napkin.url}} class="napkin-download">
+                  <img src="{% static 'images/download.png' %}" class="download-icon">
+                </a>
+              </div>
+
+              <p class="label">{{napkin.name}}</p>
+            
+          </div>
+              
       {% endfor %}
     {% endif %}
-  </ul>
-  </body>
+  </div>
+</body>
 <script src="{% static 'scripts/napkin.js' %}"></script>
 </html>
