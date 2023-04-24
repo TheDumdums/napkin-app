@@ -96,17 +96,6 @@ function downloadURI(uri, name) {
     delete link;
 }
 
-
-function sendUploadRequest() {
-    var name = document.getElementById('napkin-name').value;
-
-    var id = signaturePad.toDataURL();
-    id = id.replace(/\//g, '#');
-    console.log(id);
-    
-    window.location.pathname = '/upload/'+name+"/"+id;
-}
-
 //solution courtesy of: https://ourcodeworld.com/articles/read/682/what-does-the-not-allowed-to-navigate-top-frame-to-data-url-javascript-exception-means-in-google-chrome
 function openNapkinTab(url) {
     var win = window.open();
@@ -221,7 +210,7 @@ function startRecording() {
                     blobToDataURL(recordedBlob, function(dataurl){
                         document.getElementById('videoURL').value = dataurl
                         document.getElementById('videoname').value = document.getElementById('napkin-name').value;
-                        document.getElementById('video_submission').submit();
+                        submitForm("/upload/video/", 'video_submission', onVideoUploadSuccessful);
                     });
                 });
             }
@@ -230,6 +219,31 @@ function startRecording() {
         mediaRecorder.start();
         recordedChunks = [];
     });
+}
+
+function uploadImage() {
+    document.getElementById('imagename').value = document.getElementById('napkin-name').value;
+    document.getElementById('imageURL').value = signaturePad.toDataURL();
+    submitForm('/upload/image/', 'image_submission', onImageUploadSuccessful);
+}
+
+function submitForm(url, formID, callback) {
+    $.ajax({
+           type: "POST",
+           url: url,
+           data: $("#"+formID).serialize(),
+           success: callback
+         });
+
+    return false;
+}
+
+function onVideoUploadSuccessful(data) {
+    alert(data);
+}
+
+function onImageUploadSuccessful(data) {
+    alert(data)
 }
 
 function fillBackground() {

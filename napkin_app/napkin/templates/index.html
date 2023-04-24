@@ -59,7 +59,7 @@
   <div id="download-buttons">
     <button id="download" onclick="downloadNapkin()">Download</button>
     {% if username %}
-      <button class="upload-button" onclick="sendUploadRequest()">Upload as image</button>
+      <button class="upload-button" onclick="uploadImage()">Upload as image</button>
     {% endif %}
   </div>
 
@@ -70,6 +70,12 @@
     <input type="videoname" id="videoname" name="videoname">
     <input type="videoURL" id="videoURL" name="videoURL">
   </form>
+
+  <form action="/upload/image/" method="post" id="image_submission" hidden>
+    {% csrf_token %}
+    <input type="imagename" id="imagename" name="imagename">
+    <input type="imageURL" id="imageURL" name="imageURL">
+  </form>
   {% endif %}
   
   <video id="video" controls hidden></video>
@@ -77,6 +83,7 @@
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="{% static 'scripts/napkin.js' %}"></script>
 {% if upload_success %}
 <script>

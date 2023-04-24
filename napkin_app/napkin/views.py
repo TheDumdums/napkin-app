@@ -47,17 +47,17 @@ def logged_napkin(request, additional_params=None):
 
 #given a url with information about a napkin, upload that napkin to whoever's url is in the session data.
 #when completed, change the url to a confirmation message. This url will then invoke the next method (upload_complete)
-def upload_napkin(request, name, uploadURL):
-    #due to / shenanegains, the napkin URL had it's / swapped with # on upload.
-    #reverse this process.
-    uploadURL = uploadURL.replace("#", "/")
+def upload_napkin(request):
+    url = request.POST.get('imageURL')
+    name = request.POST.get('imagename')
     uid = request.session['uid']
     timestamp = str(int(time.time()))
+
     database.child("napkins").child(uid).child(timestamp).update({
         "name": name,
-        "url": uploadURL
+        "url": url
     })
-    return redirect('/uploadComplete')
+    return HttpResponse("Image Uploaded")
 
 def upload_napkin_video(request):
     url = request.POST.get('videoURL')
@@ -70,11 +70,7 @@ def upload_napkin_video(request):
         "url": url
     })
 
-    return logged_napkin(request, additional_params={"upload_success": "Upload successful!"})
-
-#return a logged napkin page, with a confirmation message.
-def upload_complete(request):
-    return logged_napkin(request, additional_params={"upload_success": "Upload successful!"})
+    return HttpResponse("Video Uploaded")
 
 #gets all the napkins that a user has made in the database, and the user's name, and
 #returns a napking viewing page with the prior data as arguments.

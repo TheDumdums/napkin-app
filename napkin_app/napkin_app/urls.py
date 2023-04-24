@@ -23,13 +23,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     #redirects
-    path('uploadComplete',napkin_views.upload_complete, name="homepage"), #homepage redirect after you upload something
     path('postsignIn', login_views.postsignIn), #redirects to homepage after signin
     path('logout', login_views.logout, name="homepage"), #goes from logged in homepage to logged out homepage
     path('postsignUp/', login_views.postsignUp), #redirects to homepage after signup
 
     #specialized upload 
-    path('upload/<name>/<uploadURL>', napkin_views.upload_napkin, name="homepage"), #special url for uploading napkins -> homepage when done
+    path('upload/image/', napkin_views.upload_napkin, name="homepage"), #special url for uploading napkins -> homepage when done
     path('upload/video/', napkin_views.upload_napkin_video, name="homepage"),
 
     #content
