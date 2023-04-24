@@ -239,11 +239,11 @@ function submitForm(url, formID, callback) {
 }
 
 function onVideoUploadSuccessful(data) {
-    alert(data);
+    swal("Video upload successful!", "You can view in in the \"View Napkins\" tab.", "success");
 }
 
 function onImageUploadSuccessful(data) {
-    alert(data)
+    swal("Image upload successful!", "You can view in in the \"View Napkins\" tab.", "success");
 }
 
 function fillBackground() {
