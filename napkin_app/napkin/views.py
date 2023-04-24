@@ -83,7 +83,8 @@ def napkin_view(request):
     name = database.child("profiles").child(uid).child("username").get().val()
 
     napkins = database.child("napkins").child(uid).get().val()
-    return render(request, 'view.html', {"username": name, "napkins": napkins})
+    video_napkins = database.child("video-napkins").child(uid).get().val()
+    return render(request, 'view.html', {"username": name, "napkins": napkins, "video_napkins":video_napkins})
 
 #returns the about page.
 def about(request):

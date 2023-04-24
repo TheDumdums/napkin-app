@@ -258,8 +258,8 @@ nav {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 400px;
-    width: 400px;
+    height: 500px;
+    width: 500px;
 
     opacity: 0;
     transition: .3s ease;
@@ -277,8 +277,8 @@ nav {
 
 
 .napkin-link{
-    width: 400px;
-    height: 400px;
+    width: 500px;
+    height: 500px;
 }
 
 .download-icon {

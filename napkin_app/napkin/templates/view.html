@@ -31,11 +31,6 @@
   <div class="gallery">
     {% if napkins %}
       {% for timestamp, napkin in napkins.items %} 
-        
-          <!--button class="napkin-link" onclick="openNapkinTab('{{napkin.url}}')">
-            {{napkin.name}}
-          </button-->
-          
           
           <div class="napkin-link-container">
             
@@ -48,9 +43,21 @@
               </div>
 
               <p class="label">{{napkin.name}}</p>
-            
+
           </div>
               
+      {% endfor %}
+    {% endif %}
+  </div>
+  <div class="gallery">
+    {% if video_napkins %}
+      {% for timestamp, video_napkin in video_napkins.items %}
+        <div class="napkin-link-container">
+          
+          <video controls src={{video_napkin.url}}></video>
+
+          <p class="label">{{video_napkin.name}}</p>
+        </div>
       {% endfor %}
     {% endif %}
   </div>
