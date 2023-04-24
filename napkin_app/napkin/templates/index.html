@@ -57,6 +57,7 @@
   </div>
 
 {% if username %}
+<div id="authenticated"></div>
 <form action="/upload/video/" method="post" id="video_submission" hidden>
   {% csrf_token %}
   <input type="videoname" id="videoname" name="videoname">
@@ -64,7 +65,7 @@
 </form>
 {% endif %}
 
-<video id="video" controls></video>
+<video id="video" controls hidden></video>
 
 <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
 <script src='https://unpkg.com/@ffmpeg/ffmpeg@0.9.3/dist/ffmpeg.min.js'></script>

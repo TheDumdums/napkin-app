@@ -210,7 +210,8 @@ function startRecording() {
                 })
             });
 
-            if (uploadVideoButton == null) {
+            console.log(document.getElementById("authenticated"));
+            if (uploadVideoButton == null && document.getElementById("authenticated") != null) {
                 uploadVideoButton = document.createElement('button');
             }
             uploadVideoButton.id = 'upload-video'
