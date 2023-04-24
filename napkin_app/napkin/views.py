@@ -77,8 +77,7 @@ def upload_napkin_video(request):
     })
 
     urllib.request.urlretrieve(url, 'video_storage/' + uid + '-' + timestamp + '.mp4')
-
-    return HttpResponse(request.POST.get('videoURL'))
+    return logged_napkin(request, additional_params={"upload_success": "Upload successful!"})
 
 #return a logged napkin page, with a confirmation message.
 def upload_complete(request):
