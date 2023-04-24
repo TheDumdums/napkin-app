@@ -149,6 +149,7 @@ const record = document.getElementById('record');
 const stop = document.getElementById('stop');
 
 let mediaRecorder;
+let audioRecorder;
 let recordedChunks = [];
 
 var uploadVideoButton
@@ -162,69 +163,73 @@ function blobToDataURL(blob, callback) {
 }
 
 function startRecording() {
-    document.getElementById('record').hidden = true;
-    document.getElementById('video').hidden = true;
+    navigator.mediaDevices.getUserMedia({ audio:true }).then(function(audioStream) {
+        const canvasStream = canvas.captureStream();
+        canvasStream.addTrack(audioStream.getAudioTracks()[0]);
+        mediaRecorder = new MediaRecorder(canvasStream);
 
-    const canvasStream = canvas.captureStream();
-    mediaRecorder = new MediaRecorder(canvasStream);
-    mediaRecorder.addEventListener('dataavailable', (event) => {
-        recordedChunks.push(event.data);
-    });
-
-    mediaRecorder.addEventListener('stop', () => {
-        var video = document.getElementById('video');
-        const recordedBlob = new Blob(recordedChunks, { 
-            type: 'video/webm' 
-        });
-        const recordedUrl = URL.createObjectURL(recordedBlob);
-        video.src = recordedUrl;
-    });
-
-    var stopButton = document.createElement("button");
-    stopButton.innerText = "Stop";
-    document.getElementById("tools").appendChild(stopButton);
-
-    stopButton.addEventListener('click', () => {
-        document.getElementById('record').hidden = false;
-        document.getElementById('video').hidden = false;
-
-        mediaRecorder.stop();
-        document.getElementById("tools").removeChild(stopButton);
-        delete stopButton;
-
-        if (downloadVideoButton == null) {
-            downloadVideoButton = document.createElement("button");
-        }
-        downloadVideoButton.id = 'download-video'
-        downloadVideoButton.innerText = "Download Video";
-        document.getElementById("download-buttons").appendChild(downloadVideoButton);
-        downloadVideoButton.addEventListener('click', () => {
-            const recordedBlob = new Blob(recordedChunks, { type: 'video/webm' });
-            blobToDataURL(recordedBlob, function(dataurl) {
-                var name = document.getElementById('napkin-name').value;
-                downloadURI(dataurl, name);            
-            })
+        document.getElementById('record').hidden = true;
+        document.getElementById('video').hidden = true;
+        
+        mediaRecorder.addEventListener('dataavailable', (event) => {
+            recordedChunks.push(event.data);
         });
 
-        if (uploadVideoButton == null) {
-            uploadVideoButton = document.createElement('button');
-        }
-        uploadVideoButton.id = 'upload-video'
-        uploadVideoButton.innerText = "Upload Video";
-        document.getElementById('download-buttons').appendChild(uploadVideoButton);
-        uploadVideoButton.addEventListener('click', () => {
-            const recordedBlob = new Blob(recordedChunks, { type: 'video/webm' });
+        mediaRecorder.addEventListener('stop', () => {
+            var video = document.getElementById('video');
+            const recordedBlob = new Blob(recordedChunks, { 
+                type: 'video/webm' 
+            });
+            const recordedUrl = URL.createObjectURL(recordedBlob);
+            video.src = recordedUrl;
+        });
 
-            blobToDataURL(recordedBlob, function(dataurl){
-                document.getElementById('videoURL').value = dataurl
-                document.getElementById('videoname').value = document.getElementById('napkin-name').value;
-                document.getElementById('video_submission').submit();
+        var stopButton = document.createElement("button");
+        stopButton.innerText = "Stop";
+        document.getElementById("tools").appendChild(stopButton);
+
+        stopButton.addEventListener('click', () => {
+            document.getElementById('record').hidden = false;
+            document.getElementById('video').hidden = false;
+
+            mediaRecorder.stop();
+            document.getElementById("tools").removeChild(stopButton);
+            delete stopButton;
+
+            if (downloadVideoButton == null) {
+                downloadVideoButton = document.createElement("button");
+            }
+            downloadVideoButton.id = 'download-video'
+            downloadVideoButton.innerText = "Download Video";
+            document.getElementById("download-buttons").appendChild(downloadVideoButton);
+            downloadVideoButton.addEventListener('click', () => {
+                const recordedBlob = new Blob(recordedChunks, { type: 'video/webm' });
+                blobToDataURL(recordedBlob, function(dataurl) {
+                    var name = document.getElementById('napkin-name').value;
+                    downloadURI(dataurl, name);            
+                })
+            });
+
+            if (uploadVideoButton == null) {
+                uploadVideoButton = document.createElement('button');
+            }
+            uploadVideoButton.id = 'upload-video'
+            uploadVideoButton.innerText = "Upload Video";
+            document.getElementById('download-buttons').appendChild(uploadVideoButton);
+            uploadVideoButton.addEventListener('click', () => {
+                const recordedBlob = new Blob(recordedChunks, { type: 'video/webm' });
+
+                blobToDataURL(recordedBlob, function(dataurl){
+                    document.getElementById('videoURL').value = dataurl
+                    document.getElementById('videoname').value = document.getElementById('napkin-name').value;
+                    document.getElementById('video_submission').submit();
+                });
             });
         });
-    });
 
-    mediaRecorder.start();
-    recordedChunks = [];
+        mediaRecorder.start();
+        recordedChunks = [];
+    });
 }
 
 function fillBackground() {

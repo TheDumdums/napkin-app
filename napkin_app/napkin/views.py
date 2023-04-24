@@ -7,7 +7,6 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 import urllib.request
 import cv2
-import moviepy.editor as mp
 
 config = {
     "apiKey": "AIzaSyBm618u4qNxY3SAO_S-DtNfuGT3d5MACRs",
