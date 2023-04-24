@@ -13,7 +13,7 @@ config = {
     "messagingSenderId": "348724755235",
     "appId": "1:348724755235:web:8cdd35a0ad3e921ba72a96",
     "measurementId": "G-FXEHZFW0B3",
-    "serviceAccount": "/home/ec2-user/napkin-app-46c4a-firebase-adminsdk-5ma6a-24d50096c4.json"
+    "serviceAccount": "C:/Users/plunk/Downloads/napkin-app-46c4a-firebase-adminsdk-5ma6a-24d50096c4.json"
 }
 
 firebase=pyrebase.initialize_app(config)
@@ -58,6 +58,19 @@ def upload_napkin(request, name, uploadURL):
         "url": uploadURL
     })
     return redirect('/uploadComplete')
+
+def upload_napkin_video(request):
+    url = request.POST.get('videoURL')
+    name = request.POST.get('videoname')
+    uid = request.session['uid']
+    timestamp = str(int(time.time()))
+    
+    database.child("video-napkins").child(uid).child(timestamp).update({
+        "name": name,
+        "url": url
+    })
+
+    return logged_napkin(request, additional_params={"upload_success": "Upload successful!"})
 
 #return a logged napkin page, with a confirmation message.
 def upload_complete(request):
