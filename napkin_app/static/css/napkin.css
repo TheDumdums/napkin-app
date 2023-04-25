@@ -15,12 +15,12 @@ html {
 .description {
     text-align: center;
     color: #ffffff;
-    margin-top: 10px;
 }
 
 .description c {
     font-size: 35px;
     margin-left: 10px;
+    text-decoration: underline;
 }
 
 .description d {
