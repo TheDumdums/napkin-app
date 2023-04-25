@@ -44,7 +44,7 @@ html {
     display: inline;
     border:5px solid #000000;
     border-radius: 30px;
-    background-image: url("../images/napkin.jpg");
+    background-color: white;
 }
 
 .napkin-container {
@@ -217,6 +217,39 @@ nav {
     font-size: 18px;
     font-weight: bold;
     text-align: center;
+}
+
+.record-btn {
+    background-color: transparent; 
+    width: 50px; 
+    height: 50px; 
+    font-size:30px; 
+    border-radius: 50px; 
+    border: transparent;
+    cursor: pointer;
+}
+
+.download-btn-tool {
+    width: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    margin: auto;
+    justify-content: space-evenly;
+    display: flex;
+    margin-bottom: 2%;
+    margin-top: 2.5%;
+}
+
+.download-btn-tool button {
+    border-radius: 15px;
+    font-style: bold;
+    background-color: rgba(242, 232, 232, 0.5);
+    font-size: 15px;
+}
+
+.download-btn-tool button:hover {
+    background-image: linear-gradient(#d3e496, #2fe977);
+    color: white;
 }
 
 .upload-button:hover {

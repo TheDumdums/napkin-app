@@ -173,7 +173,14 @@ function startRecording() {
         });
 
         var stopButton = document.createElement("button");
-        stopButton.innerText = "Stop";
+        stopButton.innerHTML = '<i class = "fa fa-stop"></i>';
+        stopButton.style.backgroundColor = "transparent";
+        stopButton.style.width = "50px";
+        stopButton.style.height = "50px";
+        stopButton.style.fontSize = "26px";
+        stopButton.style.borderRadius = "50px";
+        stopButton.style.border = "transparent";
+        stopButton.style.cursor = "pointer";
         document.getElementById("tools").appendChild(stopButton);
 
         stopButton.addEventListener('click', () => {
@@ -188,7 +195,7 @@ function startRecording() {
                 downloadVideoButton = document.createElement("button");
             }
             downloadVideoButton.id = 'download-video'
-            downloadVideoButton.innerText = "Download Video";
+            downloadVideoButton.innerHTML = '<i class = "fa fa-download"></i><br>Download<br>Video';
             document.getElementById("download-buttons").appendChild(downloadVideoButton);
             downloadVideoButton.addEventListener('click', () => {
                 const recordedBlob = new Blob(recordedChunks, { type: 'video/webm' });
@@ -202,7 +209,7 @@ function startRecording() {
             if (uploadVideoButton == null && document.getElementById("authenticated") != null) {
                 uploadVideoButton = document.createElement('button');
                 uploadVideoButton.id = 'upload-video'
-                uploadVideoButton.innerText = "Upload Video";
+                uploadVideoButton.innerHTML = '<i class = "fa fa-upload"></i><br>Upload<br>Video';
                 document.getElementById('download-buttons').appendChild(uploadVideoButton);
                 uploadVideoButton.addEventListener('click', () => {
                     const recordedBlob = new Blob(recordedChunks, { type: 'video/webm' });
