@@ -32,4 +32,4 @@ jobs:
             killall python3
             sed -i 's/.*serviceAccount.*/    "serviceAccount": "\/home\/ec2-user\/napkin-app-46c4a-firebase-adminsdk-5ma6a-24d50096c4.json"/' napkin-app/napkin_app/login/views.py 
             sed -i 's/.*serviceAccount.*/    "serviceAccount": "\/home\/ec2-user\/napkin-app-46c4a-firebase-adminsdk-5ma6a-24d50096c4.json"/' napkin-app/napkin_app/napkin/views.py 
-            nohup python3 napkin-app/napkin_app/manage.py runserver 0.0.0.0:8000 > /home/ec2-user/nohup.out 2> /home/ec2-user/nohup.err < /dev/null &
+            nohup python3 napkin-app/napkin_app/manage.py runserver 0.0.0.0:443 > /home/ec2-user/nohup.out 2> /home/ec2-user/nohup.err < /dev/null &
