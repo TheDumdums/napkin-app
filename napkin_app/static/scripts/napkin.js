@@ -37,13 +37,14 @@ document.getElementById('clear').addEventListener('click', function () {
 
 
 function erase() {
+    signaturePad.on();
+    ctx = canvas.getContext('2d');
     ctx.globalCompositeOperation = 'destination-out';
 }
 
 //CHANGE COLOR
 function colorChanged() {
     ctx.globalCompositeOperation = 'source-over';
-    document.getElementById("mode").innerHTML = "Drawing Mode";
     const inputVal = document.getElementById("color-picker").value;
     signaturePad.penColor = inputVal;
     signaturePad.on();
@@ -52,14 +53,14 @@ function colorChanged() {
 //CHANGE MODE
 function mode(num) {
     if (num == 1) {
-        modeHTML.innerHTML = "Drawing Mode";
+        modeHTML.innerHTML = "Draw Mode";
     }
     else if (num == 2) {
         timesClicked++;
         if (timesClicked % 2 == 0) {
             textButton.click();
         }
-        modeHTML.innerHTML = "Writing Mode";
+        modeHTML.innerHTML = "Write Mode";
     }
     else if (num == 3) {
         modeHTML.innerHTML = "Erase Mode";

@@ -14,15 +14,24 @@
   <link href='https://fonts.googleapis.com/css?family=Tilt+Neon' rel='stylesheet'>
   <nav>
       <div class="title"><img src="{% static 'images/EmptyLogo.png' %}" height="50px" style="vertical-align: middle;">Pannik</div>
+      {% if username %}
       <ul class="topnav">
-        {% if username %}
-          <li style="color: white;">{{username}}</li>
+        <li style="color: white;">{{username}}</li>
+        <li><a href="/signInReturn">Home</a></li>
+        {% if napkins %}
+        <li><a href="/view">View Napkins</a></li>
         {% endif %}
-        <li><a href="/">Home</a></li>
-        <li><a href="/signIn">Login</a></li>
+        <li><a href="logout">Log Out</a></li>
+        <li><a href="/SignInAbout">About</a></li>
+      </ul>
+      {% else %}
+      <ul class="topnav">
+        <li><a href="">Home</a></li>
+        <li><a href="signIn">Login</a></li>
         <li><a href="/signUp">Sign Up</a></li>
         <li><a href="about">About</a></li>
       </ul>
+      {% endif %}
   </nav>
   <!-- Main -->
   <footer>

@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href='https://fonts.googleapis.com/css?family=Tilt+Neon' rel='stylesheet'>
   <nav>
-      <div class="title">Napking</div>
+    <div class="title"><img src="{% static 'images/EmptyLogo.png' %}" height="50px" style="vertical-align: middle;">Pannik</div>
       <ul class="topnav">
         {% if username %}
         <li style="color: white;">{{username}}</li>
@@ -24,7 +24,7 @@
         <li><a href="view">View Napkins</a></li>
         {% endif %}
         <li><a href="logout">Log Out</a></li>
-        <li><a href="about">About</a></li>
+        <li><a href="/SignInAbout">About</a></li>
       </ul>
   </nav>
   <!-- Main -->

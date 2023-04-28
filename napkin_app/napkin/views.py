@@ -89,3 +89,22 @@ def napkin_view(request):
 #returns the about page.
 def about(request):
     return render(request, 'about.html')
+
+#returns about page, but for logged in users
+def logged_about(request,additional_params=None):
+    try:
+        uid = request.session['uid']
+    except:
+        return render(request, 'about.html', status=403)
+
+    name = database.child("profiles").child(uid).child("username").get().val()
+
+    user_params={"username":name}
+    napkins = database.child("napkins").child(uid).get().val()
+    user_params={"username":name,"napkins":napkins}
+    
+    if additional_params:
+        for k in additional_params.keys():
+            user_params[k] = additional_params[k]
+
+    return render(request, 'about.html', user_params)

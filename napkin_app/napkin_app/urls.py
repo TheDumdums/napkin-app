@@ -38,4 +38,5 @@ urlpatterns = [
     path('signUp/', login_views.signUp, name="signup"), #the sign up page
     path('about/', napkin_views.about, name="aboutpage"), #the about page
     path('view', napkin_views.napkin_view, name="view"), #the view page
+    path('SignInAbout/', napkin_views.logged_about, name="aboutpage"), #the about page for logged in users
 ]
