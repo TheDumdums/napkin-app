@@ -16,9 +16,9 @@ Pannik puts an emphasis on simplicity and quickness to save your ideas similar t
 
 <h3 align="center">Pannik Features</h3>
 
-Drawing Canvas that allows the user to draw, write, and erase their creations.
-As one draws, the user has the ability to record and narrate their creation and turn it into a video file.
-Once finished with creating your napkin sketch, the user has the ability to download and upload the image or video.
+- Drawing Canvas that allows the user to draw, write, and erase their creations.
+- As one draws, the user has the ability to record and narrate their creation and turn it into a video file.
+- Once finished with creating your napkin sketch, the user has the ability to download and upload the image or video.
 
 <h3 align="center">Stack:</h3>
 
