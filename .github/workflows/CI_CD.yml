@@ -17,21 +17,20 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
           SOURCE: "./"
-          REMOTE_HOST: "ec2-54-176-76-99.us-west-1.compute.amazonaws.com"
-          REMOTE_USER: "ec2-user"
+          REMOTE_HOST: "ec2-52-53-174-19.us-west-1.compute.amazonaws.com"
+          REMOTE_USER: "ubuntu"
           TARGET: "/home/ec2-user/napkin-app"
           
-      - name: Run commands to change key path and restart server
+      - name: Run commands to change firebase private key path and restart server
         uses: appleboy/ssh-action@v0.1.9
         with:
-          host: ec2-54-176-76-99.us-west-1.compute.amazonaws.com
-          username: ec2-user
-          key: ${{ secrets.KEY }}
+          host: ec2-52-53-174-19.us-west-1.compute.amazonaws.com
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
           port: 22
           script: |
-            killall python3
-            sed -i 's/.*serviceAccount.*/    "serviceAccount": "\/home\/ec2-user\/napkin-app-46c4a-firebase-adminsdk-5ma6a-24d50096c4.json"/' napkin-app/napkin_app/login/views.py 
-            sed -i 's/.*serviceAccount.*/    "serviceAccount": "\/home\/ec2-user\/napkin-app-46c4a-firebase-adminsdk-5ma6a-24d50096c4.json"/' napkin-app/napkin_app/napkin/views.py 
-            nohup python3 napkin-app/napkin_app/manage.py runserver 0.0.0.0:8000 > /home/ec2-user/nohup.out 2> /home/ec2-user/nohup.err < /dev/null &
-            sudo iptables -t nat -L
-            sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8000
+            sed -i 's/.*serviceAccount.*/    "serviceAccount": "\/home\/ubuntu\/napkin-app-46c4a-firebase-adminsdk-5ma6a-24d50096c4.json"/' napkin-app/napkin_app/login/views.py 
+            sed -i 's/.*serviceAccount.*/    "serviceAccount": "\/home\/ubuntu\/napkin-app-46c4a-firebase-adminsdk-5ma6a-24d50096c4.json"/' napkin-app/napkin_app/napkin/views.py 
+            sudo pip3 install -r napkin-app/napkin_app/requirements.txt
+            sudo systemctl restart nginx
+            sudo systemctl restart gunicorn
