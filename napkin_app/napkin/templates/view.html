@@ -54,7 +54,7 @@
       {% for timestamp, video_napkin in video_napkins.items %}
         <div class="napkin-link-container">
           
-          <video controls src={{video_napkin.url}}></video>
+          <video controls src={{video_napkin.url}} class="napkin-link"></video>
 
           <p class="label">{{video_napkin.name}}</p>
         </div>
