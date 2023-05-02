@@ -31,6 +31,7 @@ jobs:
           script: |
             sed -i 's/.*serviceAccount.*/    "serviceAccount": "\/home\/ubuntu\/napkin-app-46c4a-firebase-adminsdk-5ma6a-24d50096c4.json"/' napkin-app/napkin_app/login/views.py 
             sed -i 's/.*serviceAccount.*/    "serviceAccount": "\/home\/ubuntu\/napkin-app-46c4a-firebase-adminsdk-5ma6a-24d50096c4.json"/' napkin-app/napkin_app/napkin/views.py 
-            sudo pip3 install -r napkin-app/napkin_app/requirements.txt
+            sudo pip install -r napkin-app/napkin_app/requirements.txt
+            source env/bin/activate 
             sudo systemctl restart nginx
             sudo systemctl restart gunicorn
