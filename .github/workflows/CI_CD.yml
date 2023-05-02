@@ -29,6 +29,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           port: 22
           script: |
+            sudo pip3 install -r napkin-app/napkin_app/requirements.txt
             sed -i 's/.*serviceAccount.*/    "serviceAccount": "\/home\/ubuntu\/napkin-app-46c4a-firebase-adminsdk-5ma6a-24d50096c4.json"/' napkin-app/napkin_app/login/views.py 
             sed -i 's/.*serviceAccount.*/    "serviceAccount": "\/home\/ubuntu\/napkin-app-46c4a-firebase-adminsdk-5ma6a-24d50096c4.json"/' napkin-app/napkin_app/napkin/views.py
             sudo systemctl restart nginx
