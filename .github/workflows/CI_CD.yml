@@ -19,7 +19,7 @@ jobs:
           SOURCE: "./"
           REMOTE_HOST: "ec2-52-53-174-19.us-west-1.compute.amazonaws.com"
           REMOTE_USER: "ubuntu"
-          TARGET: "/home/ec2-user/napkin-app"
+          TARGET: "/home/ubuntu/napkin-app"
           
       - name: Run commands to change firebase private key path and restart server
         uses: appleboy/ssh-action@v0.1.9
