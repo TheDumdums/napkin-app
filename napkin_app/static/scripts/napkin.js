@@ -37,9 +37,9 @@ document.getElementById('clear').addEventListener('click', function () {
 
 
 function erase() {
-    signaturePad.on();
     ctx = canvas.getContext('2d');
-    ctx.globalCompositeOperation = 'destination-out';
+    signaturePad.penColor = "white";
+    signaturePad.on();
 }
 
 //CHANGE COLOR
