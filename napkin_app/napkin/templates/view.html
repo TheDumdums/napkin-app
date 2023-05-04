@@ -20,9 +20,7 @@
         <li style="color: white;">{{username}}</li>
         {% endif %}
         <li><a href="/signInReturn">Home</a></li>
-        {% if napkins %}
         <li><a href="view">View Napkins</a></li>
-        {% endif %}
         <li><a href="logout">Log Out</a></li>
         <li><a href="/SignInAbout">About</a></li>
       </ul>
@@ -59,6 +57,8 @@
         <p class="label">{{video_napkin.name}}</p>
       </div>
     {% endfor %}
+    {% else %}
+    <b class="empty-view">No Uploaded Napkins</b>
   {% endif %}
   </div>
 

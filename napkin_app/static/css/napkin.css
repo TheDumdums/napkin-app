@@ -334,3 +334,8 @@ nav {
     text-align: center;
 }
 
+.empty-view {
+    text-align: center;
+    color: #ffffff;
+    font-size: 35px;
+}

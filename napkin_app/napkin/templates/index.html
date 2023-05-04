@@ -18,11 +18,9 @@
       {% if username %}
       <ul class="topnav">
         <li style="color: white;">{{username}}</li>
-        <li><a href="">Home</a></li>
-        {% if napkins %}
+        <li><a href="/signInReturn">Home</a></li>
         <li><a href="/view">View Napkins</a></li>
-        {% endif %}
-        <li><a href="logout">Log Out</a></li>
+        <li><a href="/logout">Log Out</a></li>
         <li><a href="/SignInAbout">About</a></li>
       </ul>
       {% else %}
@@ -42,7 +40,7 @@
   <div class="tools" id="tools">
     <button class="clear-btn" id="clear"><i class="fa fa-trash"></i></button>
     <button  class="erase-btn" onclick="erase(); mode(3)"><i class="fa fa-eraser"></i></button>
-    <input type='color' class="colorpicker" value="#808080" id="color-picker" onclick="mode(1); colorChanged(this);" oninput="colorChanged(this);"/>
+    <input type='color' class="colorpicker" id="color-picker" onclick="mode(1); colorChanged(this);" oninput="colorChanged(this);"/>
     <button class="add-text" id="text" onclick="switchToTextMode(); mode(2)">T</button>
     <input type="number" class="textSize" id="text-size" name="text-size" min="20" max="90" value="20">
     <button id="record" class="record-btn" onclick="startRecording()"><i class="fa fa-video-camera"></i></button>

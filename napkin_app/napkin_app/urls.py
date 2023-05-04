@@ -33,7 +33,7 @@ urlpatterns = [
 
     #content
     path('',napkin_views.unlogged_napkin, name="homepage"), #homepage for unsigned in users
-    path('signInReturn',napkin_views.logged_napkin, name="homepage"), #homepage for logged in users
+    path('signInReturn/',napkin_views.logged_napkin, name="homepage"), #homepage for logged in users
     path('signIn/', login_views.signIn, name="signin"), #the sign in page
     path('signUp/', login_views.signUp, name="signup"), #the sign up page
     path('about/', napkin_views.about, name="aboutpage"), #the about page

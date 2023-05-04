@@ -68,6 +68,10 @@ function mode(num) {
 }
 
 function switchToTextMode() {
+    ctx = canvas.getContext('2d');
+    const inputVal = document.getElementById("color-picker").value;
+    signaturePad.penColor = inputVal;
+    ctx.fillStyle = signaturePad.penColor;
     ctx.globalCompositeOperation = 'source-over';
     textMode = !textMode;
     console.log(textMode);
