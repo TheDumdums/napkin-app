@@ -52,7 +52,10 @@
     {% for timestamp, video_napkin in video_napkins.items %}
       <div class="napkin-link-container">
         
-        <video controls src={{video_napkin.url}} class="napkin-link"></video>
+        <video controls class="napkin-link">
+          <source src={{video_napkin.url}} type="video/mp4"/>
+          <a href={{video_napkin.url}} download></a>
+        </video>
 
         <p class="label">{{video_napkin.name}}</p>
       </div>
